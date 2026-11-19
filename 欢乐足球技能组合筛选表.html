@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>3DS 欢乐足球-技能组合</title>
+<style>
+:root{
+  /* 中性 / 结构色 */
+  --bg:#f5f7fa; --card:#fff; --line:#e5e7eb; --line2:#d1d5db;
+  --head:#eef2ff; --link:#2563eb; --ink:#1f2937; --mut:#94a3b8;
+  /* 位置色（前锋/中场/后卫/门将）— 取自 Toy「3DS欢乐足球：技能查询」 */
+  --fw:#2563eb; --mf:#eab308; --df:#dc2626; --gk:#9333ea; --all:#888;
+  /* 卡级 T1–T4 — 同 Toy */
+  --t1:#16a34a; --t2:#dc2626; --t3:#2563eb; --t4:#eab308;
+  /* 类别色（进攻/防守/中场/全能/均衡/信息） */
+  --c-atk:#dc2626; --c-def:#16a34a; --c-bal:#0ea5e9; --c-mid:#2563eb; --c-ful:#7c3aed; --c-info:#64748b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  padding-bottom:env(safe-area-inset-bottom)}
+.wrap{max-width:1100px;margin:18px auto;padding:16px 18px 24px;background:var(--card);
+  border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+/* 页面标题（位于 Tab 之上） */
+.ttl{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 6px;letter-spacing:.3px}
+/* tabs —— Excel 工作表页签：扁平方角，贴底一线 */
+.tabs{display:flex;flex-wrap:wrap;gap:2px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.tab{border:0;border-bottom:2px solid transparent;background:none;color:var(--mut);padding:2px 8px;cursor:pointer;
+  font-size:12px;line-height:1.5;height:20px;border-radius:0}
+.tab:hover{color:var(--ink);background:#f1f5f9}
+.tab.on{color:var(--link);border-bottom-color:var(--link);font-weight:600}
+.panel{display:none}
+.panel.on{display:block}
+/* content sections（不用卡片方块，改用纯分段） */
+.block,.gblock{margin-bottom:18px;padding-bottom:6px}
+.block h3,.gblock h3{margin:0 0 8px;font-size:15px;font-weight:700}
+.gblock h3.bal{color:var(--link)}
+.gblock h3.ti1{color:var(--t1)} .gblock h3.ti2{color:var(--t2)} .gblock h3.ti3{color:var(--gk)} .gblock h3.ti4{color:var(--all)}
+.gwrap{margin-top:10px}
+.lead{margin:0 0 8px}
+.note,.knote{color:var(--mut);font-size:12.5px;margin-top:10px}
+.knote{padding-top:8px;border-top:1px dashed var(--line)}
+ul{margin:6px 0;padding-left:20px} li{margin:3px 0}
+/* tables — Excel 风格：紧凑行高、网格线、冻结表头（整页平铺） */
+.kv{width:100%;border-collapse:collapse;font-size:12px;line-height:1.2}
+.kv th,.kv td{border:1px solid var(--line);padding:1px 4px;text-align:left;vertical-align:middle;white-space:nowrap}
+.kv thead th{background:var(--head);font-size:11px;font-weight:600;color:#475569;position:sticky;top:0;z-index:5;box-shadow:0 1px 0 var(--line)}
+/* 组合页顶部有筛选栏，表头需下移一行 */
+#panel-combo .kv thead th{top:29px}
+/* 组合页曾有 sticky 筛选栏，现已上移至固定顶栏，表头统一偏移 */
+.kv td.w{white-space:normal;max-width:300px}
+/* 窄列（位置/数值/胶囊）用 width:1% 技巧收缩到内容宽度 */
+.kv td.nowrap,.kv td.num{width:1%}
+.kv td.num{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kv td.z{color:var(--mut)}
+.kv .sum{font-weight:700}
+.kv .neg{color:var(--df)}
+.kv .nowrap{white-space:nowrap}
+.scroll{overflow:visible}
+.muted{color:var(--mut)}
+/* 位置色标 */
+.pill{display:inline-block;width:13px;height:13px;border-radius:4px;vertical-align:middle;margin:0 1px 0 0}
+.pFW{background:var(--fw)} .pMF{background:var(--mf)} .pDF{background:var(--df)} .pGK{background:var(--gk)} .pALL{background:var(--all)}
+/* 课题卡标签：文字 + 底色方块（非胶囊），无边框无间距 */
+.cap{display:inline-block;border-radius:2px;padding:0 4px;font-size:11px;line-height:1.55;color:#fff;
+  white-space:nowrap;cursor:pointer;margin:0}
+.cap:hover{filter:brightness(.92)}
+/* 课题组色：按卡号首位数字 1x/2x/3x/4x（= tier 1–4） */
+.cap.k1{background:var(--t1)} .cap.k2{background:var(--t2)}
+.cap.k3{background:var(--t3)} .cap.k4{background:var(--t4);color:#3b2f00}
+/* 版本页：与攻略页统一字号（12px 正文 / 12px 小标题 / 11px 注释） */
+#panel-ver{font-size:12px;line-height:1.35}
+#panel-ver .gblock{margin-bottom:8px;padding-bottom:0}
+#panel-ver .gblock h3{font-size:12px;font-weight:700;margin:0 0 3px}
+#panel-ver .knote{font-size:11px;margin-top:4px;padding-top:3px}
+#panel-ver .gwrap{margin-top:0}
+#panel-ver .kv{font-size:12px}
+#panel-ver .kv thead th{font-size:11px}
+#panel-ver a{font-size:12px}
+/* 攻略页：紧凑排版，与表格同字号 */
+#panel-guide{font-size:12px;line-height:1.35}
+#panel-guide .gblock{margin-bottom:8px;padding-bottom:0}
+#panel-guide .gblock h3{font-size:12px;font-weight:700;margin:0 0 3px}
+#panel-guide .lead{margin:0 0 3px}
+#panel-guide ul{margin:2px 0;padding-left:16px}
+#panel-guide li{margin:0}
+#panel-guide .knote{font-size:11px;margin-top:4px;padding-top:3px}
+#panel-guide .gwrap{margin-top:0}
+/* 隐藏属性页：底部排版与攻略页统一（12px 紧凑 / 同间距） */
+#panel-tend{font-size:12px;line-height:1.35}
+#panel-tend .block{margin-bottom:8px;padding-bottom:0}
+#panel-tend .block h3{font-size:12px;font-weight:700;margin:0 0 3px}
+#panel-tend .block h3.bal{color:var(--link)}
+#panel-tend .lead{margin:0 0 3px}
+#panel-tend ul{margin:2px 0;padding-left:16px}
+#panel-tend li{margin:0}
+#panel-tend .knote{font-size:11px;margin-top:4px;padding-top:3px}
+/* 选手类型页：与攻略页统一（12px 紧凑 / 同间距） */
+#panel-types{font-size:12px;line-height:1.35}
+#panel-types .block{margin-bottom:8px;padding-bottom:0}
+#panel-types .block h3{font-size:12px;font-weight:700;margin:0 0 3px}
+#panel-types .lead{margin:0 0 3px}
+#panel-types .knote{font-size:11px;margin-top:4px;padding-top:3px}
+/* 隐藏属性页：分组标题行 */
+.kv tr.grouprow td{background:#f8fafc;color:var(--mut);font-size:11px;font-weight:600;text-align:left;padding:1px 4px}
+/* 组合标记徽标：庆祝 / 事故负面 / 特效 */
+.badge{display:inline-block;border-radius:2px;font-size:11px;line-height:1.55;padding:0 3px;margin:0;color:#fff;white-space:nowrap}
+.badge.b-celebrate{background:#f97316}
+.badge.b-accident{background:#dc2626}
+.badge.b-visible{background:#0ea5e9}
+/* 类别色块 / 小标签 */
+.pcat{display:inline-block;min-width:18px;text-align:center;border-radius:2px;color:#fff;font-size:11px;line-height:1.55;padding:0 3px;margin:0}
+.pcat.atk{background:var(--c-atk)} .pcat.def{background:var(--c-def)} .pcat.bal{background:var(--c-bal)} .pcat.mid{background:var(--c-mid)} .pcat.ful{background:var(--c-ful)} .pcat.info{background:var(--c-info)}
+.ttag{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:2px;font-size:11px;line-height:1.55;padding:0 3px;margin:0}
+/* 卡级标签 T1–T4 */
+.tag{display:inline-block;border-radius:3px;padding:0 4px;font-size:11px;line-height:1.6;color:#fff;white-space:nowrap}
+.tag.t1{background:var(--t1)} .tag.t2{background:var(--t2)} .tag.t3{background:var(--t3)} .tag.t4{background:var(--t4);color:#3b2f00}
+/* 可点名称 */
+.name{color:var(--link);cursor:pointer}
+.name:hover{text-decoration:underline}
+/* ===== 筛选栏：位置筛选 + 搜索 + 行数（组合页顶部，sticky） ===== */
+.bar{position:sticky;top:0;z-index:30;background:var(--card);display:flex;align-items:center;gap:6px;
+  padding:4px 0;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.fgrp{display:flex;align-items:center;white-space:nowrap;flex:0 0 auto}
+.flab{font-size:11px;color:var(--mut);margin-right:2px}
+.q{flex:1 1 auto;min-width:80px;max-width:420px;padding:3px 8px;border:1px solid var(--line2);border-radius:5px;font-size:12px;outline:none;background:#fafafa}
+.q:focus{border-color:var(--fw);background:var(--card)}
+/* 位置筛选按钮：位置色文字常显，按下整颗填充位置色（像单表版） */
+.pbtn{border:0;padding:0 5px;margin:0 2px 0 0;border-radius:3px;background:#e5e7eb;color:#374151;
+  font:inherit;font-size:11px;line-height:1.8;cursor:pointer;white-space:nowrap;min-width:22px;text-align:center}
+.pbtn[data-pos="FW"]{color:var(--fw)}
+.pbtn[data-pos="MF"]{color:#a16207}
+.pbtn[data-pos="DF"]{color:var(--df)}
+.pbtn[data-pos="GK"]{color:var(--gk)}
+.pbtn[data-pos="ALL"]{color:#6b7280}
+.pbtn.on{color:#fff;font-weight:600}
+.pbtn.on[data-pos="FW"]{background:var(--fw)}
+.pbtn.on[data-pos="MF"]{background:var(--mf);color:#3b2f00}
+.pbtn.on[data-pos="DF"]{background:var(--df)}
+.pbtn.on[data-pos="GK"]{background:var(--gk)}
+.pbtn.on[data-pos="ALL"]{background:var(--all)}
+/* 详情弹窗 */
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;z-index:70}
+.mask.on{display:block}
+.modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(460px,92vw);max-height:86vh;overflow:auto;background:var(--card);border-radius:14px;padding:16px;z-index:71;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.modal.on{display:block}
+.modal h2{margin:0 0 2px;font-size:17px}
+.modal .mid{color:var(--mut);font-size:11px;margin-bottom:10px}
+.modal .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.modal .row span:last-child{font-weight:600;font-variant-numeric:tabular-nums}
+.modal .row .neg{color:var(--df)}
+.modal .ed{color:#475569;font-size:12.5px;margin-top:2px}
+.modal h4:first-of-type{border-top:none;padding-top:0}
+.modal h4{margin:12px 0 6px;font-size:13px;color:var(--ink)}
+.modal .eff{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px}
+.modal .eff .en{font-weight:600}
+.modal .eff .ed{color:#475569;font-size:12.5px;margin-top:2px}
+.modal .close{display:block;width:100%;height:44px;margin-top:12px;border:0;border-radius:10px;background:var(--link);color:#fff;font-size:14px;cursor:pointer}
+.modal .x{position:absolute;top:12px;right:12px;width:32px;height:32px;line-height:30px;text-align:center;border-radius:8px;cursor:pointer;color:var(--mut);font-size:18px}
+.modal .x:hover{background:#f1f5f9}
+.err{position:relative;z-index:80;background:#b91c1c;color:#fff;padding:10px 14px;font:13px/1.5 monospace;margin-bottom:12px;border-radius:8px}
+/* 移动端：始终保持表格（仅横向滚动，不转卡片） */
+@media(max-width:768px){
+  .wrap{margin:10px;padding:12px 12px 16px;border-radius:10px}
+  .scroll{overflow-x:auto}
+  .kv thead th{position:static}
+  .modal{top:auto;bottom:0;left:0;right:0;transform:none;width:100%;max-width:none;border-radius:14px 14px 0 0;max-height:88vh;padding:14px 16px calc(14px + env(safe-area-inset-bottom))}
+  .modal .x{width:32px;height:32px;line-height:30px}
+}
+</style>
+</head>
+<body>
+<div id="errbox" class="err" style="display:none"></div>
+<div class="wrap">
+  <div class="ttl">3DS 欢乐足球 · 技能组合</div>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-tab="combo">组合</button>
+    <button class="tab" data-tab="cards">单卡</button>
+    <button class="tab" data-tab="types">类型</button>
+    <button class="tab" data-tab="tend">倾向</button>
+    <button class="tab" data-tab="guide">攻略</button>
+    <button class="tab" data-tab="ver">版本</button>
+  </div>
+  <div class="panel on" id="panel-combo">
+    <div class="bar">
+      <span class="fgrp" id="posBtns">
+        <button class="pbtn on" data-pos="ALL" title="通用（原表未标注位置）">通</button>
+        <button class="pbtn" data-pos="FW" title="前锋 FW">前</button>
+        <button class="pbtn" data-pos="MF" title="中场 MF">中</button>
+        <button class="pbtn" data-pos="DF" title="后卫 DF">后</button>
+        <button class="pbtn" data-pos="GK" title="门将 GK">门</button>
+      </span>
+      <input id="q" class="q" placeholder="搜索：组合名 / 类型 / 卡名 / 卡号 / 日文 / 英文 …">
+    </div>
+    <div class="scroll"><table class="kv"><thead><tr><th>位置</th><th>组合名称</th><th>课题1</th><th>课题2</th><th>课题3</th></tr></thead><tbody id="comboBody"></tbody></table></div>
+  </div>
+  <div class="panel" id="panel-cards"></div>
+  <div class="panel" id="panel-types"></div>
+  <div class="panel" id="panel-tend"></div>
+  <div class="panel" id="panel-guide"></div>
+  <div class="panel" id="panel-ver"></div>
+</div>
+<div class="mask" id="mask"></div>
+<div class="modal" id="modal"></div>
+<script id="DATA" type="application/json">{"rows":[{"cn":"暗号交流","cnAlt":["眼神交流"],"jp":"アイコンタクト","en":"Eye Contact","cards":["15","47"],"stats":[1,2,2,2,0,0,4],"total":11,"pos":[],"type":null,"flags":[],"comboId":"1547","n":2,"chg":[11,9],"chgRaw":"11>9"},{"cn":"进攻型后卫","cnAlt":[],"jp":"アグレッシブボランチ","en":"Tough Midfielder","cards":["13","21","26"],"stats":[3,6,6,4,6,0,0],"total":25,"pos":["MF"],"type":{"times":5,"name":"全能型"},"flags":[],"comboId":"132126","n":3,"chg":[25,16],"chgRaw":"25>16"},{"cn":"杂技","cnAlt":[],"jp":"アクロバット","en":"Acrobatics","cards":["14","36","37"],"stats":[0,6,5,2,6,2,0],"total":21,"pos":[],"type":null,"flags":["celebrate"],"comboId":"143637","n":3,"chg":[21,22],"chgRaw":"21<22"},{"cn":"背后铲人","cnAlt":[],"jp":"アフターチャージ","en":"After Charge","cards":["13","33","4B"],"stats":[12,0,0,-2,0,0,-2],"total":8,"pos":[],"type":null,"flags":["accident"],"comboId":"13334B","n":3,"chg":[8,14],"chgRaw":"8<14"},{"cn":"闪电过人","cnAlt":["闪电盘球"],"jp":"稲妻ドリブル","en":"Shock Dribble","cards":["15","21","33"],"stats":[2,6,0,6,6,0,0],"total":20,"pos":["FW","MF"],"type":{"times":10,"name":"司令塔"},"flags":[],"comboId":"152133","n":3,"chg":[20,18],"chgRaw":"20>18"},{"cn":"幻影步","cnAlt":["魔幻脚步"],"jp":"イリュージョンステップ","en":"Feint Steps","cards":["34","35","41"],"stats":[0,10,0,6,0,0,4],"total":20,"pos":["MF"],"type":{"times":6,"name":"进攻型"},"flags":[],"comboId":"343541","n":3,"chg":[20,null],"chgRaw":"20>?"},{"cn":"断球","cnAlt":["截球"],"jp":"インターセプト","en":"Intercepting","cards":["26","46"],"stats":[0,0,0,4,6,0,4],"total":14,"pos":["MF","DF"],"type":null,"flags":[],"comboId":"2646","n":2,"chg":[14,11],"chgRaw":"14>11"},{"cn":"超级放松","cnAlt":[],"jp":"ウルトラリラックス","en":"Ultra Relaxation","cards":["37","41","48"],"stats":[0,0,6,2,10,0,8],"total":26,"pos":[],"type":{"times":7,"name":"清道夫"},"flags":[],"comboId":"374148","n":3,"chg":[26,null],"chgRaw":"26>?"},{"cn":"王牌杀手","cnAlt":[],"jp":"エースキラー","en":"Star Takedown","cards":["12","26","34"],"stats":[0,12,6,2,10,0,0],"total":30,"pos":["DF"],"type":{"times":4,"name":"阻止型"},"flags":[],"comboId":"122634","n":3,"chg":[30,20],"chgRaw":"30>20"},{"cn":"黄金球靴","cnAlt":[],"jp":"黄金の足","en":"Golden Feet","cards":["13","33","47"],"stats":[2,2,1,2,4,0,4],"total":15,"pos":[],"type":null,"flags":["celebrate"],"comboId":"133347","n":3,"chg":[15,15],"chgRaw":"15=15"},{"cn":"训练过度","cnAlt":[],"jp":"オーバートレーニング","en":"Overtraining","cards":["26","31","32"],"stats":[-1,0,-4,0,24,0,-2],"total":17,"pos":[],"type":null,"flags":["accident"],"comboId":"263132","n":3,"chg":[17,23],"chgRaw":"17<23"},{"cn":"交叠进攻","cnAlt":[],"jp":"オーバーラップ","en":"Overlapping","cards":["14","31"],"stats":[0,6,12,0,0,0,0],"total":18,"pos":["DF"],"type":{"times":3,"name":"发动机"},"flags":[],"comboId":"1431","n":2,"chg":[18,14],"chgRaw":"18>14"},{"cn":"擅自参与进攻","cnAlt":[],"jp":"掟破りの攻撃参加","en":"Goalie Runs Up","cards":["17","31","4B"],"stats":[12,0,8,0,0,0,0],"total":20,"pos":["GK"],"type":null,"flags":["visible"],"comboId":"17314B","n":3,"chg":[20,18],"chgRaw":"20>18"},{"cn":"魔鬼逼抢","cnAlt":[],"jp":"鬼プレス","en":"Relentless Pressure","cards":["13","32","49"],"stats":[0,6,8,2,0,0,8],"total":24,"pos":["MF","DF"],"type":{"times":4,"name":"阻止型"},"flags":[],"comboId":"133249","n":3,"chg":[24,16],"chgRaw":"24>16"},{"cn":"越位陷阱","cnAlt":[],"jp":"オフサイドトラップ","en":"Offside Trap","cards":["16","47"],"stats":[0,0,4,1,0,0,8],"total":13,"pos":["DF"],"type":{"times":7,"name":"后援型"},"flags":[],"comboId":"1647","n":2,"chg":[13,9],"chgRaw":"13>9"},{"cn":"战术角球","cnAlt":[],"jp":"オプションプレー","en":"Impulse Play","cards":["17","46"],"stats":[3,0,0,2,0,4,2],"total":11,"pos":[],"type":{"times":6,"name":"司令塔"},"flags":[],"comboId":"1746","n":2,"chg":[11,8],"chgRaw":"11>8"},{"cn":"锁链防守","cnAlt":[],"jp":"カテナチオ","en":"The Chain","cards":["11","12","16"],"stats":[2,4,6,2,6,0,0],"total":20,"pos":["DF"],"type":{"times":4,"name":"后援型"},"flags":[],"comboId":"111216","n":3,"chg":[20,10],"chgRaw":"20>10"},{"cn":"补位","cnAlt":["覆盖"],"jp":"カバーリング","en":"Covering","cards":["16","34"],"stats":[2,6,4,0,0,6,0],"total":18,"pos":["DF"],"type":{"times":6,"name":"后援型"},"flags":[],"comboId":"1634","n":2,"chg":[18,14],"chgRaw":"18>14"},{"cn":"剃刀过人","cnAlt":["剃刀盘球"],"jp":"カミソリドリブル","en":"Rapid Dribbling","cards":["21","46"],"stats":[0,6,0,6,0,0,4],"total":16,"pos":["MF"],"type":{"times":6,"name":"进攻型"},"flags":[],"comboId":"2146","n":2,"chg":[16,12],"chgRaw":"16>12"},{"cn":"上帝之手","cnAlt":[],"jp":"神の手","en":"Hand of God","cards":["13","23","27"],"stats":[12,0,0,-2,0,0,-4],"total":6,"pos":[],"type":null,"flags":["accident"],"comboId":"132327","n":3,"chg":[6,17],"chgRaw":"6<17"},{"cn":"冲撞门将","cnAlt":[],"jp":"キーパーチャージ","en":"Keeper Charge","cards":["16","23","26"],"stats":[-2,0,0,8,0,-2,-2],"total":2,"pos":[],"type":null,"flags":["accident"],"comboId":"162326","n":3,"chg":[2,15],"chgRaw":"2<15"},{"cn":"鬼神扑救","cnAlt":[],"jp":"鬼神のセーブ","en":"Desperate Saves","cards":["36","42","44"],"stats":[0,0,4,8,0,0,10],"total":22,"pos":["GK"],"type":null,"flags":[],"comboId":"364244","n":3,"chg":[22,21],"chgRaw":"22>21"},{"cn":"队长","cnAlt":[],"jp":"キャプテンシー","en":"Captaincy","cards":["31","47"],"stats":[0,0,10,0,0,0,10],"total":20,"pos":["GK"],"type":{"times":7,"name":"发动机"},"flags":["visible"],"comboId":"3147","n":2,"chg":[20,15],"chgRaw":"20>15"},{"cn":"究极振奋","cnAlt":[],"jp":"究極リフレッシュ","en":"Super Refreshment","cards":["36","41","4B"],"stats":[0,0,12,2,0,0,8],"total":22,"pos":[],"type":{"times":10,"name":"后援型"},"flags":[],"comboId":"36414B","n":3,"chg":[22,null],"chgRaw":"22>?"},{"cn":"大力抽射","cnAlt":[],"jp":"強烈ミドル","en":"Midfield Strike","cards":["23","32","43"],"stats":[14,0,0,0,4,0,0],"total":18,"pos":["MF"],"type":{"times":5,"name":"发动机"},"flags":["visible"],"comboId":"233243","n":3,"chg":[18,18],"chgRaw":"18=18"},{"cn":"据点之楔","cnAlt":[],"jp":"拠点のくさび","en":"Open the Gates","cards":["12","14"],"stats":[0,2,4,2,4,0,0],"total":12,"pos":["FW"],"type":null,"flags":[],"comboId":"1214","n":2,"chg":[12,8],"chgRaw":"12>8"},{"cn":"杀手传球","cnAlt":[],"jp":"キラーパス","en":"Killer Pass","cards":["24","33","41"],"stats":[2,5,0,5,5,0,3],"total":20,"pos":["MF"],"type":null,"flags":[],"comboId":"243341","n":3,"chg":[20,null],"chgRaw":"20>?"},{"cn":"空战专家","cnAlt":[],"jp":"空中戦のスペシャリスト","en":"Aerial Specialist","cards":["17","27","33"],"stats":[2,0,0,2,6,16,0],"total":26,"pos":["FW"],"type":{"times":12,"name":"司令塔"},"flags":[],"comboId":"172733","n":3,"chg":[26,19],"chgRaw":"26>19"},{"cn":"克鲁伊夫转身","cnAlt":["克拉夫旋转"],"jp":"クライフターン","en":"Pivot Turn","cards":["35","36"],"stats":[0,6,0,6,0,0,0],"total":12,"pos":["MF"],"type":{"times":7,"name":"发动机"},"flags":[],"comboId":"3536","n":2,"chg":[12,16],"chgRaw":"12<16"},{"cn":"游戏开发商","cnAlt":[],"jp":"ゲームメーカー","en":"Strategist","cards":["24","4A"],"stats":[0,6,0,3,0,0,6],"total":15,"pos":["MF"],"type":null,"flags":[],"comboId":"244A","n":2,"chg":[15,9],"chgRaw":"15>9"},{"cn":"奋起集会","cnAlt":[],"jp":"決起集会","en":"Team Rally","cards":["12","47","4B"],"stats":[0,4,4,0,0,4,8],"total":20,"pos":[],"type":{"times":8,"name":"全能型"},"flags":[],"comboId":"12474B","n":3,"chg":[20,13],"chgRaw":"20>13"},{"cn":"拼死阻堵","cnAlt":[],"jp":"決死のブロック","en":"Risky Block","cards":["26","42"],"stats":[0,0,0,3,6,0,8],"total":17,"pos":["DF"],"type":{"times":5,"name":"清道夫"},"flags":[],"comboId":"2642","n":2,"chg":[17,13],"chgRaw":"17>13"},{"cn":"逃避现实","cnAlt":[],"jp":"現実逃避","en":"Escape Reality","cards":["4B","4A","48"],"stats":[0,0,0,8,-4,0,-2],"total":2,"pos":[],"type":null,"flags":["accident"],"comboId":"484A4B","n":3,"chg":[2,12],"chgRaw":"2<12"},{"cn":"攻击要点","cnAlt":[],"jp":"攻撃の要","en":"Attack Pivot","cards":["21","44"],"stats":[4,6,2,2,0,0,0],"total":14,"pos":["MF"],"type":{"times":11,"name":"司令塔"},"flags":[],"comboId":"2144","n":2,"chg":[14,13],"chgRaw":"14>13"},{"cn":"高速过人","cnAlt":["带球突破"],"jp":"高速ドリブル","en":"Fast Dribble","cards":["21","34"],"stats":[0,12,4,4,0,0,0],"total":20,"pos":["FW","MF"],"type":null,"flags":[],"comboId":"2134","n":2,"chg":[20,17],"chgRaw":"20>17"},{"cn":"呼喊协作","cnAlt":[],"jp":"声の連携","en":"Vocal Tactics","cards":["16","4B"],"stats":[0,0,4,1,0,0,8],"total":13,"pos":[],"type":{"times":4,"name":"后援型"},"flags":[],"comboId":"164B","n":2,"chg":[13,8],"chgRaw":"13>8"},{"cn":"进球的嗅觉","cnAlt":[],"jp":"ゴールの嗅覚","en":"Goal Sniffer","cards":["42","41","46"],"stats":[3,4,0,3,0,3,4],"total":17,"pos":["FW"],"type":{"times":4,"name":"进攻型"},"flags":[],"comboId":"414246","n":3,"chg":[17,null],"chgRaw":"17>?"},{"cn":"球门守护神","cnAlt":[],"jp":"ゴールの守護神","en":"Titanic Goalie","cards":["17","35"],"stats":[0,0,0,2,0,10,4],"total":16,"pos":["GK"],"type":null,"flags":[],"comboId":"1735","n":2,"chg":[16,11],"chgRaw":"16>11"},{"cn":"逼抢区域","cnAlt":["压缩防守"],"jp":"コンパクトフィールド","en":"Compact Field","cards":["16","13"],"stats":[0,4,4,0,0,0,4],"total":12,"pos":["MF","DF"],"type":null,"flags":[],"comboId":"1316","n":2,"chg":[12,7],"chgRaw":"12>7"},{"cn":"最后的王牌","cnAlt":[],"jp":"最後の切り札","en":"Last Trump","cards":["17","24","48"],"stats":[8,8,0,0,6,4,0],"total":26,"pos":["FW","MF"],"type":{"times":4,"name":"司令塔"},"flags":[],"comboId":"172448","n":3,"chg":[26,14],"chgRaw":"26>14"},{"cn":"边路进攻","cnAlt":[],"jp":"サイドアタック","en":"Wing Attack","cards":["21","31"],"stats":[0,10,10,0,2,0,4],"total":26,"pos":["MF"],"type":{"times":12,"name":"进攻型"},"flags":[],"comboId":"2131","n":2,"chg":[26,17],"chgRaw":"26>17"},{"cn":"边路转移","cnAlt":["大范围转移"],"jp":"サイドチェンジ","en":"Wing Change","cards":["11","22"],"stats":[4,0,6,0,0,0,6],"total":16,"pos":["MF","DF"],"type":{"times":10,"name":"司令塔"},"flags":[],"comboId":"1122","n":2,"chg":[16,8],"chgRaw":"16>8"},{"cn":"桑巴","cnAlt":[],"jp":"サンバステップ","en":"Samba Steps","cards":["11","26","35"],"stats":[2,3,0,3,3,4,1],"total":16,"pos":[],"type":null,"flags":["celebrate"],"comboId":"112635","n":3,"chg":[16,16],"chgRaw":"16=16"},{"cn":"剪刀假动作","cnAlt":["剪刀晃人"],"jp":"シザーズフェイント","en":"Scissors Feint","cards":["35","43"],"stats":[0,4,0,3,0,0,6],"total":13,"pos":["MF"],"type":{"times":12,"name":"进攻型"},"flags":["visible"],"comboId":"3543","n":2,"chg":[13,14],"chgRaw":"13<14"},{"cn":"假摔","cnAlt":[],"jp":"シミュレーション","en":"Diving","cards":["23","35","46"],"stats":[0,24,-4,0,0,0,-4],"total":16,"pos":[],"type":null,"flags":["accident"],"comboId":"233546","n":3,"chg":[16,18],"chgRaw":"16<18"},{"cn":"影子前锋","cnAlt":["影子射门"],"jp":"シャドーストライカー","en":"Shadow Striker","cards":["11","23","48"],"stats":[7,5,0,2,0,0,2],"total":16,"pos":["FW"],"type":null,"flags":[],"comboId":"112348","n":3,"chg":[16,12],"chgRaw":"16>12"},{"cn":"香槟足球","cnAlt":[],"jp":"シャンパンサッカー","en":"Flowing Football","cards":["15","24","35"],"stats":[3,10,0,6,0,0,0],"total":19,"pos":[],"type":null,"flags":[],"comboId":"152435","n":3},{"cn":"足球教练","cnAlt":[],"jp":"蹴球プロフェッサー","en":"Football Professor","cards":["11","17","4A"],"stats":[4,4,0,2,0,0,8],"total":18,"pos":["DF"],"type":null,"flags":[],"comboId":"11174A","n":3,"chg":[18,8],"chgRaw":"18>8"},{"cn":"射门封堵","cnAlt":[],"jp":"シュートコースカット","en":"Blocking","cards":["26","37"],"stats":[0,6,0,2,8,0,6],"total":22,"pos":["MF","DF"],"type":{"times":3,"name":"后援型"},"flags":[],"comboId":"2637","n":2,"chg":[22,16],"chgRaw":"22>16"},{"cn":"奋力解围","cnAlt":[],"jp":"執念のクリア","en":"Gutsy Clearance","cards":["27","37","45"],"stats":[0,6,0,2,4,10,10],"total":32,"pos":["DF","GK"],"type":{"times":9,"name":"后援型"},"flags":[],"comboId":"273745","n":3,"chg":[32,24],"chgRaw":"32>24"},{"cn":"司令塔","cnAlt":[],"jp":"司令塔","en":"Control Tower","cards":["15","49"],"stats":[2,0,4,2,0,0,6],"total":14,"pos":["MF"],"type":{"times":12,"name":"发动机"},"flags":[],"comboId":"1549","n":2,"chg":[14,10],"chgRaw":"14>10"},{"cn":"人数优势","cnAlt":[],"jp":"数的優位","en":"Superior Numbers","cards":["16","35"],"stats":[0,5,5,0,0,4,4],"total":18,"pos":["MF"],"type":{"times":8,"name":"后援型"},"flags":[],"comboId":"1635","n":2,"chg":[18,12],"chgRaw":"18>12"},{"cn":"超级替补","cnAlt":[],"jp":"スーパーサブ","en":"Super Sub","cards":["34","44"],"stats":[3,8,0,0,0,6,0],"total":17,"pos":[],"type":{"times":6,"name":"司令塔"},"flags":[],"comboId":"3444","n":2,"chg":[17,16],"chgRaw":"17>16"},{"cn":"超级扑救","cnAlt":[],"jp":"スーパーセーブ","en":"Super Save","cards":["27","42"],"stats":[0,0,4,0,0,8,8],"total":20,"pos":["GK"],"type":null,"flags":[],"comboId":"2742","n":2,"chg":[20,16],"chgRaw":"20>16"},{"cn":"龟式盯防","cnAlt":[],"jp":"すっぽんマーク","en":"Dogged Marker","cards":["12","31"],"stats":[0,4,10,0,4,0,4],"total":22,"pos":["DF"],"type":{"times":4,"name":"全能型"},"flags":[],"comboId":"1231","n":2,"chg":[22,14],"chgRaw":"22>14"},{"cn":"钢铁心脏","cnAlt":[],"jp":"スティールハート","en":"Heart of Steel","cards":["44","45"],"stats":[3,0,0,1,0,0,12],"total":16,"pos":[],"type":{"times":9,"name":"后援型"},"flags":[],"comboId":"4445","n":2,"chg":[16,11],"chgRaw":"16>11"},{"cn":"空间意识","cnAlt":[],"jp":"スペースのケア","en":"Holding Ground","cards":["15","36"],"stats":[0,0,6,4,4,0,0],"total":14,"pos":["MF","DF"],"type":{"times":12,"name":"后援型"},"flags":[],"comboId":"1536","n":2,"chg":[14,12],"chgRaw":"14>12"},{"cn":"鱼跃式头槌","cnAlt":["鱼跃冲顶"],"jp":"スライディングヘッド","en":"Sliding Header","cards":["27","26","48"],"stats":[3,0,0,2,6,6,6],"total":23,"pos":["FW"],"type":{"times":5,"name":"清道夫"},"flags":["visible"],"comboId":"262748","n":3,"chg":[23,20],"chgRaw":"23>20"},{"cn":"目标任务","cnAlt":["传球目标"],"jp":"ターゲットマン","en":"Target Man","cards":["14","27","32"],"stats":[5,5,5,2,0,5,0],"total":22,"pos":["FW"],"type":{"times":10,"name":"司令塔"},"flags":[],"comboId":"142732","n":3,"chg":[22,20],"chgRaw":"22>20"},{"cn":"对角线跑位","cnAlt":["直传斜插"],"jp":"ダイアゴナルラン","en":"Diagonal Run","cards":["31","46"],"stats":[0,6,8,1,0,0,6],"total":21,"pos":["MF","DF"],"type":{"times":4,"name":"司令塔"},"flags":[],"comboId":"3146","n":2,"chg":[21,15],"chgRaw":"21>15"},{"cn":"大激怒","cnAlt":[],"jp":"大激怒","en":"Wild Rage","cards":["12","33","35"],"stats":[2,0,0,6,8,6,0],"total":22,"pos":["DF"],"type":{"times":5,"name":"全能型"},"flags":[],"comboId":"123335","n":3,"chg":[22,19],"chgRaw":"22>19"},{"cn":"一脚传球","cnAlt":[],"jp":"ダイレクトパス","en":"First-Touch","cards":["25","24"],"stats":[0,7,0,6,0,0,0],"total":13,"pos":["MF"],"type":null,"flags":[],"comboId":"2425","n":2,"chg":[13,10],"chgRaw":"13>10"},{"cn":"卓越的持球力","cnAlt":["超级控球力"],"jp":"卓越キープ力","en":"Ball Control","cards":["25","31","42"],"stats":[0,6,6,8,0,0,6],"total":26,"pos":["MF"],"type":{"times":5,"name":"发动机"},"flags":[],"comboId":"253142","n":3,"chg":[26,21],"chgRaw":"26>21"},{"cn":"顽强的发动机","cnAlt":[],"jp":"タフネスダイナモ","en":"Hard Dynamo","cards":["13","31","35"],"stats":[0,10,14,5,0,0,0],"total":29,"pos":["MF"],"type":{"times":4,"name":"发动机"},"flags":[],"comboId":"133135","n":3,"chg":[29,21],"chgRaw":"29>21"},{"cn":"灵魂最后一传","cnAlt":["魂的究极传球"],"jp":"魂のラストパス","en":"Last Gasp Pass","cards":["14","24","42"],"stats":[0,6,4,4,0,0,8],"total":22,"pos":["MF"],"type":null,"flags":[],"comboId":"142442","n":3,"chg":[22,17],"chgRaw":"22>17"},{"cn":"团队之情","cnAlt":[],"jp":"チーム愛","en":"Team Love","cards":["43","41","47"],"stats":[0,0,0,0,0,0,20],"total":20,"pos":[],"type":{"times":3,"name":"发动机"},"flags":[],"comboId":"414347","n":3,"chg":[20,null],"chgRaw":"20>?"},{"cn":"紧密追踪","cnAlt":["追击"],"jp":"チェイシング","en":"Chasing","cards":["13","36"],"stats":[0,6,8,0,6,0,0],"total":20,"pos":["MF","DF"],"type":{"times":5,"name":"全能型"},"flags":[],"comboId":"1336","n":2,"chg":[20,11],"chgRaw":"20>11"},{"cn":"拖延时间","cnAlt":[],"jp":"遅延行為","en":"Time Wasting","cards":["22","31","48"],"stats":[0,-4,24,0,0,-2,-2],"total":16,"pos":[],"type":null,"flags":["accident"],"comboId":"223148","n":3,"chg":[16,21],"chgRaw":"16<21"},{"cn":"中场指挥家","cnAlt":[],"jp":"中盤のマエストロ","en":"Midfield Maestro","cards":["22","24","35"],"stats":[5,8,0,5,0,0,8],"total":26,"pos":["MF"],"type":null,"flags":[],"comboId":"222435","n":3,"chg":[26,20],"chgRaw":"26>20"},{"cn":"超级远射","cnAlt":[],"jp":"超ロングシュート","en":"Super Long Shot","cards":["23","33","4A"],"stats":[8,0,0,1,4,0,4],"total":17,"pos":["MF"],"type":{"times":7,"name":"阻止型"},"flags":["visible"],"comboId":"23334A","n":3,"chg":[17,15],"chgRaw":"17>15"},{"cn":"铁拳制裁","cnAlt":[],"jp":"鉄拳制裁","en":"Iron Fist","cards":["12","32","45"],"stats":[5,0,0,0,12,0,6],"total":23,"pos":["DF"],"type":{"times":5,"name":"全能型"},"flags":[],"comboId":"123245","n":3,"chg":[23,16],"chgRaw":"23>16"},{"cn":"铁壁防守","cnAlt":["铁桶阵"],"jp":"鉄壁ディフェンス","en":"Iron Defence","cards":["13","12"],"stats":[0,0,5,2,5,0,0],"total":12,"pos":[],"type":{"times":3,"name":"阻止型"},"flags":[],"comboId":"1213","n":2,"chg":[12,7],"chgRaw":"12>7"},{"cn":"传说任意球","cnAlt":[],"jp":"伝説のフリーキック","en":"Free Kick Legend","cards":["22","49","46"],"stats":[11,0,0,0,0,0,10],"total":21,"pos":[],"type":{"times":12,"name":"进攻型"},"flags":["visible"],"comboId":"224649","n":3,"chg":[21,17],"chgRaw":"21>17"},{"cn":"斗将","cnAlt":[],"jp":"闘将","en":"Commander","cards":["34","45"],"stats":[2,4,0,3,4,0,4],"total":17,"pos":[],"type":{"times":12,"name":"阻止型"},"flags":[],"comboId":"3445","n":2,"chg":[17,15],"chgRaw":"17>15"},{"cn":"全攻全守","cnAlt":[],"jp":"トータルフットボール","en":"Total Football","cards":["16","21","49"],"stats":[3,3,3,3,3,3,3],"total":21,"pos":["FW","MF","DF"],"type":{"times":9,"name":"后援型"},"flags":[],"comboId":"162149","n":3,"chg":[21,17],"chgRaw":"21>17"},{"cn":"怒涛总攻击","cnAlt":[],"jp":"怒濤の全員攻撃","en":"Rush Attack","cards":["21","24","43"],"stats":[3,10,6,4,0,6,0],"total":29,"pos":["FW","MF","DF"],"type":{"times":8,"name":"司令塔"},"flags":[],"comboId":"212443","n":3,"chg":[29,19],"chgRaw":"29>19"},{"cn":"三角传球","cnAlt":["三角阵形"],"jp":"トライアングル","en":"Triangle","cards":["11","24"],"stats":[1,6,0,3,0,0,0],"total":10,"pos":["MF"],"type":{"times":5,"name":"发动机"},"flags":[],"comboId":"1124","n":2,"chg":[10,8],"chgRaw":"10>8"},{"cn":"驱动射门","cnAlt":["落叶球射门"],"jp":"ドライブシュート","en":"Diving Shot","cards":["14","23","34"],"stats":[9,10,0,0,0,0,0],"total":19,"pos":["FW"],"type":{"times":3,"name":"司令塔"},"flags":[],"comboId":"142334","n":3,"chg":[19,19],"chgRaw":"19=19"},{"cn":"假动作","cnAlt":["技巧晃人"],"jp":"トリッキーフェイント","en":"Tricky Feint","cards":["11","25"],"stats":[2,4,0,4,0,0,0],"total":10,"pos":["FW","MF"],"type":{"times":7,"name":"司令塔"},"flags":[],"comboId":"1125","n":2,"chg":[10,6],"chgRaw":"10>6"},{"cn":"战术任意球","cnAlt":["玩阴的"],"jp":"トリックプレイ","en":"Trick Play","cards":["17","47"],"stats":[2,0,0,0,0,0,8],"total":10,"pos":[],"type":null,"flags":[],"comboId":"1747","n":2,"chg":[10,8],"chgRaw":"10>8"},{"cn":"盘带射门","cnAlt":["带球射门"],"jp":"ドリブルシュート","en":"Dribbling Shot","cards":["23","21"],"stats":[6,6,0,3,0,0,0],"total":15,"pos":["FW"],"type":null,"flags":[],"comboId":"2123","n":2,"chg":[15,12],"chgRaw":"15>12"},{"cn":"电梯球射门","cnAlt":[],"jp":"ナックルシュート","en":"Knuckle Shot","cards":["23","41","49"],"stats":[6,0,0,3,0,0,6],"total":15,"pos":["FW","MF"],"type":{"times":5,"name":"司令塔"},"flags":["visible"],"comboId":"234149","n":3,"chg":[15,null],"chgRaw":"15>?"},{"cn":"仁王立","cnAlt":[],"jp":"仁王立ち","en":"Brick Wall","cards":["33","42"],"stats":[0,0,0,4,10,0,4],"total":18,"pos":["DF"],"type":{"times":5,"name":"后援型"},"flags":[],"comboId":"3342","n":2,"chg":[18,14],"chgRaw":"18>14"},{"cn":"肉体改造","cnAlt":[],"jp":"肉体改造","en":"Bodywork","cards":["32","34","37"],"stats":[5,10,0,0,8,10,0],"total":33,"pos":[],"type":{"times":5,"name":"阻止型"},"flags":[],"comboId":"323437","n":3,"chg":[33,27],"chgRaw":"33>27"},{"cn":"二次进攻","cnAlt":[],"jp":"二次攻撃","en":"2nd Strike","cards":["13","34"],"stats":[4,4,0,2,0,4,0],"total":14,"pos":["MF"],"type":{"times":4,"name":"发动机"},"flags":[],"comboId":"1334","n":2,"chg":[14,13],"chgRaw":"14>13"},{"cn":"热血指导","cnAlt":[],"jp":"熱血コーチング","en":"Keen Coaching","cards":["15","16","45"],"stats":[0,0,6,4,0,0,10],"total":20,"pos":["DF","GK"],"type":null,"flags":[],"comboId":"151645","n":3,"chg":[20,13],"chgRaw":"20>13"},{"cn":"假意传球","cnAlt":["不看人传球"],"jp":"ノールックパス","en":"No-Look Pass","cards":["24","34","46"],"stats":[0,6,0,6,0,0,8],"total":20,"pos":["MF"],"type":{"times":6,"name":"司令塔"},"flags":["visible"],"comboId":"243446","n":3,"chg":[20,21],"chgRaw":"20<21"},{"cn":"倒挂射门","cnAlt":[],"jp":"バイシクルシュート","en":"Bicycle Kick","cards":["23","36","45"],"stats":[4,0,6,4,6,0,0],"total":20,"pos":["FW"],"type":null,"flags":["visible"],"comboId":"233645","n":3,"chg":[20,18],"chgRaw":"20>18"},{"cn":"爬行训练","cnAlt":[],"jp":"ハイハイトレイン","en":"ChooChoo Train","cards":["16","37","48"],"stats":[0,4,2,0,7,2,4],"total":19,"pos":[],"type":null,"flags":["celebrate"],"comboId":"163748","n":3,"chg":[19,19],"chgRaw":"19=19"},{"cn":"钢之身躯","cnAlt":["钢墙铁壁"],"jp":"鋼のボディ","en":"Body of Steel","cards":["11","32","33"],"stats":[4,0,0,3,16,0,0],"total":23,"pos":["FW","MF","DF"],"type":{"times":7,"name":"阻止型"},"flags":[],"comboId":"113233","n":3,"chg":[23,16],"chgRaw":"23>16"},{"cn":"波状攻击","cnAlt":[],"jp":"波状攻撃","en":"Attack Waves","cards":["15","31"],"stats":[2,4,4,2,0,0,4],"total":16,"pos":["MF"],"type":{"times":3,"name":"发动机"},"flags":[],"comboId":"1531","n":2,"chg":[16,14],"chgRaw":"16>14"},{"cn":"香蕉球射门","cnAlt":[],"jp":"バナナシュート","en":"Banana Shot","cards":["23","22"],"stats":[11,0,0,0,0,0,4],"total":15,"pos":["FW"],"type":null,"flags":["visible"],"comboId":"2223","n":2,"chg":[15,11],"chgRaw":"15>11"},{"cn":"饥饿精神","cnAlt":[],"jp":"ハングリー精神","en":"Hungry for Glory","cards":["32","42"],"stats":[2,0,6,3,4,0,0],"total":15,"pos":[],"type":{"times":7,"name":"阻止型"},"flags":[],"comboId":"3242","n":2,"chg":[15,14],"chgRaw":"15>14"},{"cn":"反转速攻","cnAlt":["快速反击"],"jp":"反転速攻","en":"Rapid Turnaround","cards":["14","26"],"stats":[0,6,0,3,3,0,0],"total":12,"pos":["DF"],"type":{"times":9,"name":"司令塔"},"flags":[],"comboId":"1426","n":2,"chg":[12,10],"chgRaw":"12>10"},{"cn":"必杀铲球","cnAlt":[],"jp":"必殺スライディング","en":"Deadly Slide","cards":["26","33","45"],"stats":[3,0,0,7,10,0,0],"total":20,"pos":["MF","DF"],"type":{"times":5,"name":"阻止型"},"flags":[],"comboId":"263345","n":3,"chg":[20,18],"chgRaw":"20>18"},{"cn":"板凳上的教练","cnAlt":[],"jp":"ピッチの監督","en":"Pitch Director","cards":["11","44","47"],"stats":[5,0,0,2,0,0,10],"total":17,"pos":["GK"],"type":{"times":12,"name":"发动机"},"flags":[],"comboId":"114447","n":3,"chg":[17,13],"chgRaw":"17>13"},{"cn":"精准传球","cnAlt":["定点传球"],"jp":"ピンポイントパス","en":"Pin-Point Pass","cards":["24","45"],"stats":[0,6,4,0,0,0,6],"total":16,"pos":["MF","DF"],"type":null,"flags":[],"comboId":"2445","n":2,"chg":[16,11],"chgRaw":"16>11"},{"cn":"球迷服务","cnAlt":[],"jp":"ファンサービス","en":"Fan Service","cards":["11","43"],"stats":[0,0,4,0,0,0,10],"total":14,"pos":[],"type":{"times":5,"name":"司令塔"},"flags":[],"comboId":"1143","n":2,"chg":[14,8],"chgRaw":"14>8"},{"cn":"空翻庆祝","cnAlt":[],"jp":"ファンタジスタ","en":"Star Striker","cards":["22","36","43"],"stats":[10,0,0,4,6,0,0],"total":20,"pos":["MF"],"type":{"times":3,"name":"进攻型"},"flags":[],"comboId":"223643","n":3,"chg":[20,20],"chgRaw":"20=20"},{"cn":"不屈的斗志","cnAlt":[],"jp":"不屈の闘志","en":"Determination","cards":["13","42"],"stats":[0,0,0,3,0,0,10],"total":13,"pos":[],"type":{"times":7,"name":"阻止型"},"flags":[],"comboId":"1342","n":2,"chg":[13,10],"chgRaw":"13>10"},{"cn":"隐蔽射门","cnAlt":[],"jp":"ブラインドシュート","en":"Blind Shot","cards":["12","23"],"stats":[5,0,0,3,0,0,0],"total":8,"pos":["FW"],"type":{"times":11,"name":"司令塔"},"flags":[],"comboId":"1223","n":2,"chg":[8,9],"chgRaw":"8<9"},{"cn":"小飞机式庆祝","cnAlt":[],"jp":"ブラインドプレーン","en":"Blind Plane","cards":["17","25","32"],"stats":[3,0,0,5,4,0,2],"total":14,"pos":[],"type":null,"flags":["celebrate"],"comboId":"172532","n":3,"chg":[14,14],"chgRaw":"14=14"},{"cn":"任意球大师","cnAlt":[],"jp":"FKマイスター","en":"FK Master","cards":["17","22","44"],"stats":[12,0,0,0,0,0,8],"total":20,"pos":[],"type":{"times":4,"name":"进攻型"},"flags":["visible"],"comboId":"172244","n":3,"chg":[20,15],"chgRaw":"20>15"},{"cn":"头球射门","cnAlt":[],"jp":"ヘディングシュート","en":"Headed Shot","cards":["27","35"],"stats":[3,0,0,0,6,14,0],"total":23,"pos":["FW"],"type":null,"flags":[],"comboId":"2735","n":2,"chg":[23,17],"chgRaw":"23>17"},{"cn":"丝绒传球","cnAlt":[],"jp":"ベルベットパス","en":"Velvet Pass","cards":["24","37"],"stats":[0,10,0,4,4,0,4],"total":22,"pos":["MF"],"type":null,"flags":[],"comboId":"2437","n":2,"chg":[22,16],"chgRaw":"22>16"},{"cn":"变幻突破手","cnAlt":["盘球大师"],"jp":"変幻ドリブラー","en":"Phantom Dribbler","cards":["21","25","36"],"stats":[0,14,6,7,0,0,0],"total":27,"pos":["MF"],"type":null,"flags":[],"comboId":"212536","n":3,"chg":[27,19],"chgRaw":"27>19"},{"cn":"跟踪横传","cnAlt":["巡航导弹"],"jp":"ホーミングクロス","en":"Homing Cross","cards":["22","33","49"],"stats":[6,4,4,2,4,0,4],"total":24,"pos":["MF","DF"],"type":null,"flags":[],"comboId":"223349","n":3,"chg":[24,19],"chgRaw":"24>19"},{"cn":"足球魔法师","cnAlt":[],"jp":"ボールのマジシャン","en":"Ball Magician","cards":["22","25","27"],"stats":[7,0,0,8,0,0,0],"total":15,"pos":["MF"],"type":{"times":11,"name":"司令塔"},"flags":[],"comboId":"222527","n":3,"chg":[15,19],"chgRaw":"15<19"},{"cn":"做墙","cnAlt":[],"jp":"ポストプレー","en":"Hold Up Play","cards":["27","24"],"stats":[0,0,0,6,8,0,0],"total":14,"pos":["FW","MF"],"type":null,"flags":[],"comboId":"2427","n":2,"chg":[14,15],"chgRaw":"14<15"},{"cn":"身体平衡","cnAlt":[],"jp":"ボディバランス","en":"Body Balance","cards":["25","33"],"stats":[0,0,0,7,7,0,0],"total":14,"pos":["FW","MF"],"type":null,"flags":[],"comboId":"2533","n":2,"chg":[14,11],"chgRaw":"14>11"},{"cn":"凌空射门","cnAlt":[],"jp":"ボレーシュート","en":"Volley Shot","cards":["23","37"],"stats":[9,0,0,2,0,0,0],"total":11,"pos":["FW"],"type":{"times":8,"name":"司令塔"},"flags":[],"comboId":"2337","n":2,"chg":[11,15],"chgRaw":"11<15"},{"cn":"爆裂头球","cnAlt":["爆炸头球"],"jp":"ボンバーヘッド","en":"Explosive Header","cards":["12","27","49"],"stats":[5,0,4,0,0,12,6],"total":27,"pos":["DF"],"type":null,"flags":[],"comboId":"122749","n":3,"chg":[27,19],"chgRaw":"27>19"},{"cn":"盯人转换","cnAlt":[],"jp":"マークの受け渡し","en":"Marking Transfer","cards":["12","4A"],"stats":[0,0,4,2,2,0,4],"total":12,"pos":["DF"],"type":{"times":4,"name":"阻止型"},"flags":[],"comboId":"124A","n":2,"chg":[12,7],"chgRaw":"12>7"},{"cn":"磁力停球","cnAlt":[],"jp":"マグネットトラップ","en":"Magnet Trapping","cards":["25","37","46"],"stats":[0,6,0,8,4,0,4],"total":22,"pos":[],"type":{"times":6,"name":"司令塔"},"flags":[],"comboId":"253746","n":3,"chg":[22,19],"chgRaw":"22>19"},{"cn":"魔术停球","cnAlt":[],"jp":"マジックトラップ","en":"Magic Trapping","cards":["25","45"],"stats":[0,0,0,6,0,0,4],"total":10,"pos":["FW","MF"],"type":{"times":11,"name":"司令塔"},"flags":[],"comboId":"2545","n":2,"chg":[10,9],"chgRaw":"10>9"},{"cn":"恶意犯规","cnAlt":[],"jp":"マリーシア","en":"Trickery","cards":["17","43"],"stats":[2,8,-2,0,0,0,6],"total":14,"pos":[],"type":{"times":8,"name":"司令塔"},"flags":[],"comboId":"1743","n":2,"chg":[14,9],"chgRaw":"14>9"},{"cn":"马赛回转","cnAlt":["马赛大回环"],"jp":"マルセイユルーレット","en":"Roulette Turn","cards":["37","35","4A"],"stats":[0,12,4,4,8,0,4],"total":32,"pos":["MF"],"type":null,"flags":["visible"],"comboId":"35374A","n":3,"chg":[32,21],"chgRaw":"32>21"},{"cn":"奇迹弧线","cnAlt":["挑射"],"jp":"ミラクルループ","en":"Miracle Loop","cards":["15","23","42"],"stats":[7,0,0,2,0,0,8],"total":17,"pos":["FW"],"type":{"times":5,"name":"发动机"},"flags":[],"comboId":"152342","n":3,"chg":[17,16],"chgRaw":"17>16"},{"cn":"气氛制造者","cnAlt":[],"jp":"ムードメーカー","en":"Mood Maker","cards":["11","15","4B"],"stats":[2,0,4,3,0,0,6],"total":15,"pos":[],"type":{"times":6,"name":"发动机"},"flags":[],"comboId":"11154B","n":3,"chg":[15,10],"chgRaw":"15>10"},{"cn":"野人","cnAlt":[],"jp":"野人","en":"Wild Man","cards":["31","34","36"],"stats":[0,20,20,0,0,0,-2],"total":38,"pos":[],"type":{"times":6,"name":"司令塔"},"flags":[],"comboId":"313436","n":3,"chg":[38,28],"chgRaw":"38>28"},{"cn":"友谊的热线","cnAlt":[],"jp":"友情のホットライン","en":"Linked Partners","cards":["24","36","49"],"stats":[0,6,8,4,2,0,2],"total":22,"pos":["MF"],"type":null,"flags":[],"comboId":"243649","n":3,"chg":[22,20],"chgRaw":"22>20"},{"cn":"实用性","cnAlt":[],"jp":"ユーティリティ","en":"Multitool","cards":["11","37"],"stats":[2,4,0,0,4,0,4],"total":14,"pos":["MF","DF"],"type":null,"flags":[],"comboId":"1137","n":2,"chg":[14,12],"chgRaw":"14>12"},{"cn":"摇篮曲","cnAlt":[],"jp":"ゆりかごダンス","en":"Rock-A-Bye","cards":["12","15","41"],"stats":[1,0,2,1,2,2,2],"total":10,"pos":[],"type":null,"flags":["celebrate"],"comboId":"121541","n":3,"chg":[10,null],"chgRaw":"10>?"},{"cn":"幸运儿","cnAlt":[],"jp":"ラッキーボーイ","en":"Lucky Chance","cards":["14","43","44"],"stats":[5,10,0,1,0,0,0],"total":16,"pos":[],"type":{"times":4,"name":"司令塔"},"flags":[],"comboId":"144344","n":3,"chg":[16,16],"chgRaw":"16=16"},{"cn":"火箭射门","cnAlt":[],"jp":"ロケットシュート","en":"Rocket Shot","cards":["23","31"],"stats":[5,6,6,1,0,0,0],"total":18,"pos":["FW"],"type":{"times":8,"name":"发动机"},"flags":[],"comboId":"2331","n":2,"chg":[18,15],"chgRaw":"18>15"},{"cn":"补时的奇迹","cnAlt":[],"jp":"ロスタイムの奇跡","en":"Last Gasp Miracle","cards":["14","17","45"],"stats":[2,4,0,2,0,0,16],"total":24,"pos":[],"type":{"times":5,"name":"司令塔"},"flags":[],"comboId":"141745","n":3,"chg":[24,12],"chgRaw":"24>12"},{"cn":"远处投球","cnAlt":[],"jp":"ロングスロー","en":"Long Throw","cards":["32","36","48"],"stats":[0,0,6,4,12,0,4],"total":26,"pos":[],"type":null,"flags":["visible"],"comboId":"323648","n":3,"chg":[26,20],"chgRaw":"26>20"},{"cn":"长距离传球","cnAlt":["长距离传空档"],"jp":"ロングフィード","en":"Long Pass","cards":["22","32"],"stats":[8,0,0,0,6,0,4],"total":18,"pos":["MF","DF"],"type":{"times":7,"name":"阻止型"},"flags":[],"comboId":"2232","n":2,"chg":[18,13],"chgRaw":"18>13"},{"cn":"广阔空间","cnAlt":["大空档"],"jp":"ワイドスペース","en":"Open Space","cards":["15","14"],"stats":[2,4,4,1,0,0,0],"total":11,"pos":["MF"],"type":{"times":5,"name":"司令塔"},"flags":[],"comboId":"1415","n":2,"chg":[11,8],"chgRaw":"11>8"},{"cn":"单向封堵","cnAlt":["一刀切断球"],"jp":"ワンサイドカット","en":"Wing Block","cards":["13","46"],"stats":[0,3,0,3,0,0,5],"total":11,"pos":["MF","DF"],"type":{"times":5,"name":"后援型"},"flags":[],"comboId":"1346","n":2,"chg":[11,8],"chgRaw":"11>8"},{"cn":"天才","cnAlt":[],"jp":"ワンダーボーイ","en":"Wonder Boy","cards":["14","41","4A"],"stats":[3,6,0,4,0,0,0],"total":13,"pos":["FW"],"type":{"times":10,"name":"司令塔"},"flags":[],"comboId":"14414A","n":3,"chg":[13,null],"chgRaw":"13>?"},{"cn":"一脚射门","cnAlt":[],"jp":"ワントラップシュート","en":"Controlled Shot","cards":["25","23"],"stats":[6,0,0,5,0,0,0],"total":11,"pos":["FW"],"type":null,"flags":[],"comboId":"2325","n":2,"chg":[11,9],"chgRaw":"11>9"}],"meta":{"cards":[{"code":"11","jp":"ビデオ研究","cn":"录像研究","en":"Analysis","tier":1,"idx":1,"short":"录像"},{"code":"12","jp":"マンツーマン","cn":"盯人防守","en":"Marking","tier":1,"idx":2,"short":"盯人"},{"code":"13","jp":"プレス","cn":"抢逼围","en":"Pressuring","tier":1,"idx":3,"short":"逼抢"},{"code":"14","jp":"カウンター","cn":"防守反击","en":"Countering","tier":1,"idx":4,"short":"反击"},{"code":"15","jp":"ミニゲーム","cn":"小游戏","en":"Mini-Game","tier":1,"idx":5,"short":"游戏"},{"code":"16","jp":"ラインコントロール","cn":"防线控制","en":"Line Control","tier":1,"idx":6,"short":"防线"},{"code":"17","jp":"セットプレー","cn":"定位球训练","en":"Set Plays","tier":1,"idx":7,"short":"定位"},{"code":"21","jp":"ドリブル","cn":"盘带训练","en":"Dribbling","tier":2,"idx":1,"short":"盘带"},{"code":"22","jp":"プレースキック","cn":"地面开球训练","en":"Place Kicks","tier":2,"idx":2,"short":"开球"},{"code":"23","jp":"シュート","cn":"射门训练","en":"Shooting","tier":2,"idx":3,"short":"射门"},{"code":"24","jp":"パス","cn":"传球训练","en":"Passing","tier":2,"idx":4,"short":"传球"},{"code":"25","jp":"リフティング","cn":"颠球训练","en":"Freestyling","tier":2,"idx":5,"short":"颠球"},{"code":"26","jp":"スライディング","cn":"铲球训练","en":"Sliding","tier":2,"idx":6,"short":"铲球"},{"code":"27","jp":"ヘディング","cn":"头球训练","en":"Heading","tier":2,"idx":7,"short":"头球"},{"code":"31","jp":"ランニング","cn":"长跑训练","en":"Running","tier":3,"idx":1,"short":"长跑"},{"code":"32","jp":"ウェイト","cn":"肌肉力量训练","en":"Weights","tier":3,"idx":2,"short":"肌力"},{"code":"33","jp":"キック","cn":"腿部力量训练","en":"Kicking","tier":3,"idx":3,"short":"腿力"},{"code":"34","jp":"ダッシュ","cn":"冲刺训练","en":"Sprinting","tier":3,"idx":4,"short":"冲刺"},{"code":"35","jp":"アジリティ","cn":"敏捷训练","en":"Agility","tier":3,"idx":5,"short":"敏捷"},{"code":"36","jp":"エアロビクス","cn":"有氧运动","en":"Aerobics","tier":3,"idx":6,"short":"有氧"},{"code":"37","jp":"ストレッチ","cn":"拉伸训练","en":"Stretching","tier":3,"idx":7,"short":"拉伸"},{"code":"41","jp":"アロマテラピー","cn":"香熏","en":"Oil Therapy","tier":4,"idx":1,"short":"香熏"},{"code":"42","jp":"座禅","cn":"坐禅","en":"Meditation","tier":4,"idx":2,"short":"坐禅"},{"code":"43","jp":"サイン会","cn":"签名会","en":"Signing","tier":4,"idx":3,"short":"签名"},{"code":"44","jp":"PK練習","cn":"点球训练","en":"PK Practice","tier":4,"idx":4,"short":"点球"},{"code":"45","jp":"合気道","cn":"合气道","en":"Judo","tier":4,"idx":5,"short":"合气"},{"code":"46","jp":"イメージトレーニング","cn":"意念训练","en":"Visualising","tier":4,"idx":6,"short":"意念"},{"code":"47","jp":"ミーティング","cn":"更衣室","en":"Meeting","tier":4,"idx":7,"short":"更衣"},{"code":"48","jp":"温泉","cn":"温泉","en":"Spa","tier":4,"idx":8,"short":"温泉"},{"code":"49","jp":"ミニキャンプ","cn":"迷你训练营","en":"Mini-Camp","tier":4,"idx":9,"short":"迷你"},{"code":"4A","jp":"カルチョビット","cn":"欢乐足球","en":"Gaming","tier":4,"idx":10,"short":"欢乐"},{"code":"4B","jp":"カラオケ","cn":"卡拉OK","en":"Karaoke","tier":4,"idx":11,"short":"卡拉"}],"stats":[["kick","射门(キック)"],["speed","速度"],["stamina","体力(スタミナ)"],["technic","技术"],["physical","体格(フィジカル)"],["jump","弹跳"],["mental","意志(メンタル)"]]}}</script>
+<script>
+window.onerror=function(m,s,l){var b=document.getElementById('errbox');if(b){b.style.display='block';b.textContent='⚠ 脚本错误：'+m+'（行 '+l+'）';}};
+function safe(name, fn){ try{ fn(); }catch(e){ var b=document.getElementById('errbox'); if(b){b.style.display='block';b.textContent='⚠ 「'+name+'」渲染失败：'+e.message;} } }
+
+/* ===== 常量（来自原站抓取，结构未改动） ===== */
+const REC = {
+ FW:[['ドライブシュート','驱动射门'],['ドリブルシュート','盘带射门'],['ミラクルループ','奇迹弧线'],['ターゲットマン','目标中锋'],['ポストプレイ','支点配合'],['マグネットトラップ','磁力停球'],['ゴールの臭覚','进球嗅觉'],['野人','野人'],['ラッキーボーイ','幸运儿']],
+ MF:[['稲妻ドリブル','闪电盘带'],['変幻ドリブラー','变幻突破手'],['イリュージョンステップ','幻影步'],['中盤のマエストロ','中场指挥家'],['ファンタジスタ','技术型球星'],['キラーパス','杀手传球'],['魂のラストパス','灵魂最后一传'],['シャンパンサッカー','香槟足球'],['卓越キープ力','卓越持球力'],['タフネスダイナモ','顽强的发动机'],['インターセプト','断球（后腰）'],['アグレッシブボランチ','进攻型后腰（后腰）']],
+ DF:[['カテナチオ','锁链防守（中卫）'],['エースキラー','王牌杀手（中卫）'],['必殺スライディング','必杀铲球（边卫）'],['サイドアタック','边路进攻'],['大激怒','大激怒'],['仁王立ち','仁王立（中卫）'],['鋼のボディ','钢之身躯']],
+ GK:[['ゴールの守護神','球门守护神'],['スーパーセーブ','超级扑救'],['空中戦のスペシャリスト','空战专家'],['執念のクリア','奋力解围'],['肉体改造','肉体改造']]
+};
+const TYPES = [
+ ['バランス','平均型','bal','初期全员此类型；无特别特征，攻守均衡贡献。'],
+ ['ダイナモ','发动机','mid','攻守切换快，全场大范围奔跑；中场蓝领，跑动量丰富。'],
+ ['オールラウンド','全能型','ful','执行盯人防守，进攻时赶来支援；队里放一个实用的中场。'],
+ ['リベロ','自由人','def','不仅区域防守，还会自己深入敌阵争取进球；需团队配合与战术理解，贸然前插反成险情。'],
+ ['ストッパー','阻截型','def','擅长逼抢的盯人型，危险时用身体封挡射门；适合中卫或三中卫中间。'],
+ ['スイーパー','清道夫','def','用执拗逼抢掐断危险苗头的区域盯人型；适合中卫，可与阻截型按战术切换。'],
+ ['バックアップ','后援型','def','稳定的区域防守，危险时补位；设置盯人时可补空位，与自由人搭配更佳。'],
+ ['マンマーカー','盯人型','def','彻底盯住目标并伺机拦截；关键时刻替补上场也有奇效。'],
+ ['レジスタ','司令塔','mid','擅长传球、控球意识强的慢攻型；从中场供球，是进攻起点。'],
+ ['チャンスメーカー','机会创造型','atk','创造空间、跑出空位；靠无球跑动撕开敌空间，有好司令塔更佳。'],
+ ['アタッカー','攻击型','atk','果断纵向突进的速攻型；打影锋/边锋撕裂敌阵，需突破能力。'],
+ ['ストライカー','射手型','atk','擅长摆脱盯人、进球意识强；部分可当支点（目标中锋）。']
+];
+const TEND = {
+ atk:[
+  ['マークを外す','摆脱盯人','在定位置附近游走寻找自由身（无人时原地待命）；能力越高离对手越远；塑造"射手/攻击型"核心。'],
+  ['ゴール前待機','门前待命','无条件上前到对方球门前等候，易在前场制造空间；典型射手倾向。'],
+  ['スペースに走り込む','插向空当','从定位置向前方空当跑动，找不到则回位；能力越高活动范围越远；机会创造型标志。'],
+  ['サポート','接应','跑到「球与对方球门连线45°」的位置待命；团队型前锋/中场常用。'],
+  ['トライアングル','三角站位','与附近两名队友形成正三角形；能力越高三角形越大；中场组织型典型。'],
+  ['オーバーラップ','套边插上','从定位置超越持球队友前插；能力越高跑得越远；边路/发动机型标志。'],
+  ['ダイアゴナルラン','斜线跑动','沿对角线跑动寻求自由身；离球远时先回撤；能力越高维持越久；全能型/自由人典型。']
+ ],
+ def:[
+  ['ゾーンマーキング','区域盯人','对手进入区域即开始防守，否则原地待命；后援/清道夫型核心倾向。'],
+  ['マンツーマン','人盯人','对阵型预先指定的球员进入防守范围即盯防；盯人型/阻截型核心。'],
+  ['プレッシング','逼抢','正面抢断、逼至边路、绕后避免背后铲球；阻截型/全能型典型。'],
+  ['シュートカット','封堵射门','确认GK位置，预判并封堵对方射门线路；后卫核心倾向。'],
+  ['インターセプト','拦截','抢断传球；值越高待机时越能缩小间距、更易滑铲；盯人型/发动机型典型。']
+ ],
+ main:[
+  ['攻撃意識','进攻意识','决定进攻倾向的主参数，只增不减，累积改变类型。每次特别训练+若干；影响类型切换阈值。'],
+  ['守備意識','防守意识','决定防守倾向的主参数，只增不减，累积改变类型。攻守两项综合决定最终选手类型。']
+ ]
+};
+const CARD_EFF = {"11": [1, 0, 0, 0, 0, 0, 1], "12": [0, 0, 2, 0, 2, 0, 0], "13": [0, 2, 0, 1, 0, 0, 0], "14": [0, 2, 1, 1, 0, 0, 0], "15": [1, 0, 0, 1, 0, 2, 0], "16": [0, 0, 2, 0, 0, 0, 2], "17": [1, 0, 0, 0, 0, 0, 2], "21": [0, 3, 2, 2, 0, 0, 0], "22": [4, 0, 0, 0, 0, 0, 2], "23": [4, 0, 0, 1, 0, 0, 0], "24": [0, 3, 0, 3, 0, 0, 0], "25": [0, 0, 0, 4, 0, 0, 0], "26": [1, 0, 0, 2, 3, 0, 0], "27": [2, 0, 0, 0, 0, 7, 0], "31": [0, 3, 6, 0, 0, 0, 1], "32": [2, 0, 0, 1, 4, 0, 0], "33": [2, 0, 0, 1, 4, 0, 0], "34": [1, 6, 0, 0, 0, 3, 0], "35": [0, 3, 0, 1, 0, 4, 0], "36": [0, 0, 4, 2, 2, 0, 0], "37": [0, 4, 0, 0, 4, 2, 0], "41": "rnd", "42": [0, 0, 1, 0, 0, 0, 6], "43": [1, 0, 0, 0, 0, 0, 5], "44": [2, 0, 0, 0, 0, 0, 4], "45": [0, 0, 0, 1, 0, 0, 4], "46": [0, 0, 0, 1, 0, 2, 2], "47": [0, 0, 1, 0, 0, 0, 4], "48": [0, 0, 0, 0, 3, 0, 2], "49": [0, 2, 2, 0, 0, 0, 2], "4A": [0, 0, 0, 1, 0, 0, 2], "4B": [0, 0, 0, 1, 0, 0, 3]};
+const CARD_TEND = {"11": "分析对手录像→小幅提升团队配合（攻守意识微增）", "12": "盯人训练→提升盯人倾向（マンツーマン↑），降低区域盯人", "13": "逼抢训练→提升逼抢倾向（プレッシング↑）、拦截意识", "14": "反击训练→提升反击意识，降低控球倾向", "15": "小对抗赛→全面提升攻守转换，类型不变倾向平衡化", "16": "防线控制→提升区域盯人（ゾーン↑）、封堵射门", "17": "定位球→提升门前待机（ゴール前待機↑）、制空倾向", "21": "盘带→持球能力↑，促进突破倾向（攻击型方向）", "22": "地面开球→射门精度/球速/传球准确↑，门前嗅觉微增", "23": "射门→射门精度/球速↑，提升摆脱盯人倾向「射门嗅觉」", "24": "传球→传球准确↑，三角站位/接应倾向↑", "25": "颠球→持球（技术子项）大幅提升，技控型倾向", "26": "铲球→抢球能力↑、拦截倾向↑，封堵射门倾向↑", "27": "头球→弹跳↑、制空倾向↑，门前待机/封堵↑", "31": "长跑→速度+体力大幅↑，全场覆盖倾向（发动机型）", "32": "肌力→体格↑、对抗力↑，后援/阻截型倾向", "33": "腿部力量→体格↑、射门球速↑，冲击型倾向", "34": "冲刺→速度大幅↑，突破/套边倾向↑", "35": "敏捷→弹跳+速度微增，灵活性↑（摆脱盯人）", "36": "有氧→体力+体格↑，耐久型倾向", "37": "拉伸→速度+体格微增，降低受伤与疲劳「持久战型」", "41": "香熏→随机提升，倾向不变 ← 注：数值每日随机", "42": "坐禅→意志大幅↑，精神抗压↑，防守意识微增", "43": "签名会→意志↑，粉丝支持/进攻意识微增", "44": "点球训练→意志↑，射门精度微增，关键战心理↑", "45": "合气道→意志↑，身体对抗↑，防守倾向微增", "46": "意念训练→意志+弹跳微增，比赛意识↑（全能型方向）", "47": "更衣室→意志↑，团队配合↑，攻守意识微增", "48": "温泉→体格微增，疲劳恢复加速，伤病风险↓", "49": "迷你训练营→速度+体力微增，综合小幅提升", "4A": "欢乐足球→技术微增（运气：罕见都市传说效果），倾向不变", "4B": "卡拉OK→意志微增，团队士气↑，攻守意识微增"};
+const GUIDE_HTML = `<div class="gwrap">
+ <div class="gblock"><h3 class="bal">游戏系统</h3>
+  <p class="lead">扮演某地区的球队监督，把弱旅培养成全国级，冲击 <b>N1 联赛 · 日本杯（ジャパンカップ）· 世界カルチョクラシック</b> 三冠。</p>
+  <ul><li><b>联赛 4 级</b>（由强到弱）：N1 &gt; N2 &gt; ステップ &gt; フレッシュ</li>
+  <li><b>杯赛 3 项</b>：日本一 ジャパンカップ · 亚洲一 アジアチャレンジトロフィー · 世界一 ワールドカルチョクラシック</li>
+  <li><b>网络排名战</b>：可选日本 1720 市町村之一为「家乡」，代表该地出战全国玩家。</li></ul></div>
+ <div class="gblock"><h3 class="ti2">俱乐部规模（预算）</h3><div class="scroll"><table class="kv">
+  <thead><tr><th>规模</th><th>预算</th><th>条件</th></tr></thead><tbody>
+  <tr><td>无名的</td><td>12000</td><td>フレッシュ联赛</td></tr>
+  <tr><td>郷土</td><td>16000</td><td>ステップ联赛</td></tr>
+  <tr><td>新興</td><td>20000</td><td>N2 联赛</td></tr>
+  <tr><td>中堅</td><td>26000</td><td>N1 联赛第 12 位</td></tr>
+  <tr><td>有名</td><td>32000</td><td>N1 联赛第 8 位</td></tr>
+  <tr><td>強豪</td><td>44000</td><td>N1 联赛第 4 位</td></tr>
+  <tr><td>一流</td><td>60000</td><td>N1 联赛第 2 位</td></tr>
+  <tr><td>名門</td><td>120000</td><td>挑战杯（チャレンジカップ）优胜</td></tr>
+  </tbody></table></div><div class="knote">俱乐部规模越大预算越多，能雇到能力更高的选手。</div></div>
+ <div class="gblock"><h3 class="ti1">课题卡收集</h3><ul>
+  <li>与比自己强的队伍比赛更容易得卡；友谊赛也出卡。</li>
+  <li>与对手能力差距越大、越容易出卡。</li>
+  <li>失误越多越容易出卡（可故意降低主力质量刷卡）。</li>
+  <li>耐力耗尽、对抗落败时也易出卡。</li></ul></div>
+ <div class="gblock"><h3 class="ti3">选手入手</h3><ul>
+  <li>可雇选手每月初随机上架。</li>
+  <li>技巧：月 4 周存档 → 看下月名单 → 不满意读档重刷。</li>
+  <li>更稳：12 月 4 周存档，年初名单直接雇（规避跨年后名单被锁定）。</li></ul></div>
+ <div class="gblock"><h3 class="ti4">常见问题 Q&amp;A</h3><div class="scroll"><table class="kv">
+  <thead><tr><th>问题</th><th>回答</th></tr></thead><tbody>
+  <tr><td>课题卡有上限吗？</td><td>应有限制但未明确；10 张以上显示为「9」红字，实际张数照常累计。</td></tr>
+  <tr><td>没出场也会受伤？</td><td>会，原因不明，确有发生。</td></tr>
+  <tr><td>初始球员有用吗？</td><td>合理特训足以冲ステップ联赛，N2 也够用。</td></tr>
+  <tr><td>高能力球员不发挥？</td><td>战术不匹配或配合差；多练几次「アイコンタクト（眼神交流）」试试。</td></tr>
+  <tr><td>支持率跌了会怎样？</td><td>低于 10% 会被解雇、游戏结束。</td></tr>
+  <tr><td>潜力会降吗？</td><td>会。随在队时间越长越降，但「战术理解度」会相应上升。</td></tr>
+  <tr><td>年俸会涨吗？</td><td>能力越高涨得越多。</td></tr>
+  <tr><td>能快进吗？</td><td>通常不能；仅在线排名战中「对方主动约战」的比赛可快进。</td></tr>
+  <tr><td>球员私自转会？</td><td>长期不打正式赛则转会概率上升；想留人就要适度安排正式赛。</td></tr>
+  </tbody></table></div></div>
+ <div class="gblock"><h3 class="ti4">里技</h3><p class="lead">比赛中移动左摇杆，可自由移动镜头、观察全场球员跑动。</p></div>
+</div>
+ <div class="gblock"><h3 class="bal">七项参数详解（含隐藏细分）</h3><div class="scroll"><table class="kv">
+  <thead><tr><th>参数</th><th>日文</th><th>隐藏细分</th><th>影响</th></tr></thead><tbody>
+  <tr><td><b>射门</b></td><td>キック</td><td>射门精度 · 射门球速 · 传球准确性</td><td>3 个子项统一由此值决定</td></tr>
+  <tr><td><b>速度</b></td><td>スピード</td><td>—</td><td>S 最快、E 最慢（S=100 时 E≈70）；消耗耐力速度会下降</td></tr>
+  <tr><td><b>体力</b></td><td>スタミナ</td><td>—</td><td>S 可跑 55 分钟、E 仅 25 分钟；走路不消耗；半场休息回复 5 分钟</td></tr>
+  <tr><td><b>技术</b></td><td>テクニック</td><td>持球 · 抢球 · 停球</td><td><b>持球</b>=盘带速度/抗铲/弧线，<b>抢球</b>=抢断能力，<b>停球</b>=停球/盘带速度/传中准确（GK：停球→抓球、抢球→反应速度）</td></tr>
+  <tr><td><b>体格</b></td><td>フィジカル</td><td>—</td><td>对抗力（差距越大越易撞开对手）、比赛故障率；高则体力/疲劳恢复更快</td></tr>
+  <tr><td><b>弹跳</b></td><td>ジャンプ</td><td>—</td><td>弹跳力、空中战强度</td></tr>
+  <tr><td><b>意志</b></td><td>メンタル</td><td>—</td><td>客场发挥质量、点球精度；落后/关键战时高则少吃牌；终场前 10–15 分钟可用精神弥补体力</td></tr>
+  </tbody></table></div></div>
+ <div class="gblock"><h3 class="ti3">各位置所需能力</h3><div class="scroll"><table class="kv">
+  <thead><tr><th>位置</th><th>所需能力</th></tr></thead><tbody>
+  <tr><td><span class="pill pALL"></span></td><td>体力（90 分钟全场发挥）、意志（客场发挥，低则易吃牌）</td></tr>
+  <tr><td><span class="pill pFW"></span></td><td>射门（任何战术进球必需）；要支点则加弹跳＋体格</td></tr>
+  <tr><td><span class="pill pMF"></span></td><td>技术（控球与视野）、射门（好传球）、速度（边路突破时重要）</td></tr>
+  <tr><td><span class="pill pDF"></span></td><td>体格（争顶对抗最低要求）、弹跳（防空）、速度（防打身后；边卫前插）</td></tr>
+  <tr><td><span class="pill pGK"></span></td><td>体格＋弹跳（争抢）、技术（扑救/接球）、速度（出击）</td></tr>
+  </tbody></table></div></div>
+ <div class="gblock"><h3 class="ti4">潜力 ポテンシャル</h3>
+  <p class="lead">选手画面中央右侧有「潜力槽」。潜力越高，特训/自主练习越有效；若过低，每次出场能力反而会下降。</p></div>
+ <div class="gblock"><h3 class="ti4">疲劳信号</h3>
+  <p class="lead">选手头像下方有 ● 提示：蓝＝不疲劳，黄→红＝疲劳。比赛或特训会累积疲劳、更容易受伤。</p></div>
+ <div class="gblock"><h3 class="ti4">生涯 キャリア</h3>
+  <p class="lead">生涯＝在籍年数、正式赛出场、进球数。出场累积「战术理解度」，传球配合与整体跑动更流畅；先发球员的战术理解度约为替补的 2 倍（练习赛也会提升）。</p></div>
+ <div class="gblock"><h3 class="ti4">阵型区域 ゾーン</h3>
+  <p class="lead">可设置区域宽度与高度。宽度收窄→跑动更紧凑、支援更快、攻守人数占优、更易断球，但耐力消耗更大；高度前压→后卫身后会留出空间，需权衡风险。</p></div>
+</div>`;
+
+const VER_HTML = `<div class="gwrap">
+
+ <div class="gblock"><h3 class="ti1">数据来源 · 已接入（免费可访问）</h3><div class="scroll"><table class="kv">
+  <thead><tr><th>来源</th><th>状态</th><th>提供的数据</th></tr></thead><tbody>
+  <tr><td><b>ahbj.game-cmr.com</b><br><span>ahbj.game-cmr.com（公开攻略站）</span></td>
+      <td><span class="tag t1">已抓取</span></td>
+      <td style="white-space:normal">本站核心来源，已抓取 35 个页面。提供：特训组合 <b>84 条</b>（spmenu 的 FW/MF/DF/GK/其他）、单卡成长值 <b>32 张</b>（tokkun）、选手类型 <b>12 种</b>（type）、行为倾向文字描述 <b>12 细项 + 2 主意识</b>（offense / syubi）、参数细分（parameter / pgpara）、推荐特训（osusumerensyu）、区域战术（zone）、疲劳信号（signal）、潜力（sensyu-potential）、生涯、俱乐部预算、课题卡、选手入手、系统、Q&amp;A、里技</td></tr>
+  <tr><td><b>游戏 wiki 组合数据</b><br><span style="color:#9ca3af">（已内嵌于页面 DATA）</span></td>
+      <td><span class="tag t1">已内嵌</span></td>
+      <td style="white-space:normal">132 条技能组合的中/日/英三语名称、2~3 张课题卡组合、七项成长值、类型变化（使用次数 → 类型）、庆祝/事故/特效标记、原表合计记法</td></tr>
+  <tr><td><b>PTT 随身足球联盟攻略</b><br><span>PTT NDS 版精华帖（公开攻略）</span></td>
+      <td><span class="tag t1">文字可用</span></td>
+      <td style="white-space:normal">隐藏属性机制说明：<b>2 个主意识（只增不减）+ 12 个细项（可增减）</b>、特别训练（スペシャルメニュー）触发原理、类型由意识累积决定</td></tr>
+  <tr><td><b>kingtoko.com</b>（英文）<br><span>Kingtoko 英文攻略（公开攻略站）</span></td>
+      <td><span class="tag t1">可用</span></td>
+      <td style="white-space:normal">英文卡名与特殊组合数值，用于交叉校验七项成长值</td></tr>
+  </tbody></table></div><div class="knote">以上来源均为公开可访问，本次已实际抓取并解析（Shift-JIS 解码）。</div></div>
+
+ <div class="gblock"><h3 class="ti2">数据来源 · 补充资料（暂未纳入）</h3><div class="knote">部分早期中文 / 日文攻略站与社区帖因需登录、付费或已关停，本次未能直接抓取；其涉及的具体数值缺口已列入下方 TODO，待更多公开资料补充后完善。</div></div>
+
+ <div class="gblock"><h3 class="ti3">TODO · 待补充修订</h3><div class="scroll"><table class="kv">
+  <thead><tr><th>优先级</th><th>事项</th><th>说明 / 解除条件</th></tr></thead><tbody>
+  <tr><td><span class="pcat atk">高</span></td><td><b>倾向量化表</b></td><td style="white-space:normal">把「单卡效果」的〈倾向影响〉列从<b>定性</b>升级为「12 细项 ± 数值」。<b>解除条件</b>：待更多公开攻略资料补充</td></tr>
+  <tr><td><span class="pcat atk">高</span></td><td><b>类型判定阈值</b></td><td style="white-space:normal">攻撃意識 / 守備意識 累积到多少 → 切换为何种类型（12 种的精确切换条件）。<b>解除条件</b>：待更多公开攻略资料补充</td></tr>
+  <tr><td><span class="pcat atk">高</span></td><td><b>选手明细表</b></td><td style="white-space:normal">真实球员名、初始七项、潜力、隐藏属性初值。<b>解除条件</b>：待更多公开攻略资料补充</td></tr>
+  <tr><td><span class="pcat mid">中</span></td><td>组合完整性核对</td><td style="white-space:normal">84 条 spmenu vs 132 条组合表，核对是否仍有遗漏组合或数值差异</td></tr>
+  <tr><td><span class="pcat mid">中</span></td><td>必杀技效果说明</td><td style="white-space:normal">目前仅有必杀技名称，缺游戏内实际效果描述（触发条件 / 判定 / 收益）</td></tr>
+  <tr><td><span class="pcat mid">中</span></td><td>细分换算公式</td><td style="white-space:normal">已知「射门 = 精度/球速/传球」、「技术 = 持球/抢球/停球」，但未知三者的权重与换算公式</td></tr>
+  <tr><td><span class="pcat bal">低</span></td><td>潜力成长曲线</td><td style="white-space:normal">潜力上限、随在队时间衰减速率、与特训收益的系数关系</td></tr>
+  <tr><td><span class="pcat bal">低</span></td><td>推荐特训加收益</td><td style="white-space:normal">在「推荐特训」每项后补上七项数值收益，便于直接比较取舍</td></tr>
+  <tr><td><span class="pcat bal">低</span></td><td>导出功能</td><td style="white-space:normal">支持把筛选结果导出为 CSV / 打印友好视图</td></tr>
+  </tbody></table></div></div>
+
+ <div class="gblock"><h3 class="bal">说明</h3>
+  <p class="lead">本页为玩家自制的《3DS 欢乐足球》技能 / 特训参考工具，与任天堂官方无关；所有数值均来自公开攻略站的<b>实际抓取与解析</b>，未作推测填充。凡属推定或定性描述的内容，均已在对应位置明确标注（如「单卡效果」的倾向影响列）。</p></div>
+
+</div>`;
+
+/* ===== 数据准备 ===== */
+/* 组合标记：庆祝 / 事故负面 / 特效 */
+const FLAG = {celebrate:'庆祝动作', accident:'事故/负面效果', visible:'比赛可见特效'};
+const FLAG_SHORT = {celebrate:'庆', accident:'负', visible:'特'};
+function flagBadges(flags){
+  return (flags&&flags.length) ? flags.map(f=>'<span class="badge b-'+esc(f)+'" title="'+esc(FLAG[f]||f)+'">'+esc(FLAG_SHORT[f]||f)+'</span>').join('') : '';
+}
+const D = JSON.parse(document.getElementById('DATA').textContent);
+D.rows.forEach((r,i) => r._i = i);   // 预置原表索引，供详情弹窗定位
+const CARD = {}; D.meta.cards.forEach(c => CARD[c.code] = c);
+const STATS = [['kick','射门'],['speed','速度'],['stamina','体力'],['tech','技术'],['phys','体格'],['jump','弹跳'],['mental','意志']];
+D.rows.forEach(r => {
+  r._h = [r.cn, ...(r.cnAlt||[]), r.jp, r.en, r.comboId, r.type?r.type.name:'',
+          ...(r.flags||[]).flatMap(f => [f, FLAG[f]||'', FLAG_SHORT[f]||'']),
+          ...r.cards.map(c => { const k=CARD[c]; return [c, k?k.short:'', k?k.jp:'', k?k.en:'', CARD_TEND[c]||''].join(' '); })
+         ].join(' ').toLowerCase();
+});
+const POSN = {FW:'前锋', MF:'中场', DF:'后卫', GK:'门将', ALL:'通用（REC 未单列）'};
+const TYCH = {'后援型':'援','阻止型':'阻','全能型':'全','进攻型':'攻','司令塔':'司','发动机':'发','清道夫':'清'};
+const VARM = {'阻截型':'阻止型','攻击型':'进攻型'};
+
+/* 位置推导：仅以 REC（推荐特训）为权威来源 */
+const recJP = {};
+['FW','MF','DF','GK'].forEach(p => (REC[p]||[]).forEach(([jp]) => { (recJP[jp]=recJP[jp]||new Set()).add(p); }));
+D.rows.forEach(r => { const d = recJP[r.jp]; r.pos = (d && d.size) ? [...d] : ['ALL']; });
+const TYPEPOS = {};
+D.rows.forEach(r => { if(r.type && r.type.name){ const ps = r.pos && r.pos.length ? r.pos : ['ALL']; (TYPEPOS[r.type.name]=TYPEPOS[r.type.name]||new Set()); ps.forEach(p => TYPEPOS[r.type.name].add(p)); } });
+for(const k in TYPEPOS) TYPEPOS[k] = [...TYPEPOS[k]];
+
+/* ===== 通用工具 ===== */
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function posPills(a){ return (a&&a.length) ? a.map(p => '<span class="pill p'+p+'"></span>').join('') : '<span class="muted">—</span>'; }
+/* 课题卡：按卡号首位数字取色（1x→k1 / 2x→k2 / 3x→k3 / 4x→k4） */
+function capCls(code){ return 'cap k' + String(code).charAt(0); }
+function statCell(v){ return v===0 ? '<td class="z num">—</td>' : '<td class="num '+(v<0?'neg':'')+'">'+(v>0?'+':'')+v+'</td>'; }
+
+/* ===== 组合 ===== */
+let comboPos = 'ALL';
+function renderCombo(){
+  let h = '';
+  D.rows.forEach(r => {
+    h += '<tr data-h="'+esc(r._h)+'" data-pos="'+esc((r.pos||[]).join(' '))+'">';
+    h += '<td class="nowrap" data-label="位置">'+posPills(r.pos)+'</td>';
+    h += '<td class="w" data-label="组合名称"><b class="name" data-idx="'+r._i+'" title="'+esc(r.cnAlt&&r.cnAlt.length?('又名：'+r.cnAlt.join('／')):'')+'">'+esc(r.cn)+'</b>'+(r.type ? '<span class="ttag">'+esc(TYCH[r.type.name]||r.type.name[0])+'</span>' : '')+flagBadges(r.flags)+'</td>';
+    r.cards.forEach((c,i) => { const cd = CARD[c]; h += '<td data-label="课题'+(i+1)+'"><span class="'+capCls(cd.code)+'" data-code="'+esc(cd.code)+'">'+esc(cd.short)+esc(cd.code)+'</span></td>'; });
+    for(let i=r.cards.length;i<3;i++) h += '<td class="muted" data-label="课题'+(i+1)+'">—</td>';
+    h += '</tr>';
+  });
+  document.getElementById('comboBody').innerHTML = h;
+}
+document.getElementById('posBtns').addEventListener('click', e => {
+  const b = e.target.closest('.pbtn[data-pos]'); if(!b) return;
+  comboPos = b.dataset.pos;
+  Array.from(e.currentTarget.children).forEach(x => x.classList.toggle('on', x===b));
+  applyFilter();
+});
+
+/* ===== 全局筛选：对当前 Tab 的表格行做过滤 =====
+   位置：对带 data-pos 的行生效（组合页 / 选手页）
+   搜索：组合页用富检索串（含卡名日英/倾向），其余按行文本 */
+function applyFilter(){
+  const panel = document.querySelector('.panel.on');
+  if(!panel) return;
+  /* 搜索框只存在于组合页，搜索也只作用于组合页 */
+  const q = (panel.id === 'panel-combo') ? (document.getElementById('q').value||'').trim().toLowerCase() : '';
+  let shown = 0, total = 0, hasPos = false;
+  panel.querySelectorAll('tbody tr').forEach(tr => {
+    total++;
+    let h = tr.getAttribute('data-h');
+    if(h === null) h = tr.textContent.replace(/\s+/g,' ').toLowerCase();
+    else h = h.toLowerCase();
+    const okQ = !q || h.indexOf(q) >= 0;
+    if(tr.classList.contains('grouprow')){ tr.style.display = q ? 'none' : ''; return; }
+    const ps = tr.getAttribute('data-pos');
+    if(ps) hasPos = true;
+    const okP = (comboPos === 'ALL' || !ps) ? true : ps.split(' ').indexOf(comboPos) >= 0;
+    const ok = okQ && okP;
+    tr.style.display = ok ? '' : 'none';
+    if(ok) shown++;
+  });
+  // 无位置列的页面禁用位置筛选按钮
+  document.querySelectorAll('#posBtns .pbtn').forEach(b => {
+    b.disabled = !hasPos;
+    b.style.opacity = hasPos ? '' : '.35';
+    b.style.cursor = hasPos ? 'pointer' : 'default';
+  });
+  const c = document.getElementById('cnt');
+  if(c) c.textContent = '';
+}
+document.getElementById('q').addEventListener('input', applyFilter);
+
+/* ===== 单卡 ===== */
+function renderCards(){
+  let h = '<div class="scroll"><table class="kv"><thead><tr><th>卡名</th>';
+  h += '<th class="num" title="射门=精度/球速/传球">射门</th><th class="num">速度</th><th class="num">体力</th>';
+  h += '<th class="num" title="技术=持球/抢球/停球">技术</th><th class="num">体格</th><th class="num">弹跳</th><th class="num">意志</th><th class="num">合计</th></tr></thead><tbody>';
+  D.meta.cards.forEach(c => {
+    const e = CARD_EFF[c.code];
+    const sh = [c.short, c.code, c.jp||'', c.en||'', CARD_TEND[c.code]||''].join(' ').toLowerCase();
+    h += '<tr data-h="'+esc(sh)+'"><td class="w" data-label="卡名"><span class="'+capCls(c.code)+'" data-code="'+esc(c.code)+'">'+esc(c.short)+esc(c.code)+'</span></td>';
+    if(e === 'rnd'){ h += '<td class="num" colspan="7" data-label="成长">随机提升（每日变化，合计不固定）</td>'; }
+    else {
+      let s = 0; e.forEach(v => { if(v>0) s += v; });
+      [0,1,2,3,4,5,6].forEach(i => h += statCell(e[i]));
+      h += '<td class="num sum">+'+s+'</td>';
+    }
+    h += '</tr>';
+  });
+  h += '</tbody></table></div>';
+  document.getElementById('panel-cards').innerHTML = h;
+}
+
+/* ===== 选手类型 ===== */
+const TypeTend = {
+  '平均型':'均衡发展、无偏重','发动机':'攻守切换快、大范围奔跑（引擎）','全能型':'盯人+支援进攻兼顾',
+  '自由人':'区域防守+前插进攻','阻截型':'逼抢盯人+封堵射门','清道夫':'区域盯人+执拗逼抢',
+  '后援型':'区域防守+补位','盯人型':'彻底盯人+拦截','司令塔':'传球/控球意识强、慢攻型',
+  '机会创造型':'创造空间、跑出空位','攻击型':'纵向突进、速攻型','射手型':'摆脱盯人+进球意识'
+};
+function renderTypes(){
+  let h = '<div class="scroll"><table class="kv"><thead><tr><th>类型</th><th>行为倾向特征</th><th>说明</th></tr></thead><tbody>';
+  TYPES.forEach(t => {
+    const cn = t[1], desc = t[3];
+    const pos = TYPEPOS[cn] || TYPEPOS[VARM[cn]] || [];
+    const tg = TYCH[cn] || cn[0];
+    const sh = [cn, t[0], t[2], desc, TypeTend[cn]||''].join(' ').toLowerCase();
+    h += '<tr data-h="'+esc(sh)+'" data-pos="'+esc(pos.join(' '))+'">'
+       + '<td data-label="类型"><span class="ttag">'+esc(tg)+'</span><b class="name" data-type="'+esc(cn)+'">'+esc(cn)+'</b></td>'
+       + '<td class="nowrap" data-label="行为倾向特征">'+esc(TypeTend[cn]||'')+'</td>'
+       + '<td class="nowrap" data-label="说明">'+esc(desc)+'</td></tr>';
+  });
+  h += '</tbody></table></div>';
+  h += '<div class="block"><p class="lead">「特别训练」的完整因果链为：<b>课题卡组合 → 特别训练（スペシャルメニュー）→ 行为倾向 12 细项 ±变化 → 攻守意识累积 → 选手类型切换</b>。</p></div>';
+  document.getElementById('panel-types').innerHTML = h;
+}
+
+/* ===== 隐藏属性（原行为倾向） ===== */
+function renderTend(){
+  let h = '<div class="scroll"><table class="kv"><thead><tr><th>倾向</th><th>说明</th></tr></thead><tbody>';
+  const CATL = {atk:'进攻', def:'防守', info:'意识'};
+  const mk = (kind, txt) => {
+    const sh = [CATL[kind], txt[0], txt[1], txt[2]].join(' ').toLowerCase();
+    return '<tr data-h="'+esc(sh)+'"><td class="nowrap" data-label="倾向"><span class="pcat '+kind+'">'+CATL[kind]+'</span> '+esc(txt[1])+'</td><td class="w" data-label="说明">'+esc(txt[2])+'</td></tr>';
+  };
+  TEND.atk.forEach(t => h += mk('atk', t));
+  TEND.def.forEach(t => h += mk('def', t));
+  TEND.main.forEach(t => h += mk('info', t));
+  h += '</tbody></table></div>';
+  h += '<div class="block"><h3 class="bal">隐藏属性机制 ＆ 特别训练与隐藏属性的关系</h3>';
+  h += '<p class="lead"><b>隐藏属性</b>（行動傾向）是一套不直接显示的数值系统：</p>';
+  h += '<ul><li><b>主要 2 项</b>：攻撃意識 / 守備意識 → <b>只增不减</b>，由「特别训练」累积，决定选手类型</li>';
+  h += '<li><b>细项 12 个</b>：进攻 7 + 防守 5 → <b>可增可减</b>，由课题卡组合触发的「特别训练」改变</li>';
+  h += '<li>特别训练 = 课题卡 2~3 张特定组合 → 传授必杀技 + 改变行为倾向数值（见「组合」页的类型标签）</li>';
+  h += '<li>类型由攻守意识累计决定；细项影响球员场上无球跑动/防守方式的 AI 行为</li></ul>';
+  h += '<p class="lead">因果链：<b>课题卡 → 特别训练 → 行为倾向 12 细项 ±变化 → 攻守意识累积 → 选手类型切换</b>。</p>';
+  h += '<div class="knote">⚠ 各特别训练对各细项的 ± 数值，目前仅能取得定性描述（攻/守倾向增减方向），精确数值尚待更多公开资料补充。</div>';
+  h += '</div>';
+  document.getElementById('panel-tend').innerHTML = h;
+}
+
+function renderGuide(){ document.getElementById('panel-guide').innerHTML = GUIDE_HTML; }
+function renderVer(){ document.getElementById('panel-ver').innerHTML = VER_HTML; }
+
+/* ===== 全部渲染（各自隔离，单页失败不连累其他） ===== */
+safe('组合', renderCombo);
+safe('单卡', renderCards);
+safe('选手', renderTypes);
+safe('隐藏', renderTend);
+safe('攻略', renderGuide);
+safe('版本', renderVer);
+applyFilter();   // 初始化顶栏行数计数
+
+/* ===== Tab 切换 ===== */
+document.getElementById('tabs').addEventListener('click', e => {
+  const b = e.target.closest('.tab'); if(!b) return;
+  const tab = b.dataset.tab;
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x===b));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.id === 'panel-'+tab));
+  applyFilter();   // 切换后沿用当前搜索词与位置筛选
+});
+
+/* ===== 详情弹窗（点组合名 / 卡胶囊 / 类型名 弹出） ===== */
+const mask = document.getElementById('mask'), modal = document.getElementById('modal');
+function showModal(){ modal.classList.add('on'); mask.classList.add('on'); }
+function closeModal(){ modal.classList.remove('on'); mask.classList.remove('on'); }
+/* 关闭方式：× / 关闭按钮 / 点屏幕任意处（含弹窗内空白）/ Esc */
+mask.addEventListener('click', closeModal);
+modal.addEventListener('click', e => {
+  if(e.target.closest('.close') || e.target.closest('.x')) { closeModal(); return; }
+  const sel = window.getSelection && window.getSelection();      // 正在选中文字则不关
+  if(sel && String(sel).length > 0) return;
+  closeModal();
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+function openCombo(i){
+  const r = D.rows[i];
+  const pos = r.pos.length ? r.pos.map(p=>`<span class="pill p${p}"></span>${POSN[p]}`).join('　') : `<span class="pill pALL"></span>通用（REC 未单列）`;
+  const cards = r.cards.map(c => {
+    const cd=CARD[c], e=CARD_EFF[c];
+    const g = e==='rnd' ? '随机（每日）' : STATS.map(([k,label],i2)=> e[i2]>0?`+${e[i2]} ${label}`:'').filter(Boolean).join('，');
+    return `<div class="eff"><div class="en"><span class="${capCls(c)}">${esc(cd.short)}${esc(c)}</span></div><div class="ed">成长 ${g}　·　倾向：${esc(CARD_TEND[c]||'')}</div></div>`;
+  }).join('');
+  const stats = STATS.map(([k,label],i)=>`<div class="row"><span>${label}</span><span class="${r.stats[i]<0?'neg':''}">${r.stats[i]>0?'+':''}${r.stats[i]}</span></div>`).join('') + `<div class="row"><span>合计</span><span>${r.total}</span></div>`;
+  modal.innerHTML = `<span class="x">×</span><h2>${esc(r.cn)}${r.cnAlt&&r.cnAlt.length?` <small style="font-weight:400;color:var(--mut)">／${r.cnAlt.map(esc).join('／')}</small>`:''}</h2>`
+    + `<div class="mid">${esc(r.jp)}${r.en?` · ${esc(r.en)}`:''}${r.comboId?` · 卡号 ${esc(r.comboId)}`:''}</div>`
+    + `<h4>适用位置</h4><div>${pos}</div>`
+    + `<h4>课题组合（${r.cards.length} 张）</h4>${cards}`
+    + `<h4>能力成长值</h4>${stats}`
+    + (r.type?`<h4>类型变化</h4><div class="row"><span>累计使用</span><span>${r.type.times} 次 → ${esc(r.type.name)}</span></div>`:'')
+    + (r.flags&&r.flags.length?`<h4>标记</h4><div>${flagBadges(r.flags)}</div>`:'')
+    + `<button class="close">关闭</button>`;
+  showModal();
+}
+function openCard(code){
+  const cd = CARD[code], e = CARD_EFF[code];
+  const stats = e==='rnd' ? '<div class="row"><span>成长</span><span>随机（每日变化）</span></div>'
+    : STATS.map(([k,label],i)=>`<div class="row"><span>${label}</span><span class="${e[i]<0?'neg':''}">${e[i]>0?'+':''}${e[i]}</span></div>`).join('');
+  modal.innerHTML = `<span class="x">×</span><h2>${esc(cd.short)} <small style="font-weight:400;color:var(--mut)">${esc(code)}</small></h2>`
+    + `<div class="mid">课题卡 · 七项成长值 / 行为倾向影响</div>`
+    + `<h4>七项成长值</h4>${stats}`
+    + `<h4>倾向影响</h4><div class="ed">${esc(CARD_TEND[code]||'')}</div>`
+    + `<button class="close">关闭</button>`;
+  showModal();
+}
+function openType(cn){
+  const t = TYPES.find(x=>x[1]===cn) || TYPES.find(x=> (VARM[x[1]]||x[1])===cn);
+  if(!t) return;
+  const cn2=t[1];
+  const pos = TYPEPOS[cn2]||TYPEPOS[VARM[cn2]]||[];
+  const pills = pos.length ? pos.map(p=>`<span class="pill p${p}"></span>${POSN[p]}`).join(' ') : '<span class="muted">全员可用</span>';
+  modal.innerHTML = `<span class="x">×</span><h2>${esc(cn2)} <small style="font-weight:400;color:var(--mut)">${esc(t[2])}</small></h2>`
+    + `<div class="mid">选手类型</div>`
+    + `<h4>适用位置</h4><div>${pills}</div>`
+    + `<h4>行为倾向特征</h4><div class="ed">${esc(TypeTend[cn2]||'')}</div>`
+    + `<h4>说明</h4><div class="ed">${esc(t[3])}</div>`
+    + `<button class="close">关闭</button>`;
+  showModal();
+}
+document.addEventListener('click', e => {
+  const nm = e.target.closest('.name[data-idx]');
+  if(nm){ openCombo(parseInt(nm.dataset.idx,10)); return; }
+  const cap = e.target.closest('.cap[data-code]');
+  if(cap){ openCard(cap.dataset.code); return; }
+  const tp = e.target.closest('.name[data-type]');
+  if(tp){ openType(tp.dataset.type); return; }
+});
+</script>
+</body>
+</html>

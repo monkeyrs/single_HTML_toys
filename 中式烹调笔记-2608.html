@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f5f8">
+<title>中式烹调｜范式与技法图鉴</title>
+<style>:root{
+ --bg:#eef1f6; --card:#fff; --ink:#1e2430; --muted:#687284; --line:#dfe4ec;
+ --navy:#284b7a; --blue:#4d7cff; --red:#ff6b62; --yellow:#f5bb3d; --green:#55b98a; --purple:#8b72e8;
+ --cyan:#43b8c8; --orange:#ef934d; --lime:#82bd58; --pink:#dc70a7; --indigo:#6470c8;
+ --shadow:0 5px 0 rgba(35,45,65,.08),0 12px 24px rgba(40,57,80,.08);
+ --shadow2:0 3px 0 rgba(35,45,65,.10);
+ --radius:18px;
+}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(#f7f8fb,var(--bg));color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}/* 右侧悬浮导航 */
+.side-nav{
+  position: fixed;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  width: 48px;
+  border-radius: 8px;
+  background: transparent;
+  transition: background .2s ease;
+}.side-nav a{
+  display: block;
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: all .2s ease;
+  border-radius: 6px;
+  margin: 2px 0;
+}.side-nav a:hover,.side-nav a:active{
+  background: rgba(255,255,255,0.95);
+  color: var(--navy);
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}.shell{max-width:1240px;margin:0 auto;padding:18px 16px 60px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--navy);text-transform:uppercase}.stat{background:#f5f7fa;border:1px solid var(--line);border-radius:14px;padding:12px}.stat b{display:block;font-size:23px}.stat span{font-size:11px;color:var(--muted)}.search{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:13px;background:white;outline:none;box-shadow:var(--shadow2)}.search:focus{border-color:#9db6df;box-shadow:0 0 0 3px rgba(77,124,255,.12),var(--shadow2)}.section{margin-top:28px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 0 12px}.section-head h2{font-size:24px;margin:0;letter-spacing:-.02em}.section-head p{margin:0;color:var(--muted);font-size:13px}.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow2);padding:16px}.panel h3{margin:0 0 8px;line-height:1.2;font-size:18px}.panel p{margin:0;color:#4e5868;font-size:14px}.panel ul{margin:8px 0 0;padding-left:18px;color:#4e5868;font-size:14px}.panel li{margin:4px 0}.panel-head,.recipe-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.core-flow{margin:10px 0;padding:11px 12px;background:#f5f7fa;border:1px dashed #ccd5e2;border-radius:12px;font-weight:800;font-size:13px}.logic{margin-bottom:10px}.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.tag,.mini-tag{display:inline-flex;align-items:center;border:1px solid #dde3ec;background:#f8f9fb;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;color:#536071}.tag{user-select:none}/* tag 配色＝标签指向的来源区域：→01 范式 靛蓝 t-indigo ／ →02 技法 橙 t-orange ／ →03 食材 绿 t-green ／ →04 菜谱 红 t-red */.tag.t-green{border-color:#c8e8d8;background:#f1fbf5}.tag.t-red{border-color:#ffd0cb;background:#fff2f0}
+
+
+.tag.t-orange{border-color:#f7dcc2;background:#fef5ec}
+
+
+.tag.t-indigo{border-color:#d2d6f0;background:#f2f3fc}.mini-tag{border:0;cursor:pointer}.mini-tag:hover{transform:translateY(-1px)}.mini-tag:hover{background:#edf2f8}details{margin-top:10px}summary{cursor:pointer;color:var(--navy);font-weight:900;font-size:13px}.dish-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.recipe-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.recipe{padding:14px}.recipe h3{font-size:16px;margin:2px 0 0}.recipe-index{font-size:11px;font-weight:900;color:#9aa5b5}.recipe .eyebrow{font-size:10px}.recipe p{font-size:13px;color:#4d5868}.recipe.is-hidden{display:none}.empty{display:none;padding:28px;text-align:center;color:var(--muted)}.hidden{display:none!important}@media (max-width:960px){.recipe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}/* v3: standard mobile reading layout — no sticky header/nav */
+.intro{padding:10px 0 4px}.intro h1{font-size:26px;line-height:1.1;letter-spacing:-.04em;margin:3px 0}.intro p{margin:0;color:var(--muted);font-size:13px}.search-box{position:relative;margin:4px 0 7px}.search-box .search{padding-right:42px}.search-box kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);padding:2px 6px;border:1px solid var(--line);border-radius:6px;background:#f5f7fa;color:#8b96a6;font-size:11px}.pattern-card .panel-head{align-items:center}.pattern-card h3{margin:0}.dish-count{margin-left:4px}.pattern-card summary{color:#344b70}.pattern-card .dish-pills{padding-top:2px}.feature-label{color:var(--navy);font-size:11px;letter-spacing:.02em}.recipe .recipe-head{margin-bottom:1px}.recipe .eyebrow{font-size:10px}.recipe p{margin-top:5px}.recipe .tag-row{margin-top:8px}@media (max-width:640px){body{background:#f3f5f8}.shell{padding:4px 10px 28px}.intro{padding-top:4px}.intro h1{font-size:23px}.intro p{font-size:12px}.search{font-size:14px}.section{margin-top:20px}.section-head h2{font-size:19px}.section-head p{font-size:11px}.panel{padding:12px;border-radius:14px}.pattern-card .core-flow{font-size:12px;padding:9px 10px}.pattern-card .logic{font-size:12px}.pattern-card .tag-row{overflow-x:auto;flex-wrap:nowrap}.pattern-card .tag{white-space:nowrap}.pattern-card .dish-pills{gap:5px}.mini-tag{font-size:11px;padding:5px 8px}.recipe{display:block}.recipe h3{font-size:16px}.recipe p{font-size:12.5px}.recipe-index{float:right}.grid-2,.grid-3,.recipe-grid{grid-template-columns:1fr}}.to-top{position:fixed;right:12px;bottom:14px;z-index:40;width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.96);color:#465269;box-shadow:var(--shadow2);font-size:18px;font-weight:900;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s}.to-top.show{opacity:1;pointer-events:auto;transform:none}/* v4: semantic tags + compact mobile navigation */
+.tag.is-link{cursor:pointer}.tag.is-link:hover{transform:translateY(-1px);filter:brightness(.98)}.tag{transition:transform .12s ease,filter .12s ease}.flash-target{animation:flashTarget .7s ease}@keyframes flashTarget{0%{box-shadow:0 0 0 0 rgba(77,124,255,.0)}30%{box-shadow:0 0 0 4px rgba(77,124,255,.25)}100%{box-shadow:none}}.section-head h2{letter-spacing:-.03em}.pattern-mini{margin-top:9px;padding:8px 10px;border-left:3px solid #d7deea;background:#f7f9fc;border-radius:8px;color:#5b6676;font-size:11px;line-height:1.55}.pattern-mini b{color:#344b70}.dish-fold{margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}.recipe .pattern-mini{margin-top:8px}.recipe .tag-row{gap:5px}.recipe .tag{font-size:10.5px;padding:4px 7px}@media(max-width:640px){.recipe .pattern-mini{font-size:11px}.dish-fold{font-size:11px}}/* ================= v5 手机端优化 ================= */
+/* 4) 统一字号体系：全站只用 7 个层级，整体放大 */
+:root{
+  --fs-xs:12.5px;   /* 眉标 / 序号 / 特色前缀 */
+  --fs-sm:14px;     /* 标签 / 摘要 / 辅助信息 */
+  --fs-base:16px;   /* 正文 */
+  --fs-md:18px;     /* 菜名 */
+  --fs-lg:19px;     /* 卡片标题 */
+  --fs-h2:22px;     /* 章节标题 */
+  --fs-h1:27px;     /* 页面主标题 */
+}html{-webkit-text-size-adjust:100%}body{font-size:var(--fs-base);line-height:1.72;padding-right:0}.intro h1{font-size:var(--fs-h1);line-height:1.16}.intro p{font-size:var(--fs-sm);line-height:1.6}.section-head h2{font-size:var(--fs-h2)}.section-head p{font-size:var(--fs-sm)}.eyebrow,.recipe .eyebrow,.recipe-index,.feature-label{font-size:var(--fs-xs)}.panel h3{font-size:var(--fs-lg)}.panel p,.panel ul,.panel li{font-size:var(--fs-base);line-height:1.72}.recipe h3{font-size:var(--fs-md)}.recipe p{font-size:var(--fs-base);line-height:1.7}.core-flow,.pattern-card .core-flow{font-size:var(--fs-base);line-height:1.7}.pattern-card .logic{font-size:var(--fs-base)}.pattern-mini,.recipe .pattern-mini{font-size:var(--fs-sm);line-height:1.7}.dish-fold{font-size:var(--fs-sm)}.dish-fold>summary{cursor:pointer;list-style:none;color:var(--navy);font-weight:900;letter-spacing:.02em}.dish-fold>summary::-webkit-details-marker{display:none}.dish-fold>summary::before{content:"\25B8\00a0"}.dish-fold[open]>summary::before{content:"\25BE\00a0"}.tag,.mini-tag{font-size:var(--fs-sm);padding:7px 11px;line-height:1.25}summary{font-size:var(--fs-sm)}.tag-row,.dish-pills{gap:7px}.recipe .tag-row{gap:7px}.recipe .tag{font-size:var(--fs-sm);padding:7px 11px}/* 1) 顶部搜索框常驻（吸顶，滚动时始终可见） */
+.sticky-search{
+  position:sticky;top:0;z-index:120;
+  margin:0 -12px 6px;padding:5px 12px 6px;
+  padding-top:calc(5px + env(safe-area-inset-top,0px));
+  background:linear-gradient(rgba(247,248,251,.97),rgba(247,248,251,.88));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}.sticky-search::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);opacity:.75}.sticky-search .search-box{margin:0}.search-box .search{font-size:var(--fs-base);padding:9px 46px 9px 15px;border-radius:13px;min-height:44px}.search-box kbd{right:12px;font-size:var(--fs-xs)}/* 全文检索：隐藏与结果提示 */
+.is-hidden{display:none!important}.search-status{margin:0 0 10px;font-size:var(--fs-sm);color:var(--muted);text-align:center}.search-status.is-empty{color:#c0564e}/* 3) 右侧导航悬浮于页面之上，不占用正文宽度（底色完全透明） */
+.side-nav{
+  right:3px;top:50%;transform:translateY(-50%);z-index:130;width:auto;
+  padding:6px 3px;border-radius:16px;
+  background:transparent;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:none;
+}.side-nav a{
+  display:flex;align-items:center;justify-content:center;min-height:44px;
+  padding:4px 9px;margin:1px 0;font-size:13.5px;color:#8b93a1;line-height:1.15;border-radius:11px;
+  text-shadow:0 0 3px rgba(255,255,255,.95),0 0 7px rgba(255,255,255,.8);
+  transition:background .2s ease,color .2s ease,font-size .2s ease;
+}.side-nav a:hover,.side-nav a:active{background:rgba(255,255,255,.9);color:var(--navy);font-size:14px}/* 锚点/标签跳转避让吸顶搜索栏（区块 + 全部卡片类型） */
+.section,.pattern-card,.tech-card,.material-card,.protocol,.recipe{scroll-margin-top:68px}
+/* 轻提示浮层（跳转时若清空搜索，用它提示，避免消息滚出视野看不到） */
+.toast{position:fixed;left:50%;top:calc(66px + env(safe-area-inset-top,0px));transform:translateX(-50%) translateY(-6px);z-index:200;
+  max-width:calc(100vw - 36px);padding:9px 15px;border-radius:999px;background:rgba(40,75,122,.94);color:#fff;
+  font-size:var(--fs-sm);font-weight:800;box-shadow:0 8px 20px rgba(40,57,80,.24);
+  opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.toast.is-on{opacity:1;transform:translateX(-50%) translateY(0)}.to-top{width:44px;height:44px;font-size:22px;right:12px;bottom:18px;z-index:125}@media(max-width:640px){.shell{padding:6px 12px 34px}.section{margin-top:24px}.panel{padding:15px}.intro h1{font-size:var(--fs-h1)}.pattern-card .tag-row{overflow-x:auto;flex-wrap:nowrap}.pattern-card .tag{white-space:nowrap}}
+/* 04 菜谱：配方明细——每个字段独立成小块（选料／调料／比例／碗汁／备注／做法），正文逐字取自《逐页合并稿_供校对》 */
+.recipe-detail{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:7px}
+.rd-row,.rd-steps{padding:8px 11px;background:#f7f9fc;border-left:3px solid var(--navy);border-radius:2px 9px 9px 2px}
+.rd-k{display:block;margin-bottom:4px;color:var(--navy);font-size:var(--fs-sm);font-weight:900;letter-spacing:.08em;line-height:1.3}
+.rd-v{display:block;color:#4a5566;font-size:var(--fs-base);line-height:1.72;word-break:break-word}
+.rd-ol{counter-reset:rd;margin:0;padding:0;list-style:none;color:#4a5566;font-size:var(--fs-base);line-height:1.75}
+.rd-ol li{position:relative;margin:5px 0;padding-left:25px;counter-increment:rd}
+.rd-ol li::before{content:counter(rd);position:absolute;left:0;top:4px;width:17px;height:17px;border-radius:50%;background:rgba(40,75,122,.10);color:var(--navy);font-size:11px;font-weight:900;line-height:17px;text-align:center}
+.rd-v b,.rd-ol b{color:#c0564e}
+/* 各字段分区配色：选料=绿 ／ 比例=橙 ／ 碗汁=紫 ／ 做法=navy(默认基调) ／ 快速版=青 */
+.rd-ing{background:#f1fbf5;border-left-color:var(--green)}
+.rd-ing .rd-k{color:#2f7d5b}
+.rd-ratio{background:#fef5ec;border-left-color:var(--orange)}
+.rd-ratio .rd-k{color:#a9621c}
+.rd-sauce{background:#f4f2fe;border-left-color:var(--purple)}
+.rd-sauce .rd-k{color:#6350bd}
+.rd-quick{background:#eefafb;border-left-color:var(--cyan)}
+.rd-quick .rd-k{color:#2a8593}
+.rd-quick .rd-ol li::before{background:rgba(67,184,200,.15);color:#2a8593}</style>
+</head>
+<body>
+
+<!-- 右侧悬浮导航 -->
+<nav class="side-nav" aria-label="快速导航">
+  <a href="#patterns">范式</a>
+  <a href="#techniques">技法</a>
+  <a href="#materials">食材</a>
+  <a href="#recipes">菜谱</a>
+  <a href="#top">顶部</a>
+</nav>
+
+<main class="shell" id="top">
+<section class="intro">
+  <h1>中式烹调 · 范式与技法</h1>
+</section>
+
+<!-- 常驻搜索栏（滚动时吸附在顶部） -->
+<div class="sticky-search">
+  <div class="search-box"><input id="search" class="search" placeholder="搜索菜名、技法、食材、规则……" autocomplete="off" aria-label="全文检索"><kbd>/</kbd></div>
+</div>
+<div class="search-status" id="searchStatus" hidden></div>
+
+<section class="section" id="patterns">
+ <div class="section-head"><div><h2>01 · 菜品范式</h2><p>一个范式 = 一组稳定的工序骨架 + 一组高频例外。</p></div></div>
+ <div class="grid-2"><article class="panel pattern-card" id="pattern-shao" data-search="烧类 先出香、再加液；最后把多余水分收掉。 红烧牛腩 红烧鱼块 啤酒鸭 可乐鸡翅 红烧肉 土豆烧鸡 麻婆豆腐 家常豆腐 猪肉炖粉条 带鱼（烧）">
+      <div class="panel-head"><h3>烧类</h3></div>
+      <div class="core-flow">初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <p class="logic">先出香、再加液；最后把多余水分收掉。</p>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#勾芡</button> <button class="tag t-orange is-link" data-target="#rule-shao-water">#热水</button> <button class="tag t-orange is-link" data-target="#rule-pressure">#高压锅</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（10）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧牛腩">红烧牛腩</button> <button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="可乐鸡翅">可乐鸡翅</button> <button class="mini-tag dish-jump" data-dish="红烧肉">红烧肉</button> <button class="mini-tag dish-jump" data-dish="土豆烧鸡">土豆烧鸡</button> <button class="mini-tag dish-jump" data-dish="麻婆豆腐">麻婆豆腐</button> <button class="mini-tag dish-jump" data-dish="家常豆腐">家常豆腐</button> <button class="mini-tag dish-jump" data-dish="猪肉炖粉条">猪肉炖粉条</button> <button class="mini-tag dish-jump" data-dish="带鱼（烧）">带鱼（烧）</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-shuizhu" data-search="水煮／汆烫类 汤底负责主体味道，主料最后短时间成熟。 水煮肉片 酸菜鱼 金汤肥牛 毛血旺 牛肉火锅">
+      <div class="panel-head"><h3>水煮／汆烫类</h3></div>
+      <div class="core-flow">主料上浆／预处理 → 素菜焯水垫底 → 炒底汤（或煎骨冲开水成奶汤）→ 主料短时汆熟 → 装盘 → 泼热油</div>
+      <p class="logic">汤底负责主体味道，主料最后短时间成熟。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-fei">#汆熟</button> <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button> <button class="tag t-orange is-link" data-target="#tech-paoyou">#泼油</button> <button class="tag t-orange is-link" data-target="#rule-soup">#底汤</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（5）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="水煮肉片">水煮肉片</button> <button class="mini-tag dish-jump" data-dish="酸菜鱼">酸菜鱼</button> <button class="mini-tag dish-jump" data-dish="金汤肥牛">金汤肥牛</button> <button class="mini-tag dish-jump" data-dish="毛血旺">毛血旺</button> <button class="mini-tag dish-jump" data-dish="牛肉火锅">牛肉火锅</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-crispy" data-search="酥炸／干煸类 先定型、再脱水，最后回锅赋味。 小酥肉 糖醋里脊 辣子鸡丁 干煸藕丝 / 土豆丝 香辣虾 干烧霉千张">
+      <div class="panel-head"><h3>酥炸／干煸类</h3></div>
+      <div class="core-flow">腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <p class="logic">先定型、再脱水，最后回锅赋味。</p>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button> <button class="tag t-orange is-link" data-target="#tech-fuzha">#复炸</button> <button class="tag t-orange is-link" data-target="#tech-guahu">#挂糊</button> <button class="tag t-orange is-link" data-target="#tech-paifen">#拍粉</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（6）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="小酥肉">小酥肉</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button> <button class="mini-tag dish-jump" data-dish="辣子鸡丁">辣子鸡丁</button> <button class="mini-tag dish-jump" data-dish="干煸藕丝 / 土豆丝">干煸藕丝 / 土豆丝</button> <button class="mini-tag dish-jump" data-dish="香辣虾">香辣虾</button> <button class="mini-tag dish-jump" data-dish="干烧霉千张">干烧霉千张</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-xiaochao" data-search="小炒类 荤料先定型，回锅后快速完成味型。 青椒肉丝 农家小炒肉 鱼香肉丝 宫保鸡丁 回锅肉 腊肉炒豆丝 干锅土豆片 手撕包菜 肥肠">
+      <div class="panel-head"><h3>小炒类</h3></div>
+      <div class="core-flow">切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <p class="logic">荤料先定型，回锅后快速完成味型。</p>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button> <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button> <button class="tag t-orange is-link" data-target="#tech-wanzhi">#碗汁</button> <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（9）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="青椒肉丝">青椒肉丝</button> <button class="mini-tag dish-jump" data-dish="农家小炒肉">农家小炒肉</button> <button class="mini-tag dish-jump" data-dish="鱼香肉丝">鱼香肉丝</button> <button class="mini-tag dish-jump" data-dish="宫保鸡丁">宫保鸡丁</button> <button class="mini-tag dish-jump" data-dish="回锅肉">回锅肉</button> <button class="mini-tag dish-jump" data-dish="腊肉炒豆丝">腊肉炒豆丝</button> <button class="mini-tag dish-jump" data-dish="干锅土豆片">干锅土豆片</button> <button class="mini-tag dish-jump" data-dish="手撕包菜">手撕包菜</button> <button class="mini-tag dish-jump" data-dish="肥肠">肥肠</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-mian" data-search="面点类 分发酵面与油酥／煎炸面两条支线。 包子 花卷 红糖馒头 油饼 千层饼 南瓜饼／土豆饼">
+      <div class="panel-head"><h3>面点类</h3></div>
+      <div class="core-flow">发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <p class="logic">分发酵面与油酥／煎炸面两条支线。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-fajiao">#发酵</button> <button class="tag t-orange is-link" data-target="#tech-fajiao">#二发</button> <button class="tag t-orange is-link" data-target="#tech-youjuan">#油酥</button> <button class="tag t-orange is-link" data-target="#rule-steam">#蒸制</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（6）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="包子">包子</button> <button class="mini-tag dish-jump" data-dish="花卷">花卷</button> <button class="mini-tag dish-jump" data-dish="红糖馒头">红糖馒头</button> <button class="mini-tag dish-jump" data-dish="油饼">油饼</button> <button class="mini-tag dish-jump" data-dish="千层饼">千层饼</button> <button class="mini-tag dish-jump" data-dish="南瓜饼／土豆饼">南瓜饼／土豆饼</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-zhuozhi" data-search="焯灼／浇汁类 主料与味汁分开做，最后合体。 白灼虾 蚝油生菜">
+      <div class="panel-head"><h3>焯灼／浇汁类</h3></div>
+      <div class="core-flow">主料焯熟 → 装盘 → 另锅炒汁／调汁 → 勾薄芡 → 淋汁或蘸食</div>
+      <p class="logic">主料与味汁分开做，最后合体。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-fei">#焯熟</button> <button class="tag t-orange is-link" data-target="#rule-season-time">#调汁</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#薄芡</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（2）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="白灼虾">白灼虾</button> <button class="mini-tag dish-jump" data-dish="蚝油生菜">蚝油生菜</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-zhengkou" data-search="蒸扣类 先定形再长蒸，出锅倒扣或改刀装盘。 梅菜扣肉 粉蒸肉 鲜肉千张卷">
+      <div class="panel-head"><h3>蒸扣类</h3></div>
+      <div class="core-flow">预处理 → 调味／裹粉或抹馅卷制 → 码碗定形 → 长时间蒸 → 倒扣或改刀装盘</div>
+      <p class="logic">先定形再长蒸，出锅倒扣或改刀装盘。</p>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#码碗</button> <button class="tag t-orange is-link" data-target="#rule-steam">#长蒸</button> <button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#倒扣</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（3）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="梅菜扣肉">梅菜扣肉</button> <button class="mini-tag dish-jump" data-dish="粉蒸肉">粉蒸肉</button> <button class="mini-tag dish-jump" data-dish="鲜肉千张卷">鲜肉千张卷</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-sukai" data-search="快炒素菜／短时熟化类 全程求快，保色保脆。 芍尖 炒小白菜 西兰花 油麦菜 炒莴苣 芹菜炒香干 炒豆腐 酸辣土豆丝">
+      <div class="panel-head"><h3>快炒素菜／短时熟化类</h3></div>
+      <div class="core-flow">洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <p class="logic">全程求快，保色保脆。</p>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button> <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button> <button class="tag t-orange is-link" data-target="#rule-crisp">#脆嫩</button> <button class="tag t-orange is-link" data-target="#tech-fei">#短焯</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（8）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="芍尖">芍尖</button> <button class="mini-tag dish-jump" data-dish="炒小白菜">炒小白菜</button> <button class="mini-tag dish-jump" data-dish="西兰花">西兰花</button> <button class="mini-tag dish-jump" data-dish="油麦菜">油麦菜</button> <button class="mini-tag dish-jump" data-dish="炒莴苣">炒莴苣</button> <button class="mini-tag dish-jump" data-dish="芹菜炒香干">芹菜炒香干</button> <button class="mini-tag dish-jump" data-dish="炒豆腐">炒豆腐</button> <button class="mini-tag dish-jump" data-dish="酸辣土豆丝">酸辣土豆丝</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-tang" data-search="汤类 先炒后冲开水，汤色才白。 排骨藕汤">
+      <div class="panel-head"><h3>汤类</h3></div>
+      <div class="core-flow">泡血水 → 焯水 → 炒／煸出油 → 冲入开水 → 长时间压煮（可打碎部分主料增浓）→ 最后调味</div>
+      <p class="logic">先炒后冲开水，汤色才白。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#rule-soup">#汤体</button> <button class="tag t-orange is-link" data-target="#rule-shao-water">#开水</button> <button class="tag t-orange is-link" data-target="#rule-pressure">#高压锅</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（1）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="排骨藕汤">排骨藕汤</button></div></details>
+    </article><article class="panel pattern-card" id="pattern-zheng" data-search="单独蒸制技法 以原料状态判断熟度，而非死记时间。 蒸鱼">
+      <div class="panel-head"><h3>单独蒸制技法</h3></div>
+      <div class="core-flow">抹油／垫姜葱 → 蒸 8~10 分钟 → 状态判熟</div>
+      <p class="logic">以原料状态判断熟度，而非死记时间。</p>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-zheng">#蒸制</button> <button class="tag t-orange is-link" data-target="#rule-doneness">#状态判熟</button></div>
+      <details class="dish-fold"><summary>查看归入菜品 <b class="dish-count">（1）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="蒸鱼">蒸鱼</button></div></details>
+    </article></div>
+</section>
+
+<section class="section" id="techniques">
+ <div class="section-head"><div><h2>02 · 核心技法</h2><p>把“动作”拆出来，方便横向迁移。</p></div></div>
+ <div class="grid-3">
+    <article class="panel tech-card" id="tech-shangjiang" data-search="上浆 肉类保护层 味 → 水 → 蛋（可选）→ 粉 → 油">
+      <div class="eyebrow">肉类保护层</div><h3>上浆</h3>
+      <div class="core-flow">味 → 水 → 蛋（可选）→ 粉 → 油</div>
+      <p>薄层覆盖原料表面，用于鱼片、肉丝、鸡丁等；笔记强调现上浆、现炸、不等待。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button> <button class="tag t-green is-link" data-target="#mat-meat">#嫩肉</button> <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（6）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="水煮肉片">水煮肉片</button> <button class="mini-tag dish-jump" data-dish="酸菜鱼">酸菜鱼</button> <button class="mini-tag dish-jump" data-dish="辣子鸡丁">辣子鸡丁</button> <button class="mini-tag dish-jump" data-dish="青椒肉丝">青椒肉丝</button> <button class="mini-tag dish-jump" data-dish="鱼香肉丝">鱼香肉丝</button> <button class="mini-tag dish-jump" data-dish="宫保鸡丁">宫保鸡丁</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-guahu" data-search="挂糊 形成连续脆壳 红薯淀粉6 : 中筋面粉4 + 全蛋 + 盐 + 泡打粉/小苏打 + 水 → 浓酸奶状 → 加油">
+      <div class="eyebrow">形成连续脆壳</div><h3>挂糊</h3>
+      <div class="core-flow">红薯淀粉6 : 中筋面粉4 + 全蛋 + 盐 + 泡打粉/小苏打 + 水 → 浓酸奶状 → 加油</div>
+      <p>适合小酥肉、糖醋里脊；重点是糊的稠度和下锅时机。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-guahu">#挂糊</button> <button class="tag t-orange is-link" data-target="#tech-fuzha">#脆炸</button> <button class="tag t-green is-link" data-target="#mat-starch">#红薯淀粉</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（2）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="小酥肉">小酥肉</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-paifen" data-search="拍粉 干粉壳 原料表面处理 → 吉士粉/生粉等干粉附着">
+      <div class="eyebrow">干粉壳</div><h3>拍粉</h3>
+      <div class="core-flow">原料表面处理 → 吉士粉/生粉等干粉附着</div>
+      <p>与挂糊不同：不是湿糊包裹，而是表面形成干粉层。香辣虾明确要求拍粉而非上浆。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-paifen">#拍粉</button> <button class="tag t-green is-link" data-target="#mat-starch">#吉士粉</button> <button class="tag t-green is-link" data-target="#mat-starch">#生粉</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="带鱼（烧）">带鱼（烧）</button> <button class="mini-tag dish-jump" data-dish="干煸藕丝 / 土豆丝">干煸藕丝 / 土豆丝</button> <button class="mini-tag dish-jump" data-dish="香辣虾">香辣虾</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-huayou" data-search="滑油 快速熟化 约4成油温 → 原料分散下锅 → 断生/定型 → 捞出">
+      <div class="eyebrow">快速熟化</div><h3>滑油</h3>
+      <div class="core-flow">约4成油温 → 原料分散下锅 → 断生/定型 → 捞出</div>
+      <p>主要服务小炒类，后续再回锅完成味道。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button> <button class="tag t-orange is-link" data-target="#rule-oiltemp">#4成油</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（6）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="辣子鸡丁">辣子鸡丁</button> <button class="mini-tag dish-jump" data-dish="青椒肉丝">青椒肉丝</button> <button class="mini-tag dish-jump" data-dish="农家小炒肉">农家小炒肉</button> <button class="mini-tag dish-jump" data-dish="鱼香肉丝">鱼香肉丝</button> <button class="mini-tag dish-jump" data-dish="宫保鸡丁">宫保鸡丁</button> <button class="mini-tag dish-jump" data-dish="回锅肉">回锅肉</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-fuzha" data-search="复炸 脱水增脆 初炸定型 → 升温 → 极短时间复炸">
+      <div class="eyebrow">脱水增脆</div><h3>复炸</h3>
+      <div class="core-flow">初炸定型 → 升温 → 极短时间复炸</div>
+      <p>小酥肉、糖醋里脊、辣子鸡丁形成共同结构；辣子鸡丁记录复炸2~3次。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-fuzha">#复炸</button> <button class="tag t-orange is-link" data-target="#tech-fuzha">#脱水</button> <button class="tag t-orange is-link" data-target="#tech-fuzha">#酥脆</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（6）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="家常豆腐">家常豆腐</button> <button class="mini-tag dish-jump" data-dish="小酥肉">小酥肉</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button> <button class="mini-tag dish-jump" data-dish="辣子鸡丁">辣子鸡丁</button> <button class="mini-tag dish-jump" data-dish="香辣虾">香辣虾</button> <button class="mini-tag dish-jump" data-dish="干烧霉千张">干烧霉千张</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-fei" data-search="焯水 去腥/断生/保色 肉类偏冷水下锅；素菜开水下锅，水中可加盐+油">
+      <div class="eyebrow">去腥/断生/保色</div><h3>焯水</h3>
+      <div class="core-flow">肉类偏冷水下锅；素菜开水下锅，水中可加盐+油</div>
+      <p>肉类焯后用温水冲掉表面浮沫；素菜焯水用于缩短正式炒制时间。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button> <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（10）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧牛腩">红烧牛腩</button> <button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="猪肉炖粉条">猪肉炖粉条</button> <button class="mini-tag dish-jump" data-dish="毛血旺">毛血旺</button> <button class="mini-tag dish-jump" data-dish="牛肉火锅">牛肉火锅</button> <button class="mini-tag dish-jump" data-dish="回锅肉">回锅肉</button> <button class="mini-tag dish-jump" data-dish="肥肠">肥肠</button> <button class="mini-tag dish-jump" data-dish="排骨藕汤">排骨藕汤</button> <button class="mini-tag dish-jump" data-dish="西兰花">西兰花</button> <button class="mini-tag dish-jump" data-dish="酸辣土豆丝">酸辣土豆丝</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-paoyou" data-search="泼油 表层激香 表面铺葱/蒜/辣椒/花椒 → 热油直接浇上">
+      <div class="eyebrow">表层激香</div><h3>泼油</h3>
+      <div class="core-flow">表面铺葱/蒜/辣椒/花椒 → 热油直接浇上</div>
+      <p>水煮肉片、酸菜鱼、毛血旺、金汤肥牛等常用；负责最后一层挥发性香气。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-paoyou">#泼油</button> <button class="tag t-orange is-link" data-target="#tech-daokou">#刀口辣椒</button> <button class="tag t-orange is-link" data-target="#tech-paoyou">#表层香</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="水煮肉片">水煮肉片</button> <button class="mini-tag dish-jump" data-dish="酸菜鱼">酸菜鱼</button> <button class="mini-tag dish-jump" data-dish="金汤肥牛">金汤肥牛</button> <button class="mini-tag dish-jump" data-dish="毛血旺">毛血旺</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-wanzhi" data-search="碗汁 一次性完成味型 提前按比例兑好 → 最后下锅 → 大火快速收匀">
+      <div class="eyebrow">一次性完成味型</div><h3>碗汁</h3>
+      <div class="core-flow">提前按比例兑好 → 最后下锅 → 大火快速收匀</div>
+      <p>鱼香肉丝是典型；农家小炒肉也用碗汁快速收味。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-wanzhi">#碗汁</button> <button class="tag t-orange is-link" data-target="#tech-wanzhi">#快速收味</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（3）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="农家小炒肉">农家小炒肉</button> <button class="mini-tag dish-jump" data-dish="鱼香肉丝">鱼香肉丝</button> <button class="mini-tag dish-jump" data-dish="宫保鸡丁">宫保鸡丁</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-gouqian" data-search="勾芡 控制汁的状态 水淀粉 → 合适温度加入 → 快速翻匀 → 明油">
+      <div class="eyebrow">控制汁的状态</div><h3>勾芡</h3>
+      <div class="core-flow">水淀粉 → 合适温度加入 → 快速翻匀 → 明油</div>
+      <p>不同菜的芡型不同：薄芡、收汁、三次勾芡、关火后大火勾芡等不可混为一谈。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-gouqian">#勾芡</button> <button class="tag t-green is-link" data-target="#mat-starch">#水淀粉</button> <button class="tag t-orange is-link" data-target="#rule-oiltemp">#明油</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（9）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="可乐鸡翅">可乐鸡翅</button> <button class="mini-tag dish-jump" data-dish="麻婆豆腐">麻婆豆腐</button> <button class="mini-tag dish-jump" data-dish="家常豆腐">家常豆腐</button> <button class="mini-tag dish-jump" data-dish="带鱼（烧）">带鱼（烧）</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button> <button class="mini-tag dish-jump" data-dish="蚝油生菜">蚝油生菜</button> <button class="mini-tag dish-jump" data-dish="芹菜炒香干">芹菜炒香干</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-chaotangse" data-search="炒糖色 上色/焦香 油+糖 → 小火融化 → 枣红色 → 起密集气泡 → 离火加热水">
+      <div class="eyebrow">上色/焦香</div><h3>炒糖色</h3>
+      <div class="core-flow">油+糖 → 小火融化 → 枣红色 → 起密集气泡 → 离火加热水</div>
+      <p>用于红烧类；可用红烧酱油等替代部分上色功能。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-chaotangse">#糖色</button> <button class="tag t-indigo is-link" data-target="#pattern-shao">#红烧</button> <button class="tag t-orange is-link" data-target="#tech-chaotangse">#上色</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧牛腩">红烧牛腩</button> <button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="红烧肉">红烧肉</button> <button class="mini-tag dish-jump" data-dish="土豆烧鸡">土豆烧鸡</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-daokou" data-search="刀口辣椒 辣椒表层香 小火焙辣椒 → 少量油激香 → 捣碎；花椒可单独焙香后擀碎">
+      <div class="eyebrow">辣椒表层香</div><h3>刀口辣椒</h3>
+      <div class="core-flow">小火焙辣椒 → 少量油激香 → 捣碎；花椒可单独焙香后擀碎</div>
+      <p>用于水煮肉片、毛血旺、麻婆豆腐等。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-paoyou">#刀口辣椒</button> <button class="tag t-orange is-link" data-target="#rule-season">#花椒</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（3）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="麻婆豆腐">麻婆豆腐</button> <button class="mini-tag dish-jump" data-dish="水煮肉片">水煮肉片</button> <button class="mini-tag dish-jump" data-dish="毛血旺">毛血旺</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-youjuan" data-search="油酥 面点层次 热油泼面粉 → 成油酥 → 抹面片 → 卷起 → 醒 → 擀">
+      <div class="eyebrow">面点层次</div><h3>油酥</h3>
+      <div class="core-flow">热油泼面粉 → 成油酥 → 抹面片 → 卷起 → 醒 → 擀</div>
+      <p>千层饼的主要分层手段。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-youjuan">#油酥</button> <button class="tag t-indigo is-link" data-target="#pattern-mian">#分层</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（1）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="千层饼">千层饼</button></div></details>
+    </article>
+
+    <article class="panel tech-card" id="tech-fajiao" data-search="发酵与二发 面点结构 一次发酵约2倍 → 成型 → 二次发酵约1.5倍 → 蒸">
+      <div class="eyebrow">面点结构</div><h3>发酵与二发</h3>
+      <div class="core-flow">一次发酵约2倍 → 成型 → 二次发酵约1.5倍 → 蒸</div>
+      <p>包子、红糖馒头等使用；关火后焖2分钟。</p>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-fajiao">#发酵</button> <button class="tag t-orange is-link" data-target="#tech-fajiao">#二发</button> <button class="tag t-orange is-link" data-target="#rule-steam">#蒸</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（3）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="包子">包子</button> <button class="mini-tag dish-jump" data-dish="花卷">花卷</button> <button class="mini-tag dish-jump" data-dish="红糖馒头">红糖馒头</button></div></details>
+    </article>
+
+    <!-- ↓ 以下 9 张由原「04 · 原理和材料」迁入（保留原 id，锚点不断链） -->
+    <article class="panel protocol" id="rule-season-time" data-search="调味时机 加热前 加热中 加热后 腌味 醋 明油 泼油">
+      <div class="eyebrow">下味的时间点</div><h3>调味时机</h3>
+      <div class="core-flow">加热前（腌味）→ 加热中（炒·烧）→ 加热后（拌／醋·明油·泼油修香）</div>
+      <ul><li>加热前：腌味、炸鱼等。</li><li>加热中：炒、烧。</li><li>加热后：拌；或最后用醋、明油、泼油修香。</li></ul>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#炒</button><button class="tag t-orange is-link" data-target="#tech-wanzhi">#碗汁</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（2）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="手撕包菜">手撕包菜</button> <button class="mini-tag dish-jump" data-dish="酸辣土豆丝">酸辣土豆丝</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-oiltemp" data-search="油温 4成滑油 6成定型 8成复炸 240度">
+      <div class="eyebrow">油温与用途</div><h3>油温</h3>
+      <div class="core-flow">1 成 ≈ 30 ℃；4 成滑油 → 6 成定型炸壳 → 8 成短时复炸</div>
+      <ul><li>4 成：常用于肉丝、鸡丁滑油。</li><li>6 成：定型、炸壳。</li><li>8 成/更高：短时复炸增脆。</li></ul>
+      <div class="tag-row"><button class="tag t-orange is-link" data-target="#tech-huayou">#4成滑油</button><button class="tag t-orange is-link" data-target="#tech-fuzha">#复炸</button><button class="tag t-indigo is-link" data-target="#pattern-crispy">#6成初炸</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（5）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="干锅土豆片">干锅土豆片</button> <button class="mini-tag dish-jump" data-dish="油饼">油饼</button> <button class="mini-tag dish-jump" data-dish="南瓜饼／土豆饼">南瓜饼／土豆饼</button> <button class="mini-tag dish-jump" data-dish="炒小白菜">炒小白菜</button> <button class="mini-tag dish-jump" data-dish="炒豆腐">炒豆腐</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-pressure" data-search="高压锅 时间 牛腩20分 红烧肉12分 牛肉8分 排骨30分 自然冷却">
+      <div class="eyebrow">上气后的时间</div><h3>高压锅</h3>
+      <div class="core-flow">上气 → 计时（牛肉 8／红烧肉 12／牛腩 20／排骨 30 分）→ 自然冷却再开盖</div>
+      <ul><li>红烧肉：上气后约 12 分钟。</li><li>牛腩：上气后约 20 分钟。</li><li>牛肉：上气后约 8 分钟。</li><li>排骨藕汤：约 30 分钟。</li><li>关火后自然冷却再开盖。</li></ul>
+      <div class="tag-row"><button class="tag t-red is-link" data-target="#dish-红烧牛腩">#牛腩20分</button><button class="tag t-red is-link" data-target="#dish-红烧肉">#红烧肉12分</button><button class="tag t-red is-link" data-target="#dish-牛肉火锅">#牛肉8分</button><button class="tag t-red is-link" data-target="#dish-排骨藕汤">#排骨30分</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧牛腩">红烧牛腩</button> <button class="mini-tag dish-jump" data-dish="红烧肉">红烧肉</button> <button class="mini-tag dish-jump" data-dish="牛肉火锅">牛肉火锅</button> <button class="mini-tag dish-jump" data-dish="排骨藕汤">排骨藕汤</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-steam" data-search="蒸制 蒸扣 蒸鱼 发面蒸制 倒扣 状态判熟">
+      <div class="eyebrow">按品类分档</div><h3>蒸制</h3>
+      <div class="core-flow">蒸扣：长蒸后倒扣 ／ 蒸鱼：8~10 分钟＋状态判熟 ／ 发面：蒸后焖 2 分钟</div>
+      <ul><li>蒸扣类：长时间蒸，按码碗方向最终倒扣。</li><li>蒸鱼：8～10 分钟只是参考，结合状态判熟。</li></ul>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#蒸扣</button><button class="tag t-red is-link" data-target="#dish-蒸鱼">#蒸鱼</button><button class="tag t-red is-link" data-target="#dish-包子">#发面蒸制</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（1）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="鲜肉千张卷">鲜肉千张卷</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-soup" data-search="汤体 白汤 底汤 开水 煸炒出油 鱼骨煎香">
+      <div class="eyebrow">白汤与底汤</div><h3>汤体</h3>
+      <div class="core-flow">煎·煸出油 → 冲入开水 → 大火煮至变白</div>
+      <ul><li>排骨藕汤：排骨先炒出油/微焦，再加开水。</li><li>酸菜鱼：鱼骨煎后冲开水煨出白汤。</li></ul>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-tang">#汤类</button><button class="tag t-indigo is-link" data-target="#pattern-shuizhu">#底汤</button><button class="tag t-orange is-link" data-target="#rule-shao-water">#开水</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（2）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="酸菜鱼">酸菜鱼</button> <button class="mini-tag dish-jump" data-dish="金汤肥牛">金汤肥牛</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-crisp" data-search="脆嫩 熟度 快炒 短焯 状态判熟">
+      <div class="eyebrow">快炒与状态</div><h3>脆嫩与熟度</h3>
+      <div class="core-flow">短焯 → 快炒 → 立即出锅；熟度以状态优先于计时</div>
+      <ul><li>蔬菜靠短焯＋快炒保持脆嫩。</li><li>蒸鱼等菜以原料状态优先于死记时间。</li></ul>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button><button class="tag t-orange is-link" data-target="#tech-fei">#短焯</button><button class="tag t-orange is-link" data-target="#rule-doneness">#状态判熟</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（3）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="干煸藕丝 / 土豆丝">干煸藕丝 / 土豆丝</button> <button class="mini-tag dish-jump" data-dish="芍尖">芍尖</button> <button class="mini-tag dish-jump" data-dish="酸辣土豆丝">酸辣土豆丝</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-shao-water" data-search="炖煮 加开水 开水 热水 烧 汤 避免骤冷">
+      <div class="eyebrow">加水的温度</div><h3>炖煮：加开水</h3>
+      <div class="core-flow">煸香 → 加开水／热水 → 避免原料骤冷</div>
+      <ul><li>肉类煸香后炖煮，用开水/热水。</li><li>目的是避免原料骤冷、破坏口感。</li></ul>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button><button class="tag t-indigo is-link" data-target="#pattern-tang">#汤</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（1）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="排骨藕汤">排骨藕汤</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-doneness" data-search="状态判熟 蒸鱼 鱼眼凸出 筷子插背肉 软烂脱骨 挂汁">
+      <div class="eyebrow">以状态代替计时</div><h3>状态判熟</h3>
+      <div class="core-flow">蒸鱼：鱼眼凸出·筷子插背肉 ／ 烧炖：软烂脱骨·挂汁</div>
+      <ul><li>蒸鱼：鱼眼凸出、筷子能插入背肉。</li><li>烧炖类：软烂、脱骨、挂汁等状态优先于计时。</li></ul>
+      <div class="tag-row"><button class="tag t-red is-link" data-target="#dish-蒸鱼">#蒸鱼</button><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button></div>
+      <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（1）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="蒸鱼">蒸鱼</button></div></details>
+    </article>
+
+    <article class="panel protocol" id="rule-season" data-search="去腥 去血 冲洗 泡水 挤干 冷水焯 姜 料酒 花雕 花椒 温水洗净">
+      <div class="eyebrow">物理去血＋焯水</div><h3>去腥</h3>
+      <div class="core-flow">冲·泡·挤干 → 冷水焯（姜·料酒·花椒）→ 温水洗净</div>
+      <ul><li>物理去血：冲、泡、挤干。</li><li>肉类常用冷水焯：姜＋料酒/花雕＋花椒。</li><li>焯后多用温水洗净。</li></ul>
+      <div class="tag-row"><button class="tag t-green is-link" data-target="#mat-meat">#肉类</button><button class="tag t-green is-link" data-target="#mat-fish">#鱼</button><button class="tag t-green is-link" data-target="#mat-shrimp">#虾</button></div>
+    <details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（20）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧牛腩">红烧牛腩</button> <button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="可乐鸡翅">可乐鸡翅</button> <button class="mini-tag dish-jump" data-dish="红烧肉">红烧肉</button> <button class="mini-tag dish-jump" data-dish="土豆烧鸡">土豆烧鸡</button> <button class="mini-tag dish-jump" data-dish="猪肉炖粉条">猪肉炖粉条</button> <button class="mini-tag dish-jump" data-dish="带鱼（烧）">带鱼（烧）</button> <button class="mini-tag dish-jump" data-dish="水煮肉片">水煮肉片</button> <button class="mini-tag dish-jump" data-dish="金汤肥牛">金汤肥牛</button> <button class="mini-tag dish-jump" data-dish="毛血旺">毛血旺</button> <button class="mini-tag dish-jump" data-dish="牛肉火锅">牛肉火锅</button> <button class="mini-tag dish-jump" data-dish="小酥肉">小酥肉</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button> <button class="mini-tag dish-jump" data-dish="香辣虾">香辣虾</button> <button class="mini-tag dish-jump" data-dish="回锅肉">回锅肉</button> <button class="mini-tag dish-jump" data-dish="白灼虾">白灼虾</button> <button class="mini-tag dish-jump" data-dish="梅菜扣肉">梅菜扣肉</button> <button class="mini-tag dish-jump" data-dish="粉蒸肉">粉蒸肉</button> <button class="mini-tag dish-jump" data-dish="排骨藕汤">排骨藕汤</button></div></details></article>
+ </div>
+</section>
+
+<section class="section" id="materials">
+ <div class="section-head"><div><h2>03 · 食材处理</h2><p>按对象记规则，并列出可直接跳转的相关菜品。</p></div></div>
+ <div class="grid-3">
+  <article id="mat-meat" class="panel material-card" data-search="猪肉 牛肉 鸡肉 肉丝 肉馅 小苏打 上浆"><h3>猪肉／牛肉／鸡肉</h3><ul><li>肉丝顺纹理切；肉片切断纹理。</li><li>嫩肉常加入小苏打。</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（12）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧牛腩">红烧牛腩</button> <button class="mini-tag dish-jump" data-dish="可乐鸡翅">可乐鸡翅</button> <button class="mini-tag dish-jump" data-dish="红烧肉">红烧肉</button> <button class="mini-tag dish-jump" data-dish="土豆烧鸡">土豆烧鸡</button> <button class="mini-tag dish-jump" data-dish="猪肉炖粉条">猪肉炖粉条</button> <button class="mini-tag dish-jump" data-dish="水煮肉片">水煮肉片</button> <button class="mini-tag dish-jump" data-dish="青椒肉丝">青椒肉丝</button> <button class="mini-tag dish-jump" data-dish="农家小炒肉">农家小炒肉</button> <button class="mini-tag dish-jump" data-dish="鱼香肉丝">鱼香肉丝</button> <button class="mini-tag dish-jump" data-dish="宫保鸡丁">宫保鸡丁</button> <button class="mini-tag dish-jump" data-dish="回锅肉">回锅肉</button> <button class="mini-tag dish-jump" data-dish="腊肉炒豆丝">腊肉炒豆丝</button></div></details></article>
+  <article id="mat-fish" class="panel material-card" data-search="鱼 去牙 黑膜 内脏 葱姜水 料酒 姜汁 不翻 蒸鱼"><h3>鱼</h3><ul><li>去牙、黑膜、内脏。</li><li>烧鱼强调不翻动；蒸鱼按状态判熟。</li><li>有鳞鱼吃姜，无磷鱼吃蒜</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="带鱼（烧）">带鱼（烧）</button> <button class="mini-tag dish-jump" data-dish="酸菜鱼">酸菜鱼</button> <button class="mini-tag dish-jump" data-dish="蒸鱼">蒸鱼</button></div></details></article>
+  <article id="mat-shrimp" class="panel material-card" data-search="虾 去虾线 开背 拍粉 白灼虾 香辣虾"><h3>虾</h3><ul><li>剪头 → 抽虾线 → 剪脚须 → 深开背。</li><li>香辣虾拍粉，不是上浆。</li><li>白灼虾全程大火，约 30 秒变红即捞。</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（2）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="香辣虾">香辣虾</button> <button class="mini-tag dish-jump" data-dish="白灼虾">白灼虾</button></div></details></article>
+  <article id="mat-duckbone" class="panel material-card" data-search="鸭 排骨 筒骨 泡血水 冷水焯 温水清洗 去腥"><h3>鸭／排骨／筒骨</h3><ul><li>流水/泡水去血 → 冷水焯 → 温水清洗。</li><li>后续煸炒建立香味，或熬汤建立汤体。</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（2）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="排骨藕汤">排骨藕汤</button></div></details></article>
+  <article id="mat-tofu" class="panel material-card" data-search="豆腐 豆制品 老豆腐 香干 豆腥"><h3>豆腐／豆制品</h3><ul><li>老豆腐可煎/炸定型。</li><li>香干先焯水去豆腥。</li><li>麻婆豆腐先焯水再煨烧。</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（5）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="麻婆豆腐">麻婆豆腐</button> <button class="mini-tag dish-jump" data-dish="家常豆腐">家常豆腐</button> <button class="mini-tag dish-jump" data-dish="鲜肉千张卷">鲜肉千张卷</button> <button class="mini-tag dish-jump" data-dish="芹菜炒香干">芹菜炒香干</button> <button class="mini-tag dish-jump" data-dish="炒豆腐">炒豆腐</button></div></details></article>
+  <article id="mat-leafy" class="panel material-card" data-search="叶菜 保色 盐 油 短焯 快炒"><h3>叶菜</h3><ul><li>必要时短焯。</li><li>焯水加盐＋油保色。</li><li>正式炒制尽量短。</li><li>部分菜出锅前再放盐/醋。</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（7）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="手撕包菜">手撕包菜</button> <button class="mini-tag dish-jump" data-dish="蚝油生菜">蚝油生菜</button> <button class="mini-tag dish-jump" data-dish="炒莴苣">炒莴苣</button> <button class="mini-tag dish-jump" data-dish="芍尖">芍尖</button> <button class="mini-tag dish-jump" data-dish="炒小白菜">炒小白菜</button> <button class="mini-tag dish-jump" data-dish="西兰花">西兰花</button> <button class="mini-tag dish-jump" data-dish="油麦菜">油麦菜</button></div></details></article>
+  <article id="mat-potato" class="panel material-card" data-search="土豆 藕 泡水 白醋 防氧化 短焯 过油"><h3>土豆／藕</h3><ul><li>切丝后泡水；藕丝可加白醋防氧化。</li><li>土豆丝约 5 秒短焯后快炒。</li><li>土豆片/藕丝可过油制造酥脆。</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="土豆烧鸡">土豆烧鸡</button> <button class="mini-tag dish-jump" data-dish="干煸藕丝 / 土豆丝">干煸藕丝 / 土豆丝</button> <button class="mini-tag dish-jump" data-dish="干锅土豆片">干锅土豆片</button> <button class="mini-tag dish-jump" data-dish="酸辣土豆丝">酸辣土豆丝</button></div></details></article>
+  <article id="mat-starch" class="panel material-card" data-search="淀粉 红薯淀粉 土豆淀粉 生粉 吉士粉 面粉 挂糊 拍粉 上浆 勾芡 薄层保护 湿糊厚壳 干粉薄壳"><h3>淀粉</h3><ul><li>玉米淀粉：肉类上浆，勾芡。</li><li>红薯淀粉：挂糊炸硬壳，不易回软。</li><li>土豆淀粉：用于亮芡、炸白壳。</li><li>吉士粉：香辣虾、干煸藕丝拍粉，增香增色。</li></ul><details class="dish-fold"><summary>查看相关技法／菜品 <b class="dish-count">（7）</b></summary><div class="dish-pills"><button class="mini-tag" data-target="#tech-shangjiang">上浆</button><button class="mini-tag" data-target="#tech-guahu">挂糊</button><button class="mini-tag" data-target="#tech-paifen">拍粉</button><button class="mini-tag dish-jump" data-dish="小酥肉">小酥肉</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button> <button class="mini-tag dish-jump" data-dish="香辣虾">香辣虾</button> <button class="mini-tag dish-jump" data-dish="粉蒸肉">粉蒸肉</button></div></details></article>
+  <article id="seasoning" class="panel material-card" data-search="酱料 调味料 调料 品牌 料酒 沈永和花雕酒 酱油 天成一味 东古一品鲜 豆瓣酱 丹丹 锦珍"><h3>酱料</h3><ul><li>料酒：沈永和花雕酒</li><li>酱油：天成一味，东古一品鲜</li><li>豆瓣酱：丹丹，锦珍</li></ul></article>
+  <article id="vinegar" class="panel material-card" data-search="醋 白醋 香醋 陈醋 红醋"><h3>醋</h3><ul><li>白醋：清脆、保色</li><li>陈醋：凉拌</li><li>香醋：爆炒、出锅时的锅边醋</li><li>大红浙醋：红色糖醋汁，与蕃茄膏一起</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（10）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="酸菜鱼">酸菜鱼</button> <button class="mini-tag dish-jump" data-dish="金汤肥牛">金汤肥牛</button> <button class="mini-tag dish-jump" data-dish="糖醋里脊">糖醋里脊</button> <button class="mini-tag dish-jump" data-dish="干煸藕丝 / 土豆丝">干煸藕丝 / 土豆丝</button> <button class="mini-tag dish-jump" data-dish="干烧霉千张">干烧霉千张</button> <button class="mini-tag dish-jump" data-dish="鱼香肉丝">鱼香肉丝</button> <button class="mini-tag dish-jump" data-dish="宫保鸡丁">宫保鸡丁</button> <button class="mini-tag dish-jump" data-dish="手撕包菜">手撕包菜</button> <button class="mini-tag dish-jump" data-dish="酸辣土豆丝">酸辣土豆丝</button></div></details></article>
+  <article id="pepper" class="panel material-card" data-search="青椒"><h3>青椒</h3><ul><li>切法：先沿侧面切开、去掉籽和筋，<br>再水洗可去辣味，<br>再用刀拍平、切丝切片</li><li>炒法：热锅不放油，先煸出虎皮</li><li>烧鱼：放入整颗青椒，提香去腥</li></ul><details class="dish-fold"><summary>查看相关菜品 <b class="dish-count">（4）</b></summary><div class="dish-pills"><button class="mini-tag dish-jump" data-dish="红烧鱼块">红烧鱼块</button> <button class="mini-tag dish-jump" data-dish="啤酒鸭">啤酒鸭</button> <button class="mini-tag dish-jump" data-dish="青椒肉丝">青椒肉丝</button> <button class="mini-tag dish-jump" data-dish="农家小炒肉">农家小炒肉</button></div></details></article>
+ </div>
+</section>
+
+<section class="section" id="recipes">
+ <div class="section-head"><div><h2>04 · 菜谱</h2><p id="resultText">51 道菜谱 · 顶部搜索可检索全站。</p></div></div>
+ <div class="recipe-grid" id="recipeGrid">
+    <article class="recipe panel" id="dish-红烧牛腩" data-tags="烧 牛肉 糖色 高压锅" data-search="红烧牛腩 烧类 牛腩干煸焦壳出油；糖色；高压20分钟；分两次加西红柿 #烧 #牛肉 #糖色 #高压锅">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>红烧牛腩</h3></div><span class="recipe-index">01</span></div>
+      <p><strong class="feature-label">特色</strong> · 牛腩干煸焦壳出油；糖色；高压20分钟；分两次加西红柿</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>牛腩切 2 厘米见方的麻将块、冲血水、挤干水分；西红柿去皮切块、备用。</li><li>牛腩冷水下锅，加姜片、花雕酒，撇净浮沫、加花椒，水开后煮 2~3 分钟捞出，用原汤冲洗干净。</li><li>炒糖色。</li><li>起锅烧油，牛腩干煸至焦壳出油。</li><li>炒香：葱姜蒜、干辣椒、豆瓣酱、桂皮1、八角2、香叶2。</li><li>加开水（没过牛肉），加糖色与十三香；下一半西红柿；转入高压锅，上汽后20分钟。</li><li>高压锅自然冷却，开盖。捞出香料。放入另一半西红柿，小火收汁，调味（补：生抽/盐，胡椒粉）。</li><li>葱花/蒜叶点缀，出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button>
+        <button class="tag t-green is-link" data-target="#mat-meat">#牛肉</button>
+        <button class="tag t-orange is-link" data-target="#tech-chaotangse">#糖色</button>
+        <button class="tag t-orange is-link" data-target="#rule-pressure">#高压锅</button>
+       <button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-红烧鱼块" data-tags="烧 鱼 拍粉 不翻" data-search="红烧鱼块 烧类 腌制时先不放淀粉；后加粉；6~7成油炸定型；整颗青椒提香；全程不翻 #烧 #鱼 #拍粉 #不翻">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>红烧鱼块</h3></div><span class="recipe-index">02</span></div>
+      <p><strong class="feature-label">特色</strong> · 腌制时先不放淀粉；后加粉；6~7成油炸定型；整颗青椒提香；全程不翻</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">草鱼</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>杀鱼：去牙齿、黑膜，用盐水洗鱼块。</li><li>腌制 10 分钟（不放淀粉）：姜、葱、料酒、盐、糖、味精。</li><li>然后去掉姜葱，加淀粉抓匀。</li><li>锅中宽油，6~7 成热下鱼块炸至定型。炸的时候不要拨动，而是转锅。</li><li>锅内留底油，煸香姜葱蒜、泡椒／辣椒、豆瓣酱 / 老干妈，加生抽炒香；加水烧开，一点醋。</li><li>放鱼块，调味（胡椒粉，耗油等），放入整颗青椒提香，加盖烧 10~12 分钟收汁（配菜在 8 分钟时加入），捞出青椒。大火收汁。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-green is-link" data-target="#mat-fish">#鱼</button> <button class="tag t-orange is-link" data-target="#tech-paifen">#拍粉</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#收汁</button> <button class="tag t-green is-link" data-target="#pepper">#青椒</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-啤酒鸭" data-tags="烧 鸭 啤酒 收汁" data-search="啤酒鸭 烧类 鸭块去血水、焯水；豆瓣酱炒红油；鸭块微焦；啤酒+水；最后收汁 #烧 #鸭 #啤酒 #收汁">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>啤酒鸭</h3></div><span class="recipe-index">03</span></div>
+      <p><strong class="feature-label">特色</strong> · 鸭块去血水、焯水；豆瓣酱炒红油；鸭块微焦；啤酒+水；最后收汁</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">白条鸭（剁块）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>鸭块流水洗净血水。</li><li>冷水焯水，加姜、酒、花椒煮 2~3 分钟，用温水清洗干净。</li><li>锅底油，下豆瓣酱 2 勺炒出红油；爆香姜、蒜、干辣椒；放入鸭块，中小火煸炒 1 分钟至微焦；加八角、桂皮、香叶炒香。</li><li>加啤酒，加水没过鸭子，加糖色／老抽、十三香、胡椒粉、姜，煮开转中小火 20 分钟。</li><li>大火收汁，调味，下青椒片出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-green is-link" data-target="#mat-duckbone">#鸭</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#收汁</button> <button class="tag t-green is-link" data-target="#pepper">#青椒</button> <button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-orange is-link" data-target="#tech-chaotangse">#糖色</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-可乐鸡翅" data-tags="烧 鸡翅 可乐 黏汁" data-search="可乐鸡翅 烧类 打花刀腌30分钟；煎时少翻；可乐+生抽+冰糖；收至黏 #烧 #鸡翅 #可乐 #黏汁">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>可乐鸡翅</h3></div><span class="recipe-index">04</span></div>
+      <p><strong class="feature-label">特色</strong> · 打花刀腌30分钟；煎时少翻；可乐+生抽+冰糖；收至黏</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">鸡翅中 / 大鸡腿拆肉</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>鸡翅打花刀，腌制 30 分钟：盐（多）、味精、姜、葱、料酒。<br>＊如果突出蒜香，可用蒜蓉挤水腌制。</li><li>冷水下锅焯水，出浮末后出锅，用温水洗净、沥干水分。</li><li>锅内放油，煎鸡翅至两面微黄（不要翻，而是动锅）。</li><li>放姜，可乐没过鸡翅，加生抽、冰糖。</li><li>大火烧 5~8 分钟，收汁至黏即可。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-green is-link" data-target="#mat-meat">#鸡翅</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#收汁</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-红烧肉" data-tags="烧 五花 糖色 高压锅" data-search="红烧肉 烧类 硬五花；猪皮处理；煸炒持续舀油；糖色；高压12分钟/普通锅40分钟 #烧 #五花 #糖色 #高压锅">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>红烧肉</h3></div><span class="recipe-index">05</span></div>
+      <p><strong class="feature-label">特色</strong> · 硬五花；猪皮处理；煸炒持续舀油；糖色；高压12分钟/普通锅40分钟</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">硬五花肉（夹层五花）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>锅烧热，把猪皮烫焦，刮掉猪毛，洗净。</li><li>改刀切成麻将块。</li><li>冷水下锅，加料酒、姜、花椒，焯水约 2~3 分钟。</li><li>炒糖色。</li><li>锅底油，放五花肉块小火煸炒至微焦出油，不断舀出多余的油。</li><li>下八角、香叶、桂皮炒出香味，倒入热水、糖色（或：红烧酱油；黄冰糖+老抽）、料酒、姜、干辣椒、十三香。</li><li>高压锅压 12 分钟，或普通锅煮 40 分钟。</li><li>大火收汁，调味（一般补盐）。</li></ol></div><div class="rd-steps rd-quick"><span class="rd-k">快速版</span><ol class="rd-ol"><li>肉去皮、焯水、切块，用酱油、香料炒匀，高压锅 12 分钟，锅里直接收汁。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button>
+        <button class="tag t-green is-link" data-target="#mat-meat">#五花</button>
+        <button class="tag t-orange is-link" data-target="#tech-chaotangse">#糖色</button>
+        <button class="tag t-orange is-link" data-target="#rule-pressure">#高压锅</button>
+       <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-土豆烧鸡" data-tags="烧 鸡 土豆" data-search="土豆烧鸡 烧类 鸡先焯再炒香；土豆后下；最后青红椒快速合锅 #烧 #鸡 #土豆">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>土豆烧鸡</h3></div><span class="recipe-index">06</span></div>
+      <p><strong class="feature-label">特色</strong> · 鸡先焯再炒香；土豆后下；最后青红椒快速合锅</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">三黄鸡（嫩鸡）、黄心土豆</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>土豆切滚刀块，泡水后捞出沥干。</li><li>鸡肉剁块，冷水下锅，加姜、酒、花椒焯水。</li><li>烧底油，下豆瓣酱炒出红油，加姜、蒜、八角、桂皮、香叶炒香。</li><li>下鸡块炒香。</li><li>加水没过鸡块，加料酒、生抽、蚝油、糖色。</li><li>煮 5~6 分钟。</li><li>下土豆、葱，继续烧约 15 分钟。</li><li>大火收汁，加入青红椒翻炒出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button>
+        <button class="tag t-green is-link" data-target="#mat-meat">#鸡</button>
+        <button class="tag t-green is-link" data-target="#mat-potato">#土豆</button>
+       <button class="tag t-orange is-link" data-target="#tech-chaotangse">#糖色</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-麻婆豆腐" data-tags="烧 豆腐 刀口辣椒 三次勾芡" data-search="麻婆豆腐 烧类 豆腐先焯；肉末+豆瓣酱+刀口辣椒；小火煨10分钟；大火三次勾芡 #烧 #豆腐 #刀口辣椒 #三次勾芡">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>麻婆豆腐</h3></div><span class="recipe-index">07</span></div>
+      <p><strong class="feature-label">特色</strong> · 豆腐先焯；肉末+豆瓣酱+刀口辣椒；小火煨10分钟；大火三次勾芡</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">豆腐、牛肉末／五花肉末</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>豆腐切丁，焯水。</li><li>锅内放油，炒香肉末，加姜、蒜、豆瓣酱、刀口辣椒炒香。</li><li>加半碗水烧开，调味。放豆腐，小火煨 10 分钟。</li><li>水淀粉收芡（大火分3次勾芡），淋明油，撒葱花。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-green is-link" data-target="#mat-tofu">#豆腐</button> <button class="tag t-orange is-link" data-target="#tech-daokou">#刀口辣椒</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#三次勾芡</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-家常豆腐" data-tags="烧 豆腐 炸定型" data-search="家常豆腐 烧类 豆腐切三角、沥干；6~7成炸金黄；烧5分钟；青红椒+芡 #烧 #豆腐 #炸定型">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>家常豆腐</h3></div><span class="recipe-index">08</span></div>
+      <p><strong class="feature-label">特色</strong> · 豆腐切三角、沥干；6~7成炸金黄；烧5分钟；青红椒+芡</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">格子豆腐</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>豆腐切三角形，沥干水分。</li><li>宽油 6~7 成油温，炸至表面金黄。</li><li>底油炒香调料：豆瓣酱、葱、姜、蒜、干辣椒、生抽、老抽。加水没过豆腐，调味，放木耳。</li><li>烧 5 分钟，汤剩下1/3，放青红椒。</li><li>用水淀粉收芡，淋明油出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button>
+        <button class="tag t-green is-link" data-target="#mat-tofu">#豆腐</button>
+        <button class="tag t-orange is-link" data-target="#tech-fuzha">#炸定型</button>
+       <button class="tag t-orange is-link" data-target="#tech-gouqian">#勾芡</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-猪肉炖粉条" data-tags="烧 粉条 五花" data-search="猪肉炖粉条 烧类 五花焯水后切片；煸出油；粉条、白菜后入锅炖 #烧 #粉条 #五花">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>猪肉炖粉条</h3></div><span class="recipe-index">09</span></div>
+      <p><strong class="feature-label">特色</strong> · 五花焯水后切片；煸出油；粉条、白菜后入锅炖</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">五花肉、细红薯粉 / 宽粉皮（先泡好）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>五花肉冷水下锅焯水（加料酒、姜、八角、桂皮、香叶），煮25~30 分钟，捞出改刀切片。</li><li>锅中放油，煸香肉片至出油；放豆瓣酱、姜、葱、干辣椒、八角、生抽、蚝油炒香。</li><li>加水烧开，煮 10~15 分钟，调味（十三香、盐），放粉条、白菜炖至入味。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-green is-link" data-target="#mat-meat">#五花</button> <button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-带鱼-烧-" data-tags="烧 带鱼 拍粉 不翻" data-search="带鱼（烧） 烧类 去黑膜；葱姜水腌；改花刀拍粉；先煎香料再煎鱼；烧时不翻 #烧 #带鱼 #拍粉 #不翻">
+      <div class="recipe-head"><div><span class="eyebrow">烧类</span><h3>带鱼（烧）</h3></div><span class="recipe-index">10</span></div>
+      <p><strong class="feature-label">特色</strong> · 去黑膜；葱姜水腌；改花刀拍粉；先煎香料再煎鱼；烧时不翻</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 初加工（焯水／腌制）→ 煎·煸·炸定型 → 炒糖色／炒香底料 → 加热水或汤 → 焖烧入味 → 收汁调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">新鲜带鱼（鳞不掉）、葱、姜、大葱、八角</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>带鱼剪头、剪尾鳍、去黑膜和内脏。切段，洗净。花刀。</li><li>腌制：泡葱姜水，加盐、料酒、花椒。</li><li>煎：底油下八角、姜、大葱煎香。带鱼下锅前拍生粉，两面煎黄。</li><li>放热水煮（烧），补颜色（老抽）和味道（盐、生抽等），全程不要翻动。</li><li>大火收汁出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shao">#烧</button> <button class="tag t-green is-link" data-target="#mat-fish">#带鱼</button> <button class="tag t-orange is-link" data-target="#tech-paifen">#拍粉</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#收汁</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-水煮肉片" data-tags="水煮 上浆 泼油" data-search="水煮肉片 水煮／汆烫类 猪里脊上浆；素菜先焯；肉片分散下锅；180℃热油泼蒜和刀口辣椒 #水煮 #上浆 #泼油">
+      <div class="recipe-head"><div><span class="eyebrow">水煮／汆烫类</span><h3>水煮肉片</h3></div><span class="recipe-index">11</span></div>
+      <p><strong class="feature-label">特色</strong> · 猪里脊上浆；素菜先焯；肉片分散下锅；180℃热油泼蒜和刀口辣椒</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料上浆／预处理 → 素菜焯水垫底 → 炒底汤（或煎骨冲开水成奶汤）→ 主料短时汆熟 → 装盘 → 泼热油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">猪里脊肉（通脊）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>猪肉<b>切断纹理</b>切 2~3 毫米片，水洗后攥干。</li><li>腌制 15 分钟：盐、白胡椒粉、花雕酒、老抽、姜片、葱姜水，加一点水搅打进去，再下淀粉抓匀。</li><li>蔬菜（黄豆芽、千张10 厘米段）开水焯水 30 秒（水中加盐、油，保色），捞出沥干备用。</li><li>起锅烧油，小火下豆瓣酱、炒出红油，大火炒香姜蒜末。</li><li>加热水煮开，调味：生抽、老抽、料酒。煮 2 分钟后捞出姜蒜渣。</li><li>下配菜入味，捞出垫入盘底。</li><li>煮开后关火／转小火，把肉片一片片分散下锅，30 秒定型后再煮开，肉片捞出装盘。并把汤淋入盘。</li><li>面上撒蒜末、刀口辣椒，淋 180 ℃ 热油。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-shuizhu">#水煮</button>
+        <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button>
+        <button class="tag t-orange is-link" data-target="#tech-paoyou">#泼油</button>
+       <button class="tag t-orange is-link" data-target="#tech-daokou">#刀口辣椒</button> <button class="tag t-green is-link" data-target="#mat-meat">#猪里脊</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-酸菜鱼" data-tags="水煮 鱼片 白汤 泼油" data-search="酸菜鱼 水煮／汆烫类 鱼骨煎后冲开水熬白汤；素菜垫底；鱼片小火汆；最后六成热油泼香 #水煮 #鱼片 #白汤 #泼油">
+      <div class="recipe-head"><div><span class="eyebrow">水煮／汆烫类</span><h3>酸菜鱼</h3></div><span class="recipe-index">12</span></div>
+      <p><strong class="feature-label">特色</strong> · 鱼骨煎后冲开水熬白汤；素菜垫底；鱼片小火汆；最后六成热油泼香</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料上浆／预处理 → 素菜焯水垫底 → 炒底汤（或煎骨冲开水成奶汤）→ 主料短时汆熟 → 装盘 → 泼热油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">新鲜的草鱼 / 财鱼 / 鲈鱼 2~3 斤，带鱼骨可熬汤；巴沙鱼</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>鱼肉切片，上蛋浆。素菜配菜先焯水备用。</li><li>奶汤：底油，煎鱼骨，姜、葱，冲入开水，锅盖大火煮至汤色变白（约 5 分钟）<b>不调味</b>。</li><li>底油爆香：酸菜（洗净），姜、葱、小米辣，加奶汤煮 5~8 分钟。调味：盐、味精、白醋、白胡椒。</li><li>素菜下锅入味，捞起装盘。</li><li>汤再次煮开，转小火/关火，鱼片一片片下锅汆熟，捞起装盘。</li><li>表面放蒜末、葱、花椒，泼六成热油。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shuizhu">#水煮</button> <button class="tag t-green is-link" data-target="#mat-fish">#鱼片</button> <button class="tag t-orange is-link" data-target="#rule-soup">#白汤</button> <button class="tag t-orange is-link" data-target="#tech-paoyou">#泼油</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-金汤肥牛" data-tags="水煮 金汤 黄灯笼 泼油" data-search="金汤肥牛 水煮／汆烫类 南瓜蒸泥过筛+黄灯笼酱；素菜和肥牛分别焯熟；最后热油+柠檬 #水煮 #金汤 #黄灯笼 #泼油">
+      <div class="recipe-head"><div><span class="eyebrow">水煮／汆烫类</span><h3>金汤肥牛</h3></div><span class="recipe-index">13</span></div>
+      <p><strong class="feature-label">特色</strong> · 南瓜蒸泥过筛+黄灯笼酱；素菜和肥牛分别焯熟；最后热油+柠檬</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料上浆／预处理 → 素菜焯水垫底 → 炒底汤（或煎骨冲开水成奶汤）→ 主料短时汆熟 → 装盘 → 泼热油</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>南瓜蒸 10 分钟，捣成泥并过筛，加水调成酸奶状。</li><li>开水焯水：先素菜（金针菇、莴笋丝、娃娃菜等），再肥牛，捞出装盘。</li><li>金汤：爆香姜、蒜、花椒、黄灯笼酱、泡椒，加南瓜泥，加水，调味（白醋、盐、料酒）。淋在菜与肉上。</li><li>出品：面上放蒜末／小米辣，泼热油；配柠檬片（去籽）。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shuizhu">#水煮</button> <button class="tag t-orange is-link" data-target="#rule-soup">#金汤</button> <button class="tag t-orange is-link" data-target="#tech-paoyou">#泼油</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-毛血旺" data-tags="水煮 刀口辣椒 火锅底料" data-search="毛血旺 水煮／汆烫类 豆瓣酱+火锅底料；汤底去块状物；素菜焯后过汤；刀口辣椒+蒜+热油 #水煮 #刀口辣椒 #火锅底料">
+      <div class="recipe-head"><div><span class="eyebrow">水煮／汆烫类</span><h3>毛血旺</h3></div><span class="recipe-index">14</span></div>
+      <p><strong class="feature-label">特色</strong> · 豆瓣酱+火锅底料；汤底去块状物；素菜焯后过汤；刀口辣椒+蒜+热油</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料上浆／预处理 → 素菜焯水垫底 → 炒底汤（或煎骨冲开水成奶汤）→ 主料短时汆熟 → 装盘 → 泼热油</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>素菜、肉类焯水。</li><li>底油炒豆瓣酱、火锅底料、姜、蒜；加水，调味：（偏咸一点）生抽、老抽、盐、料酒、白胡椒粉。捞出汤中块状物。</li><li>素菜、肉类，在汤里过一下，摆盘，倒入汤。</li><li>表层放刀口辣椒、蒜，淋热油，撒白芝麻。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shuizhu">#水煮</button> <button class="tag t-orange is-link" data-target="#tech-daokou">#刀口辣椒</button> <button class="tag t-orange is-link" data-target="#tech-paoyou">#泼油</button> <button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-牛肉火锅" data-tags="水煮 火锅 高压锅" data-search="牛肉火锅 水煮／汆烫类 牛肉焯水；小火炒料；高压8分钟；萝卜/千张先焯打底 #水煮 #火锅 #高压锅">
+      <div class="recipe-head"><div><span class="eyebrow">水煮／汆烫类</span><h3>牛肉火锅</h3></div><span class="recipe-index">15</span></div>
+      <p><strong class="feature-label">特色</strong> · 牛肉焯水；小火炒料；高压8分钟；萝卜/千张先焯打底</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料上浆／预处理 → 素菜焯水垫底 → 炒底汤（或煎骨冲开水成奶汤）→ 主料短时汆熟 → 装盘 → 泼热油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">牛梅花肉 / 牛腩</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>牛肉切片，焯水去腥。</li><li>炒：小火下豆瓣酱／火锅底料，加大蒜坨、姜片、干辣椒、花椒、八角、桂皮、香叶、十三香；加水煮开。</li><li>转入高压锅，上气后压 8 分钟。</li><li>白萝卜切块、盐腌后洗净。白萝卜、千张等焯水，装盘打底。</li><li>牛肉、汤装盘，撒上大蒜叶、煮开。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-shuizhu">#水煮</button> <button class="tag t-orange is-link" data-target="#rule-pressure">#高压锅</button> <button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-小酥肉" data-tags="酥炸 挂糊 复炸" data-search="小酥肉 酥炸／干煸类 红薯淀粉6+面粉4挂糊；160℃初炸2分钟；240℃复炸，再复炸 #酥炸 #挂糊 #复炸">
+      <div class="recipe-head"><div><span class="eyebrow">酥炸／干煸类</span><h3>小酥肉</h3></div><span class="recipe-index">16</span></div>
+      <p><strong class="feature-label">特色</strong> · 红薯淀粉6+面粉4挂糊；160℃初炸2分钟；240℃复炸，再复炸</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">猪梅花肉／鸡胸肉／里脊肉</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>肉切手指粗条，冲血水、挤干水分。</li><li>腌制：加葱姜水、白胡椒粉、花椒粉、料酒、盐、生抽抓匀。</li><li>调糊：红薯淀粉 6 份、中筋面粉 4 份，加一个鸡蛋、盐，抓匀后<b>少量多次加水</b>，调至酸奶状，再加 10 g 油拌匀。</li><li>肉放入糊中搅匀。</li><li>油温 160 ℃ 下锅炸 2 分钟。</li><li>油温升至 240 ℃ 复炸（约 20~30 秒）。</li><li>再次复炸。</li><li>出锅撒盐、海椒面；配番茄酱。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button>
+        <button class="tag t-orange is-link" data-target="#tech-guahu">#挂糊</button>
+        <button class="tag t-orange is-link" data-target="#tech-fuzha">#复炸</button>
+       <button class="tag t-green is-link" data-target="#mat-starch">#淀粉</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-糖醋里脊" data-tags="酥炸 挂糊 复炸" data-search="糖醋里脊 酥炸／干煸类 刀背拍松；脆炸糊；6成初炸+8成复炸两次；最后无汤裹糖醋芡汁 #酥炸 #挂糊 #复炸 #无汤">
+      <div class="recipe-head"><div><span class="eyebrow">酥炸／干煸类</span><h3>糖醋里脊</h3></div><span class="recipe-index">17</span></div>
+      <p><strong class="feature-label">特色</strong> · 刀背拍松；脆炸糊；6成初炸+8成复炸两次；最后无汤裹糖醋芡汁</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">猪梅花肉／里脊肉</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>肉用刀背拍松，切条，冲水。</li><li>腌制 10~15 分钟去腥并给基本味。</li><li>脆炸糊：红薯淀粉 6 份、面粉 4 份，加盐，泡打粉 25 g、小苏打 2 g，1 个全蛋、抓匀，少量多次加水，搅成浓酸奶状。油10 g 搅匀。</li><li>宽油，6 成油温下锅，初炸定型（一根根挂糊、下入）2~3 分钟；8成油温复炸 20~30 秒至脆，再复炸一次。</li><li>调糖醋汁：底油爆香姜末、蒜末、葱段，加半碗水煮开，捞出葱姜蒜；转小火，炒化：番茄酱 30 g、糖 20 g，盐 2 g、白醋 10 g。大火勾芡（土豆淀粉），锅边淋油。</li><li>关火，倒入肉条，翻炒 3 次出锅，撒白芝麻。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button>
+        <button class="tag t-orange is-link" data-target="#tech-guahu">#挂糊</button>
+        <button class="tag t-orange is-link" data-target="#tech-fuzha">#复炸</button>
+       <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-orange is-link" data-target="#tech-gouqian">#勾芡</button> <button class="tag t-green is-link" data-target="#mat-starch">#淀粉</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-辣子鸡丁" data-tags="酥炸 滑油 复炸" data-search="辣子鸡丁 酥炸／干煸类 小苏打+生粉腌；4成滑散；6成复炸2~3次；干辣椒炒干香 #酥炸 #滑油 #复炸">
+      <div class="recipe-head"><div><span class="eyebrow">酥炸／干煸类</span><h3>辣子鸡丁</h3></div><span class="recipe-index">18</span></div>
+      <p><strong class="feature-label">特色</strong> · 小苏打+生粉腌；4成滑散；6成复炸2~3次；干辣椒炒干香</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">鸡腿肉 / 鸡胸肉、二荆条干辣椒、花生米 / 锅巴／妙脆角</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>鸡肉切丁腌制（加小苏打）。</li><li>宽油，4成油温，滑散鸡肉捞出；油温升到 6 成，复炸 2~3 次至表面干香。</li><li>底油，下鸡肉、干辣椒、姜、蒜、花椒。炒至辣椒干香。</li><li>放花生米、小葱、芝麻、香油，出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button>
+        <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button>
+        <button class="tag t-orange is-link" data-target="#tech-fuzha">#复炸</button>
+       <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-干煸藕丝-土豆丝" data-tags="酥炸 拍粉 藕 脆" data-search="干煸藕丝 / 土豆丝 酥炸／干煸类 薄刀切；浸泡防氧化；先焯；吉士粉+生粉+芝麻拍粉；炸定形再浸炸 #酥炸 #拍粉 #藕 #脆">
+      <div class="recipe-head"><div><span class="eyebrow">酥炸／干煸类</span><h3>干煸藕丝 / 土豆丝</h3></div><span class="recipe-index">19</span></div>
+      <p><strong class="feature-label">特色</strong> · 薄刀切；浸泡防氧化；先焯；吉士粉+生粉+芝麻拍粉；炸定形再浸炸</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">脆藕 / 土豆、细芹菜／葱段、吉士粉、熟芝麻</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>用薄刀切丝，放入清水并加白醋浸泡。</li><li>锅内加水烧开，下藕丝煮熟，用流水冲凉、沥干。</li><li>宽油，烧至 6 成。下锅时，藕丝先拍吉士粉，再拍生粉、生芝麻、少许盐。先炸至定形，改小火（油温 5~6 成）浸炸至酥脆，捞起前可用水驱（小半勺水进入油底）。</li><li>锅内底油，煸香姜、蒜、辣椒丝、花椒；放入藕丝、葱段、芝麻、香油／麻油，炒匀。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button>
+        <button class="tag t-orange is-link" data-target="#tech-paifen">#拍粉</button>
+        <button class="tag t-green is-link" data-target="#mat-potato">#藕</button>
+        <button class="tag t-orange is-link" data-target="#rule-crisp">#脆</button>
+       <button class="tag t-green is-link" data-target="#vinegar">#醋</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-香辣虾" data-tags="酥炸 拍粉 虾 不复炸" data-search="香辣虾 酥炸／干煸类 活虾深开背；拍吉士粉/生粉；6成炸2分钟；豆瓣酱少、香辣酱多；不复炸 #酥炸 #拍粉 #虾 #不复炸">
+      <div class="recipe-head"><div><span class="eyebrow">酥炸／干煸类</span><h3>香辣虾</h3></div><span class="recipe-index">20</span></div>
+      <p><strong class="feature-label">特色</strong> · 活虾深开背；拍吉士粉/生粉；6成炸2分钟；豆瓣酱少、香辣酱多；不复炸</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">活虾、香辣酱</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>用盐水泡虾。</li><li>剪掉头（从眼到嘴），去掉虾线；剪掉所有脚、须，开背开深一些。洗净。</li><li>腌制：盐、姜片、料酒、白胡椒粉，15 分钟。</li><li>宽油至 6 成，下锅前拍吉士粉／生粉（不是浆），下锅炸 2 分钟，不复炸。</li><li>炒料：底油，炒香蒜粒、姜粒、花椒、干辣椒，豆瓣酱（少一点）、香辣酱（多一点）。</li><li>放入虾，调味（盐、鸡精、糖）；放入小葱段、芹菜段、黄瓜段翻炒。</li><li>淋红油／辣椒油，撒芝麻，出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button>
+        <button class="tag t-orange is-link" data-target="#tech-paifen">#拍粉</button>
+        <button class="tag t-green is-link" data-target="#mat-shrimp">#虾</button>
+        <button class="tag t-orange is-link" data-target="#tech-fuzha">#不复炸</button>
+       <button class="tag t-green is-link" data-target="#mat-starch">#淀粉</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-干烧霉千张" data-tags="干煸 炸壳" data-search="干烧霉千张 酥炸／干煸类 切卷；宽油炸起酥；底油炒香；烹味汁；大火收干到无汤 #干煸 #炸壳 #无汤">
+      <div class="recipe-head"><div><span class="eyebrow">酥炸／干煸类</span><h3>干烧霉千张</h3></div><span class="recipe-index">21</span></div>
+      <p><strong class="feature-label">特色</strong> · 切卷；宽油炸起酥；底油炒香；烹味汁；大火收干到无汤</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 腌味 → 挂糊／拍粉（或直接炸）→ 初炸定型 → 复炸脱水（视菜而定）→ 回锅炒香裹味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">霉千张筒</span></div><div class="rd-row rd-sauce"><span class="rd-k">碗汁</span><span class="rd-v">生抽，水，醋，味精，糖</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>霉千张筒切 1 cm 宽的卷。</li><li>宽油下锅炸霉千张，至表面起酥捞出。不要翻动，而是转锅 / 用勺淋油。</li><li>底油煸香姜、蒜、辣椒、花椒。</li><li>放霉千张卷，倒入碗汁，大火收干水分。</li><li>出锅前撒葱花、白芝麻。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-crispy">#酥炸</button> <button class="tag t-orange is-link" data-target="#tech-fuzha">#炸壳</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-青椒肉丝" data-tags="小炒 滑油 上浆" data-search="青椒肉丝 小炒类 肉丝上浆；4成滑油；青椒炒到5成；肉回锅；可薄芡；明油 #小炒 #滑油 #上浆">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>青椒肉丝</h3></div><span class="recipe-index">22</span></div>
+      <p><strong class="feature-label">特色</strong> · 肉丝上浆；4成滑油；青椒炒到5成；肉回锅；可薄芡；明油</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">薄皮青椒、瘦肉（前腿肉／里脊肉 / 鸡胸肉）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>肉切丝（顺纹理）后上浆（加：鸡精、白胡椒粉，小苏打（每 1 斤肉加3 g）。</li><li>青椒去籽切丝，切得和肉丝一样长。</li><li>锅内油温 4 成，滑锅后下肉丝炒散，倒出备用。</li><li>留底油，炒香姜蒜，下青椒炒至 5 成熟，调味。</li><li>放入肉丝炒匀，（可用水淀粉勾芡，）淋明油出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button>
+        <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button>
+        <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button>
+       <button class="tag t-green is-link" data-target="#pepper">#青椒</button> <button class="tag t-green is-link" data-target="#mat-meat">#瘦肉</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-农家小炒肉" data-tags="小炒 碗汁 不收芡" data-search="农家小炒肉 小炒类 瘦肉滑油；五花炒至微黄卷边；杭椒虎皮；回锅后淋碗汁，不收芡 #小炒 #碗汁 #不收芡">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>农家小炒肉</h3></div><span class="recipe-index">23</span></div>
+      <p><strong class="feature-label">特色</strong> · 瘦肉滑油；五花炒至微黄卷边；杭椒虎皮；回锅后淋碗汁，不收芡</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">瘦肉、五花肉、杭椒／螺丝椒 / 青椒、豆豉 / 老干妈</span></div><div class="rd-row rd-sauce"><span class="rd-k">碗汁</span><span class="rd-v">生抽、耗油、味精、糖、水（与生抽等量）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>瘦肉切片上浆；五花肉切薄片。</li><li>杭椒切成小片，干煸出虎皮状。</li><li>宽油4成油温，瘦肉滑油，备用。</li><li>底油，炒香五花肉至微黄卷边；下豆豉、姜、蒜，中小火炒香。</li><li>放瘦肉、杭椒，淋入碗汁，快速炒匀出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button> <button class="tag t-green is-link" data-target="#mat-meat">#五花</button> <button class="tag t-orange is-link" data-target="#tech-wanzhi">#碗汁</button> <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button> <button class="tag t-green is-link" data-target="#pepper">#青椒</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-鱼香肉丝" data-tags="小炒 碗汁 鱼香" data-search="鱼香肉丝 小炒类 素菜焯；肉丝滑油；豆瓣酱爆香；最后倒碗汁大火收匀 #小炒 #碗汁 #鱼香">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>鱼香肉丝</h3></div><span class="recipe-index">24</span></div>
+      <p><strong class="feature-label">特色</strong> · 素菜焯；肉丝滑油；豆瓣酱爆香；最后倒碗汁大火收匀</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-sauce"><span class="rd-k">碗汁</span><span class="rd-v">生抽 2勺、陈醋 2勺、白糖 1.5勺、料酒 1勺、淀粉 1勺、水 3勺</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>素菜焯水。</li><li>肉丝滑油。</li><li>底油爆香豆瓣酱、蒜、姜。</li><li>加素菜、肉丝翻炒。</li><li>倒入碗汁，大火收匀出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button> <button class="tag t-orange is-link" data-target="#tech-wanzhi">#碗汁</button> <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button> <button class="tag t-green is-link" data-target="#mat-meat">#肉丝</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-宫保鸡丁" data-tags="小炒 糊辣 荔枝味" data-search="宫保鸡丁 小炒类 鸡丁4成滑油；干辣椒中小火炒糊辣香；大葱回锅；勾芡；最后花生米+香醋+糖 #小炒 #糊辣 #荔枝味">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>宫保鸡丁</h3></div><span class="recipe-index">25</span></div>
+      <p><strong class="feature-label">特色</strong> · 鸡丁4成滑油；干辣椒中小火炒糊辣香；大葱回锅；勾芡；最后花生米+香醋+糖</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">鸡腿肉 / 鸡胸肉、大葱、炸花生米</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>鸡肉切丁，洗净、挤水，上浆（加小苏打）。</li><li>配料切丁（胡萝卜先焯水）。</li><li>宽油，油温 4 成，下鸡丁滑熟捞出。</li><li>少油，中小火下干辣椒炒至变色，放大葱、姜、蒜、豆瓣酱炒香。</li><li>加水（没过大葱）、煮开，调味（生抽、耗油）；放鸡丁、菜丁炒熟，用水淀粉收芡。</li><li>放花生米、香醋、加一点糖，炒匀出锅。味型：「<b>糊辣味 + 荔枝味</b>」（小酸小甜）</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button> <button class="tag t-orange is-link" data-target="#tech-shangjiang">#上浆</button> <button class="tag t-orange is-link" data-target="#tech-huayou">#滑油</button> <button class="tag t-orange is-link" data-target="#tech-wanzhi">#碗汁</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-green is-link" data-target="#mat-meat">#鸡肉</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-回锅肉" data-tags="小炒 回锅 预熟" data-search="回锅肉 小炒类 五花肉先煮25~30分钟至筷子可插；切片再炒出油；配料5成熟后调味勾芡 #小炒 #回锅 #预熟">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>回锅肉</h3></div><span class="recipe-index">26</span></div>
+      <p><strong class="feature-label">特色</strong> · 五花肉先煮25~30分钟至筷子可插；切片再炒出油；配料5成熟后调味勾芡</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">五花肉（先煮后炒）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>五花肉切大块，焯水。</li><li>煮肉：锅中炒香：豆瓣酱、干辣椒、花椒、八角、桂皮、香叶等，生抽。加水烧开调味（盐，糖，味精），煮五花肉 25~30 分钟至筷子能插入。</li><li>肉捞出切片，配料切块（如青红椒、洋葱、香干、蒜苗等）。</li><li>锅中炒香五花肉至出油<b>炒时会崩油，要锅盖</b>，放姜、蒜、豆瓣酱，下配料炒匀至 5 成熟。</li><li>放少量水煮，调味（盐、味精、生抽），水淀粉勾芡出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button> <button class="tag t-orange is-link" data-target="#tech-fei">#预熟</button> <button class="tag t-orange is-link" data-target="#tech-huayou">#煸出油</button> <button class="tag t-green is-link" data-target="#mat-meat">#五花</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-腊肉炒豆丝" data-tags="小炒 炕 腊肉" data-search="腊肉炒豆丝 小炒类 腊肉先蒸熟；豆丝小火炕焦酥；腊肉出油后合炒；清油增亮 #小炒 #炕 #腊肉">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>腊肉炒豆丝</h3></div><span class="recipe-index">27</span></div>
+      <p><strong class="feature-label">特色</strong> · 腊肉先蒸熟；豆丝小火炕焦酥；腊肉出油后合炒；清油增亮</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">鲜豆丝（不粘手的，糙米）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>豆丝切菱形片；腊肉洗净、蒸熟、切片、洗一下；红椒切片，蒜叶切菱形段。</li><li>炕豆丝：5~6成小火加少量油，豆丝单面炕至焦酥、浅黄，出锅。</li><li>炒锅滑油，下腊肉煸香、肥肉出油；放姜、蒜、干辣椒，小火煸出味。</li><li>倒入豆丝，加生抽、味精、少盐，炒匀。</li><li>下大蒜叶、红椒片，淋清油，撒葱花，翻匀装盘。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#炕</button>
+        <button class="tag t-green is-link" data-target="#mat-meat">#腊肉</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-干锅土豆片" data-tags="小炒 过油 干锅" data-search="干锅土豆片 小炒类 土豆厚片5~6成过油2分钟；五花出油；荆沙辣酱调味；孜然芝麻收尾 #小炒 #过油 #干锅">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>干锅土豆片</h3></div><span class="recipe-index">28</span></div>
+      <p><strong class="feature-label">特色</strong> · 土豆厚片5~6成过油2分钟；五花出油；荆沙辣酱调味；孜然芝麻收尾</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">老土豆、五花肉、荆沙辣酱</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>土豆切厚半圆片（切着安全）；五花肉去皮切薄片；青红椒切菱形片。</li><li>宽油 5~6 成温，土豆下锅炸 2 分钟。</li><li>底油，加五花肉小火煸炒出油。</li><li>倒入土豆，生抽、荆沙辣酱，调味，小火烹 1 分钟。</li><li>加十三香、青红椒片，撒芝麻、葱花、清油、孜然粉，翻匀装盘。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button>
+        <button class="tag t-orange is-link" data-target="#rule-oiltemp">#过油</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#干锅</button>
+       <button class="tag t-green is-link" data-target="#mat-potato">#土豆</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-手撕包菜" data-tags="小炒 素菜 香醋" data-search="手撕包菜 小炒类 去老梗、甩干水；肥肉炒焦；蒜辣椒后立即下包菜；最后香醋 #小炒 #素菜 #香醋">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>手撕包菜</h3></div><span class="recipe-index">29</span></div>
+      <p><strong class="feature-label">特色</strong> · 去老梗、甩干水；肥肉炒焦；蒜辣椒后立即下包菜；最后香醋</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">肥肉片 / 五花肉片</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>撕包菜为小块，去掉老梗，洗净后沥干水。</li><li>锅内底油，炒香肥肉片至焦黄。</li><li>放蒜、辣椒，立即放包菜。</li><li>中火炒至快出水时，大火炒熟，调味（生抽／蒸鱼豉油）。</li><li>出锅前放香醋。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button>
+        <button class="tag t-green is-link" data-target="#mat-leafy">#素菜</button>
+        <button class="tag t-orange is-link" data-target="#rule-season-time">#香醋</button>
+       <button class="tag t-green is-link" data-target="#vinegar">#醋</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-肥肠" data-tags="小炒 预熟" data-search="肥肠 小炒类 以预熟/卤熟后回锅为核心，避免久炒 #小炒 #预熟">
+      <div class="recipe-head"><div><span class="eyebrow">小炒类</span><h3>肥肠</h3></div><span class="recipe-index">30</span></div>
+      <p><strong class="feature-label">特色</strong> · 以预熟/卤熟后回锅为核心，避免久炒</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 切配 → 荤料上浆／预熟 → 滑油或煸出油 → 炒香底料与配菜 → 回锅调味或淋碗汁 → 勾芡明油</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">成品卤肥肠（冷记）、袋装炸糊椒（炸广椒）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>起锅烧油，中小火煸炒肥肠出油，加一点料酒。</li><li>转小火，炒炸糊椒至变色。</li><li>加大蒜叶子、调味（生抽），出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-xiaochao">#小炒</button> <button class="tag t-orange is-link" data-target="#tech-fei">#预熟</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-包子" data-tags="面点 发酵 二发" data-search="包子 面点类 35℃和面；一发2倍；包后二发1.5倍；蒸10~12分钟；焖2分钟 #面点 #发酵 #二发">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>包子</h3></div><span class="recipe-index">31</span></div>
+      <p><strong class="feature-label">特色</strong> · 35℃和面；一发2倍；包后二发1.5倍；蒸10~12分钟；焖2分钟</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">高筋面粉；猪肉馅3肥7瘦（后腿肉）</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例1</span><span class="rd-v">面粉 500 g、温水 250 g、酵母 5 g、糖 10 g、猪油 10 g、盐 2 g</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例2</span><span class="rd-v">（肉馅）肉 500 g、盐5~8 g</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>和面：35 ℃ 温水化开酵母，按比例揉面团。发酵约 1 小时至 2 倍大。</li><li>拌馅：<b>轻搅，不要上劲</b> 肉加盐、姜末、白胡椒粉、料酒、老抽，搅匀；多次加入葱姜水，搅匀；加入1个鸡蛋；表面加葱花，用<b>八成热油</b>淋香，搅匀。</li><li>擀皮、包包子。二次发酵至 1.5 倍大。</li><li>蒸 10 分钟，关火焖 2 分钟。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-mian">#面点</button>
+        <button class="tag t-orange is-link" data-target="#tech-fajiao">#发酵</button>
+        <button class="tag t-orange is-link" data-target="#tech-fajiao">#二发</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-花卷" data-tags="面点 发酵 花卷" data-search="花卷 面点类 发面；葱花+小苏打+盐+五香粉+油；卷切后二发再蒸 #面点 #发酵 #花卷">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>花卷</h3></div><span class="recipe-index">32</span></div>
+      <p><strong class="feature-label">特色</strong> · 发面；葱花+小苏打+盐+五香粉+油；卷切后二发再蒸</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <div class="recipe-detail"><div class="rd-row rd-ratio"><span class="rd-k">比例1</span><span class="rd-v">面粉 500 g、水 260 g、酵母 5 g、泡打粉 2~5 g、白糖 10 g、油 10 g、盐 2 g；</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例2</span><span class="rd-v">（葱馅）小苏打 2 g、葱花、盐、五香粉 / 十三香、油</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>温水融化酵母，揉面团，发酵。</li><li>拌馅料。</li><li>擀面片抹馅，卷起切段，拉长、扭一下。</li><li>二次发酵，上笼蒸熟。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-mian">#面点</button> <button class="tag t-orange is-link" data-target="#tech-fajiao">#发酵</button> <button class="tag t-orange is-link" data-target="#tech-fajiao">#二发</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-红糖馒头" data-tags="面点 发酵 红糖" data-search="红糖馒头 面点类 耐糖酵母；红糖入面；二发；蒸10分钟焖2分钟；目标为开花 #面点 #发酵 #红糖">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>红糖馒头</h3></div><span class="recipe-index">33</span></div>
+      <p><strong class="feature-label">特色</strong> · 耐糖酵母；红糖入面；二发；蒸10分钟焖2分钟；目标为开花</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">中筋面粉、老红糖、耐糖酵母</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例</span><span class="rd-v">面粉 500 g、温水 230 g 、老红糖 80 g、耐糖酵母 5 g、盐 2 g、油 10 g</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>35 ℃ 温水化开酵母、红糖，按比例揉面团。发酵约 1 小时至 2 倍大。</li><li>搓剂子；底面压平，上面保留不规则形状、撒几粒红糖。二次发酵至 1.5 倍大。</li><li>蒸 10 分钟，关火焖 2 分钟。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-mian">#面点</button> <button class="tag t-orange is-link" data-target="#tech-fajiao">#发酵</button> <button class="tag t-orange is-link" data-target="#tech-fajiao">#二发</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-油饼" data-tags="面点 油炸" data-search="油饼 面点类 偏稀面团；发酵；手抹油防粘；中间开孔；6成油炸 #面点 #油炸">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>油饼</h3></div><span class="recipe-index">34</span></div>
+      <p><strong class="feature-label">特色</strong> · 偏稀面团；发酵；手抹油防粘；中间开孔；6成油炸</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <div class="recipe-detail"><div class="rd-row rd-ratio"><span class="rd-k">比例</span><span class="rd-v">中筋面粉 300 g、盐 3 g、酵母 3 g、油 20 g、小苏打 1 g、泡打粉 3 g，鸡蛋 1 个。</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>用 25 ℃ 温水化开酵母，多次倒入面粉中（粉→面疙瘩→成团），面团<b>偏稀</b>。发酵约 1。5 小时。</li><li>操作时手上抹油防粘：揪小球团，中间做孔（油炸时通气用）。</li><li>油温 6 成，贴近油面下锅，炸至金黄浮起。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-mian">#面点</button>
+        <button class="tag t-orange is-link" data-target="#rule-oiltemp">#油炸</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-千层饼" data-tags="面点 油酥 分层" data-search="千层饼 面点类 热油泼面粉制油酥；卷起；醒2分钟；再擀平煎 #面点 #油酥 #分层">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>千层饼</h3></div><span class="recipe-index">35</span></div>
+      <p><strong class="feature-label">特色</strong> · 热油泼面粉制油酥；卷起；醒2分钟；再擀平煎</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <div class="recipe-detail"><div class="rd-row rd-ratio"><span class="rd-k">比例1</span><span class="rd-v">中筋面粉 500 g、温水 280 g、盐 6 g</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例2</span><span class="rd-v">（油酥）面粉 80 g、热油 80 g、盐 3 g、五香粉</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>和面，醒一下。</li><li>油酥：烧油至冒烟（6~7成），泼入面粉中，加盐、五香粉。</li><li>面团擀成圆饼形，抹上油酥；圆心起切一刀，卷成三角锥。</li><li>醒 2 分钟，正上方擀平为圆形，下锅煎至两面金黄。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-mian">#面点</button> <button class="tag t-orange is-link" data-target="#tech-youjuan">#油酥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-南瓜饼-土豆饼" data-tags="面点 浸炸 南瓜" data-search="南瓜饼／土豆饼 面点类 老南瓜蒸后去多余水；面粉+糯米粉；滚芝麻/面包糠；2~3成浸炸 #面点 #浸炸 #南瓜">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>南瓜饼／土豆饼</h3></div><span class="recipe-index">36</span></div>
+      <p><strong class="feature-label">特色</strong> · 老南瓜蒸后去多余水；面粉+糯米粉；滚芝麻/面包糠；2~3成浸炸</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 发酵面：和面 → 一发 → 成型 → 二发 → 蒸；油酥／煎炸面：和面 → 制酥 → 成型 → 煎或炸</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">老南瓜（实心的长瓜、非扁南瓜）；或土豆</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例</span><span class="rd-v">南瓜 1 斤，面粉 2 两、糯米粉 2 两、白糖 1 两</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>南瓜去皮，托盘内加水，蒙保鲜膜，蒸 15 分钟。</li><li>水分多时用纱布挤去多余水分，捏碎。加面粉、糯米粉、白糖拌匀。揉成面团。</li><li>搓圆后滚面包糠、芝麻。用模具压成型。</li><li>油温 2~3 成 90~105 ℃ 下锅，用漏勺护住底部。观察：饼四周围有小气泡→浮到油面→鼓起来。此时捞出。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-mian">#面点</button> <button class="tag t-orange is-link" data-target="#rule-oiltemp">#浸炸</button> <button class="tag t-orange is-link" data-target="#rule-oiltemp">#油炸</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-鲜肉千张卷" data-tags="面点 蒸制 千张" data-search="鲜肉千张卷 面点类 肉末再剁、上劲；千张抹干不洗；抹馅卷；蒸12~15分钟；放凉改刀 #面点 #蒸制 #千张">
+      <div class="recipe-head"><div><span class="eyebrow">面点类</span><h3>鲜肉千张卷</h3></div><span class="recipe-index">37</span></div>
+      <p><strong class="feature-label">特色</strong> · 肉末再剁、上劲；千张抹干不洗；抹馅卷；蒸12~15分钟；放凉改刀</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 预处理 → 调味／裹粉或抹馅卷制 → 码碗定形 → 长时间蒸 → 倒扣或改刀装盘</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">薄千张、肉末（前腿肉3:7、五花肉5:5）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>肉末再剁一下，调味上浆，持续快速搅拌上劲。</li><li>千张抹干水分（不要洗），铺平。用刀把肉末抹匀，卷起来。</li><li>蒸 12~15 分钟，取出放凉。</li><li>改刀装盘，撒葱花。</li><li>可选：烧汁淋上，或炸一下。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#蒸扣</button> <button class="tag t-orange is-link" data-target="#rule-steam">#蒸制</button> <button class="tag t-green is-link" data-target="#mat-tofu">#千张</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-白灼虾" data-tags="焯灼 虾 调汁" data-search="白灼虾 焯灼／浇汁类 盐水泡洗；腌后冲净；带姜、花椒、料酒、油的大火沸水中约30秒；蘸汁 #焯灼 #虾 #调汁">
+      <div class="recipe-head"><div><span class="eyebrow">焯灼／浇汁类</span><h3>白灼虾</h3></div><span class="recipe-index">38</span></div>
+      <p><strong class="feature-label">特色</strong> · 盐水泡洗；腌后冲净；带姜、花椒、料酒、油的大火沸水中约30秒；蘸汁</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料焯熟 → 装盘 → 另锅炒汁／调汁 → 勾薄芡 → 淋汁或蘸食</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">鲜活基围虾</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>基围虾用盐水泡洗。</li><li>加盐、姜片、料酒、生粉，加盖摇匀腌制 5~10 分钟。</li><li>冲洗干净、沥干水分。</li><li>空锅烧开水，下花椒、姜片、料酒和一点油。</li><li>虾下锅，<b>全程大火</b>，变红约 30 秒即捞出。</li><li>配料汁蘸食。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-zhuozhi">#焯灼</button>
+        <button class="tag t-green is-link" data-target="#mat-shrimp">#虾</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-zhuozhi">#调汁</button>
+       <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-蚝油生菜" data-tags="焯灼 调汁 薄芡" data-search="蚝油生菜 焯灼／浇汁类 生菜开水+盐油焯；另锅炒蒜和蚝油汁；薄芡后淋汁 #焯灼 #调汁 #薄芡">
+      <div class="recipe-head"><div><span class="eyebrow">焯灼／浇汁类</span><h3>蚝油生菜</h3></div><span class="recipe-index">39</span></div>
+      <p><strong class="feature-label">特色</strong> · 生菜开水+盐油焯；另锅炒蒜和蚝油汁；薄芡后淋汁</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 主料焯熟 → 装盘 → 另锅炒汁／调汁 → 勾薄芡 → 淋汁或蘸食</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>开水加盐、油，生菜焯水后摆盘。</li><li>炒料汁：炒香蒜末，加生抽／蒸鱼豉油、蚝油、白糖、一点水、盐、油，勾芡。</li><li>淋到盘中生菜上。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-zhuozhi">#焯灼</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-zhuozhi">#调汁</button>
+        <button class="tag t-orange is-link" data-target="#tech-gouqian">#薄芡</button>
+       <button class="tag t-green is-link" data-target="#mat-leafy">#生菜</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-梅菜扣肉" data-tags="蒸扣 码碗 倒扣" data-search="梅菜扣肉 蒸扣类 五花焯；猪皮扎孔后皮朝下炸；切片拌味；肉皮朝下码碗；蒸2小时；倒扣 #蒸扣 #码碗 #倒扣">
+      <div class="recipe-head"><div><span class="eyebrow">蒸扣类</span><h3>梅菜扣肉</h3></div><span class="recipe-index">40</span></div>
+      <p><strong class="feature-label">特色</strong> · 五花焯；猪皮扎孔后皮朝下炸；切片拌味；肉皮朝下码碗；蒸2小时；倒扣</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 预处理 → 调味／裹粉或抹馅卷制 → 码碗定形 → 长时间蒸 → 倒扣或改刀装盘</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">硬五花肉、梅干菜</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例</span><span class="rd-v">肉 3 斤、生抽 20 g、老抽 10 g、蚝油 10 g、红腐乳 17 g、腐乳汁 10 g、海鲜酱 100 g、花生酱 15 g、甜面酱 20 g</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>五花肉猪皮烫黄、拔毛、洗净。</li><li>冷水下锅焯水去腥 30 分钟，加姜、花椒、料酒、葱节，留一碗肉汤。</li><li>捞出肉，用一把牙签在猪皮上扎出孔。</li><li>起锅烧油，皮朝下，油超过肉皮，<b>加锅盖</b>防溅。炸 2 分钟后关火，冷却后开盖。</li><li>皮朝下，切片。</li><li>调料按比例配好，与肉片拌匀。</li><li>起锅烧油，把<b>梅干菜</b>煸香，拌入剩余调料。</li><li>蒸肉：肉在下（肉皮贴肉皮码匀）、菜在上，蒸（盖保鲜膜） 2 小时，倒扣装盘。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#蒸扣</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#码碗</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#倒扣</button>
+       <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-粉蒸肉" data-tags="蒸扣 米粉 倒扣" data-search="粉蒸肉 蒸扣类 硬五花切厚片；米粉裹满；肉皮朝下码碗；红薯/芋头在上；蒸2小时倒扣 #蒸扣 #米粉 #倒扣">
+      <div class="recipe-head"><div><span class="eyebrow">蒸扣类</span><h3>粉蒸肉</h3></div><span class="recipe-index">41</span></div>
+      <p><strong class="feature-label">特色</strong> · 硬五花切厚片；米粉裹满；肉皮朝下码碗；红薯/芋头在上；蒸2小时倒扣</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 预处理 → 调味／裹粉或抹馅卷制 → 码碗定形 → 长时间蒸 → 倒扣或改刀装盘</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">硬五花肉、红薯／芋头 / 黄心土豆</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例1</span><span class="rd-v">（腌肉料）肉 2斤、鸡精 12 g、白糖 8 g、胡椒粉 2 g、料酒 5 ml、水 150 ml、生抽 30 g、老抽15g、豆瓣酱 10 g、南乳酱 5 g、甜面酱 5 g、姜葱末</span></div><div class="rd-row rd-ratio"><span class="rd-k">比例2</span><span class="rd-v">白米粉 400 g 拌入老抽 15 g</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>五花肉燎肉皮，水冲洗干净，切厚片。</li><li>放入腌肉料，拌匀。</li><li>放米粉，让肉片沾满。</li><li>放油 100 g，拌匀。</li><li>红薯切块、拌盐腌制。</li><li>肉片皮朝下码入碗中。</li><li>红薯块裹米粉，铺在肉上面。</li><li>上笼蒸 2 小时。</li><li>取出倒扣装盘。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#蒸扣</button>
+        <button class="tag t-green is-link" data-target="#mat-starch">#米粉</button>
+        <button class="tag t-indigo is-link" data-target="#pattern-zhengkou">#倒扣</button>
+       <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-蒸鱼" data-tags="蒸鱼 状态判熟" data-search="蒸鱼 单独蒸制技法 抹油；姜葱垫底；蒸8~10分钟；鱼眼凸出且筷子能插背肉为熟 #蒸鱼 #状态判熟">
+      <div class="recipe-head"><div><span class="eyebrow">单独蒸制技法</span><h3>蒸鱼</h3></div><span class="recipe-index">42</span></div>
+      <p><strong class="feature-label">特色</strong> · 抹油；姜葱垫底；蒸8~10分钟；鱼眼凸出且筷子能插背肉为熟</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 抹油／垫姜葱 → 蒸 8~10 分钟 → 状态判熟</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>鱼身抹一层油。</li><li>盘底垫姜片、大葱，放上鱼。</li><li>蒸 8~10 分钟。</li><li>鱼眼凸出、筷子能插进背肉即出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-zheng">#蒸制</button> <button class="tag t-orange is-link" data-target="#rule-doneness">#状态判熟</button> <button class="tag t-green is-link" data-target="#mat-fish">#鱼</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-排骨藕汤" data-tags="汤类 开水 高压锅" data-search="排骨藕汤 汤类 泡血水→焯；排骨炒出油/微焦→开水；藕可部分打碎增浓；高压30分钟 #汤类 #开水 #高压锅">
+      <div class="recipe-head"><div><span class="eyebrow">汤类</span><h3>排骨藕汤</h3></div><span class="recipe-index">43</span></div>
+      <p><strong class="feature-label">特色</strong> · 泡血水→焯；排骨炒出油/微焦→开水；藕可部分打碎增浓；高压30分钟</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 泡血水 → 焯水 → 炒／煸出油 → 冲入开水 → 长时间压煮（可打碎部分主料增浓）→ 最后调味</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">筒骨／排骨、粉藕</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>藕切块，用盐腌一下，再冲净盐。</li><li>筒骨／排骨泡去血水，焯水去腥。</li><li>底油炒排骨出油、微焦，倒入开水。</li><li>全部放入高压锅，只加姜和料酒，压 30 分钟。</li><li>可取部分藕打碎，使汤更浓。</li><li>调味用盐、鸡精（大量）；碗里另加胡椒粉、香葱。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-tang">#汤类</button>
+        <button class="tag t-orange is-link" data-target="#rule-shao-water">#开水</button>
+        <button class="tag t-orange is-link" data-target="#rule-pressure">#高压锅</button>
+       <button class="tag t-orange is-link" data-target="#tech-fei">#焯水</button> <button class="tag t-green is-link" data-target="#mat-duckbone">#排骨</button> <button class="tag t-orange is-link" data-target="#rule-season">#去腥</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-炒莴苣" data-tags="快炒 莴苣" data-search="炒莴苣 快炒素菜／短时熟化类 菱形片；底油蒜香；快速炒熟；盐+蒸鱼豉油调味 #快炒 #莴苣">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>炒莴苣</h3></div><span class="recipe-index">44</span></div>
+      <p><strong class="feature-label">特色</strong> · 菱形片；底油蒜香；快速炒熟；盐+蒸鱼豉油调味</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>莴苣切菱形片，底油炒香很多蒜，加入莴苣片，炒熟调味（盐、蒸鱼豉油）。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button> <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-芍尖" data-tags="快炒 保色 短时" data-search="芍尖 快炒素菜／短时熟化类 飞水；蒜和菜同时下锅；快速翻3下；先关火再放盐 #快炒 #保色 #短时">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>芍尖</h3></div><span class="recipe-index">45</span></div>
+      <p><strong class="feature-label">特色</strong> · 飞水；蒜和菜同时下锅；快速翻3下；先关火再放盐</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">芍尖（嫩尖，叶子以下只留中指长度）</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>芍尖洗净、沥干水分，飞一下水。</li><li>锅烧至油冒烟，左手下蒜片、右手下芍尖。</li><li>快速翻 3 下。</li><li><b>先关火，再放盐调味</b>，翻炒均匀。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button>
+        <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button>
+        <button class="tag t-orange is-link" data-target="#rule-crisp">#短时</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-炒小白菜" data-tags="快炒 保色 猪油" data-search="炒小白菜 快炒素菜／短时熟化类 猪油炝锅；炒到变色立即下盐，保持翠绿 #快炒 #保色 #猪油">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>炒小白菜</h3></div><span class="recipe-index">46</span></div>
+      <p><strong class="feature-label">特色</strong> · 猪油炝锅；炒到变色立即下盐，保持翠绿</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>猪油下锅，下蒜炒香，放小白菜炒至变色，加盐调味。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button>
+        <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button>
+        <button class="tag t-orange is-link" data-target="#rule-oiltemp">#猪油</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-西兰花" data-tags="快炒 保色 短焯" data-search="西兰花 快炒素菜／短时熟化类 盐水泡；拆小枝；盐+油焯；蒜爆香后快速炒 #快炒 #保色 #短焯">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>西兰花</h3></div><span class="recipe-index">47</span></div>
+      <p><strong class="feature-label">特色</strong> · 盐水泡；拆小枝；盐+油焯；蒜爆香后快速炒</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>西兰花加盐泡洗，拆成小枝。</li><li>焯水（水中加盐、油）。</li><li>烧油，爆香蒜，放菜，调味，出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button>
+        <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button>
+        <button class="tag t-orange is-link" data-target="#tech-fei">#短焯</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-油麦菜" data-tags="快炒 等长切配" data-search="油麦菜 快炒素菜／短时熟化类 切等长段；蒜爆香；快炒；盐调味 #快炒 #等长切配">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>油麦菜</h3></div><span class="recipe-index">48</span></div>
+      <p><strong class="feature-label">特色</strong> · 切等长段；蒜爆香；快炒；盐调味</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>油麦菜切等长的段，蒜爆香后下锅快炒，加盐调味出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button> <button class="tag t-green is-link" data-target="#mat-leafy">#保色</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-芹菜炒香干" data-tags="快炒 香干 明油" data-search="芹菜炒香干 快炒素菜／短时熟化类 芹菜去叶切条；香干先焯去豆腥；加半碗水烧一下入味；明油收尾 #快炒 #香干 #明油">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>芹菜炒香干</h3></div><span class="recipe-index">49</span></div>
+      <p><strong class="feature-label">特色</strong> · 芹菜去叶切条；香干先焯去豆腥；加半碗水烧一下入味；明油收尾</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>芹菜去叶切条。</li><li>香干焯水。</li><li>底油，煸炒香干，放入芹菜，调味，加半碗水烧一下。</li><li>淋明油出锅。</li></ol></div></div>
+      <div class="tag-row">
+        <button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button>
+        <button class="tag t-green is-link" data-target="#mat-tofu">#香干</button>
+        <button class="tag t-orange is-link" data-target="#tech-gouqian">#明油</button>
+      </div>
+    </article>
+
+    <article class="recipe panel" id="dish-炒豆腐" data-tags="快炒 豆腐 煎" data-search="炒豆腐 快炒素菜／短时熟化类 老豆腐切片；一面黄一面白煎；蒜叶姜香后回锅调味 #快炒 #豆腐 #煎">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>炒豆腐</h3></div><span class="recipe-index">50</span></div>
+      <p><strong class="feature-label">特色</strong> · 老豆腐切片；一面黄一面白煎；蒜叶姜香后回锅调味</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">老豆腐</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>老豆腐切片。</li><li>用油煎豆腐，煎到一面黄、一面白后盛出。</li><li>热锅底油，下大蒜叶、姜片炒香，放入豆腐。</li><li>调味（盐、生抽），出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button> <button class="tag t-green is-link" data-target="#mat-tofu">#豆腐</button> <button class="tag t-orange is-link" data-target="#rule-oiltemp">#煎定型</button></div>
+    </article>
+
+    <article class="recipe panel" id="dish-酸辣土豆丝" data-tags="快炒 脆 白醋" data-search="酸辣土豆丝 快炒素菜／短时熟化类 细丝泡水；焯5秒；快速翻炒；白醋最后放 #快炒 #脆 #白醋">
+      <div class="recipe-head"><div><span class="eyebrow">快炒素菜／短时熟化类</span><h3>酸辣土豆丝</h3></div><span class="recipe-index">51</span></div>
+      <p><strong class="feature-label">特色</strong> · 细丝泡水；焯5秒；快速翻炒；白醋最后放</p>
+      <div class="pattern-mini"><b>范式步骤</b> · 洗切 → 必要时短焯（水中加盐、油保色）→ 底油爆香 → 快炒 → 起锅前调味 → 立即出锅</div>
+      <div class="recipe-detail"><div class="rd-row rd-ing"><span class="rd-k">选料</span><span class="rd-v">白心老土豆</span></div><div class="rd-steps"><span class="rd-k">做法</span><ol class="rd-ol"><li>土豆切细丝，泡水，加白醋。</li><li>焯水断生：水加多盐、一点油。 5~8 秒。</li><li>底油，炒蒜、青红椒，放土豆丝翻炒几下，调味。</li><li>勾芡，白醋出锅。</li></ol></div></div>
+      <div class="tag-row"><button class="tag t-indigo is-link" data-target="#pattern-sukai">#快炒</button> <button class="tag t-orange is-link" data-target="#rule-crisp">#脆</button> <button class="tag t-orange is-link" data-target="#rule-season-time">#白醋</button> <button class="tag t-orange is-link" data-target="#tech-fei">#短焯</button> <button class="tag t-green is-link" data-target="#vinegar">#醋</button> <button class="tag t-green is-link" data-target="#mat-potato">#土豆</button></div>
+    </article>
+ </div>
+</section>
+</main>
+
+<button class="to-top" id="topBtn" aria-label="返回顶部" title="返回顶部">↑</button>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+// 自动展开目标元素的父级折叠
+function openParentDetails(el) {
+  let parent = el.closest('details');
+  if (parent) parent.open = true;
+}
+
+// 吸顶搜索栏的实测高度（用于避让，避免跳转后标题被挡住）
+function stickOffset(){
+  const bar=document.querySelector('.sticky-search');
+  return (bar?bar.getBoundingClientRect().height:56)+8;
+}
+
+// 轻提示浮层
+let toastEl=null,toastTimer=0;
+function toast(msg){
+  if(!toastEl){ toastEl=document.createElement('div'); toastEl.className='toast'; toastEl.setAttribute('role','status'); document.body.appendChild(toastEl); }
+  toastEl.textContent=msg;
+  toastEl.classList.add('is-on');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toastEl.classList.remove('is-on'),2600);
+}
+
+// 跳到某张卡/某个区块。
+// 若目标正被搜索过滤隐藏（display:none 时滚动无效），先清空搜索还原布局，再跳转并提示。
+function jumpTo(el,label){
+  if(!el) return;
+  openParentDetails(el);
+  const sec=el.closest('.section');
+  const blocked=el.classList.contains('is-hidden')||(sec&&sec.classList.contains('is-hidden'));
+  if(blocked&&search.value.trim()){
+    search.value='';
+    applyFilter();
+    toast('已清空搜索，定位到'+(label?'「'+label+'」':'目标位置'));
+  }
+  const y=el.getBoundingClientRect().top+window.pageYOffset-stickOffset();
+  window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+  el.classList.add('flash-target');
+  setTimeout(()=>el.classList.remove('flash-target'),700);
+}
+
+function scrollToTarget(sel){
+  const el=document.querySelector(sel);
+  if(!el) return;
+  const h=el.querySelector('h3');
+  jumpTo(el,h?h.textContent.trim():'');
+}
+
+const search=$('#search');
+const recipes=$$('#recipeGrid .recipe');
+// 全文检索范围：菜谱 + 范式 + 技法 + 食材 + 规则
+const cards=$$('.pattern-card, .tech-card, .material-card, .protocol, .recipe');
+const sections=$$('.section');
+const status=$('#searchStatus');
+
+// 所有语义标签统一跳转
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-target]');
+  if(t){ 
+    e.preventDefault(); 
+    scrollToTarget(t.dataset.target); 
+  }
+});
+
+// 菜品名称按钮：跳到具体菜谱
+$$('.dish-jump').forEach(b=>b.addEventListener('click',()=>{
+  const name=b.dataset.dish;
+  const target=recipes.find(r=>r.querySelector('h3')?.textContent===name);
+  if(target) jumpTo(target,name);
+}));
+
+// 卡片检索文本：有 data-search 用精选关键词，没有则回退到整卡文本
+function haystack(el){
+ const curated=((el.dataset.search||'')+' '+(el.dataset.tags||'')).trim();
+ const h3=el.querySelector('h3')?el.querySelector('h3').textContent:'';
+ const det=el.querySelector('.recipe-detail')?el.querySelector('.recipe-detail').textContent:'';
+ return ((curated?curated+' '+h3:el.textContent||'')+' '+det).toLowerCase();
+}
+
+const CARD_SEL='.pattern-card, .tech-card, .material-card, .protocol, .recipe';
+
+function applyFilter(){
+ const q=search.value.trim().toLowerCase(); let n=0;
+ cards.forEach(el=>{
+   const show=!q||haystack(el).includes(q);
+   el.classList.toggle('is-hidden',!show);
+   if(show)n++;
+ });
+ // 整段无命中时隐藏该区块（含标题），清空搜索则全部恢复
+ sections.forEach(sec=>{
+   sec.classList.remove('is-hidden');
+   if(!q) return;
+   const own=[...sec.querySelectorAll(CARD_SEL)];
+   if(own.length&&own.every(c=>c.classList.contains('is-hidden'))) sec.classList.add('is-hidden');
+ });
+ if(status){
+   if(!q){ status.hidden=true; status.textContent=''; status.classList.remove('is-empty'); }
+   else if(!n){ status.hidden=false; status.classList.add('is-empty'); status.textContent='没有匹配条目，换个菜名、技法或标签试试。'; }
+   else { status.hidden=false; status.classList.remove('is-empty'); status.textContent='找到 '+n+' 个相关条目（菜谱／范式／技法／食材／规则）'; }
+ }
+}
+search.addEventListener('input',applyFilter);
+window.addEventListener('keydown',e=>{
+ if(e.key==='/' && document.activeElement!==search){e.preventDefault();search.focus();}
+});
+const topBtn=$('#topBtn');
+window.addEventListener('scroll',()=>topBtn.classList.toggle('show',window.scrollY>700),{passive:true});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+applyFilter();
+</script>
+</body></html>
+<!-- （注：内容由AI生成） -->
